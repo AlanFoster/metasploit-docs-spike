@@ -1,11 +1,76 @@
-.logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
+body {
+    background: #f0f2f5;
 }
-.site-layout .site-layout-background {
+
+.logo {
+    width: 120px;
+    height: 31px;
+    margin: 11px 28px 16px 0;
+    float: left;
+}
+
+.header-search {
+    float: right;
+}
+
+.site-layout-background {
     background: #fff;
 }
-[data-theme="dark"] .site-layout .site-layout-background {
-    background: #141414;
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+    color: #666;
+    font-weight: bold;
 }
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+    border-bottom: 1px solid #f6f6f6;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item {
+    padding-left: 16px;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+    text-align: center;
+    cursor: default;
+}
+
+.certain-category-search-dropdown .ant-select-dropdown-menu {
+    max-height: 300px;
+}
+
+/* Tabs Container */
+
+.card-container p {
+    margin: 0;
+}
+.card-container > .ant-tabs-card > .ant-tabs-content {
+    margin-top: -16px;
+}
+[data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-content {
+    margin-top: -8px;
+}
+
+[data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane,
+.card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
+    background: #fff;
+    padding: 16px;
+}
+
+[data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-bar,
+.card-container > .ant-tabs-card > .ant-tabs-bar {
+    border-color: #fff;
+}
+
+[data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab,
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+}
+
+[data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active,
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+    border-color: #fff;
+    background: #fff;
+}
+
