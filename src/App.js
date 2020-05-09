@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./App.css";
+import Highlighter from "react-highlight-words";
 import {
   Layout,
   Menu,
@@ -23,7 +24,17 @@ import {
   Tag,
   Divider,
 } from "antd";
-import { UserOutlined, SmileOutlined } from "@ant-design/icons";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useParams,
+  useRouteMatch,
+  useHistory
+} from "react-router-dom";
+import { UserOutlined, SmileOutlined, HomeOutlined, FolderFilled,  FileOutlined} from "@ant-design/icons";
 import _ from "lodash";
 import rawModules from "./modules_metadata_base.json";
 import { ReactComponent as Logo } from "./logo.svg";
@@ -32,13 +43,23 @@ const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text, Paragraph } = Typography;
 const { TabPane } = Tabs;
 
-const modules = Object.values(rawModules)
-  .sort((a, b) => a.type.localeCompare(b.type))
-  .filter(
-    (mod) =>
-      mod.fullname.indexOf("admin/db2/db2rcmd") === -1 &&
-      mod.fullname.indexOf("multi/http/jenkins_xstream_deserialize") === -1
-  );
+const modules = Object.values(rawModules).sort((a, b) =>
+  a.type.localeCompare(b.type)
+);
+// .filter(
+//   (mod) =>
+//     mod.fullname.indexOf("admin/db2/db2rcmd") === -1 &&
+//     mod.fullname.indexOf("multi/http/jenkins_xstream_deserialize") === -1
+// );
+const modulesByFullname = modules.reduce(function (acc, module) {
+  acc[module.fullname] = module;
+  return acc;
+}, {});
+// ["auxiliary", "exploit", "post", ... etc ...];
+const prefixes = Array.from(Object.keys(modulesByFullname).reduce((prefixSet, name) => {
+  prefixSet.add(name.split("/")[0]);
+  return prefixSet;
+}, new Set()).values())
 
 const stripPrefix = (s) => {
   for (let i = 0; i < prefixes.length; i++) {
@@ -247,8 +268,6 @@ const ModuleDocumentation = ({ module }) => {
   return <div>testing</div>;
 };
 
-const prefixes = ["auxiliary", "exploit", "post"];
-
 const renderTitle = (title, amount) => (
   <span key={title}>
     {title}
@@ -265,17 +284,22 @@ const renderTitle = (title, amount) => (
   </span>
 );
 
-const renderItem = (module) => ({
+const renderItem = (module, searchTerm) => ({
   value: module.fullname,
   label: (
     <div
       style={{
         display: "flex",
         justifyContent: "space-between",
-        whiteSpace: 'normal'
+        whiteSpace: "normal",
       }}
     >
-      {module.name}
+      <Highlighter
+          highlightClassName="autocomplete-highlight"
+          searchWords={[searchTerm]}
+          autoEscape={true}
+          textToHighlight={module.name}
+      />
       <span>
         <Rank rank={module.rank} />
       </span>
@@ -358,16 +382,133 @@ const EmptyModuleDocumentation = ({ module }) => {
   );
 };
 
+const ModuleDefinition = ({ module }) => {
+  return (
+      <PageHeader
+        className="site-page-header-responsive"
+        // onBack={() => window.history.back()}
+        title={module.name}
+        // subTitle="This is a subtitle"
+        tags={[<Rank rank={module.rank} />]}
+      >
+        <div className="card-container">
+          <Tabs defaultActiveKey="1" type="card">
+            <TabPane tab="Documentation" key="2">
+              <TabContent>
+                <div style={{ marginTop: "15px" }}>
+                  <EmptyModuleDocumentation module={module} />
+                </div>
+              </TabContent>
+            </TabPane>
+            <TabPane tab="Details" key="1">
+              <TabContent>
+                <ModuleDetails module={module} />
+                {/*<Empty/>*/}
+              </TabContent>
+            </TabPane>
+          </Tabs>
+        </div>
+      </PageHeader>
+  );
+};
+
+const ModuleFolders = () => {
+  return <div>"howdy module folders"</div>;
+};
+
+const ModuleExplorer = () => {
+  let params = useParams();
+  let { url } = useRouteMatch();
+  const path = params.path || '';
+
+  // Otherwise we need to calculate the 'folders' in the module hierarchy
+  const fileMap = Object.keys(modulesByFullname).reduce(
+    (fileMap, moduleKey) => {
+      if (moduleKey.startsWith(path)) {
+        const prefixLength = path === '' ? 0 : path.length + "/".length;
+        const fileSegments = moduleKey.substring(prefixLength).split("/");
+        const file = fileSegments[0];
+        const type = fileSegments.length === 1 ? 'file' : 'folder';
+        fileMap[file] = fileMap[file] || { file: file, type: type };
+        fileMap[file].segments = fileSegments;
+        if (type === 'folder') {
+          fileMap[file].count = fileMap[file].count || 0;
+          fileMap[file].count++;
+        }
+      }
+      return fileMap;
+    },
+    {}
+  );
+  const files = Object.values(fileMap).sort((a, b) =>
+    a.file.localeCompare(b.file)
+  );
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "file",
+      key: "name",
+      render: (file, item) => (
+          <Link to={`${url}/${file}`}>
+            {item.type === 'folder' ? <FolderFilled/> : <FileOutlined/>}
+            {' '}
+            {file}
+          </Link>
+      )
+    },
+    {
+      title: "Count",
+      dataIndex: "count",
+      key: "size",
+      render: (count) => <Text>{count}</Text>,
+    },
+  ];
+
+  return (
+      <Content style={{ marginTop: "24px 16px" }}>
+        <Table pagination={false} dataSource={files} columns={columns} />
+      </Content>
+  )
+};
+
+const Modules = () => {
+  let { path } = useParams();
+
+  // If we're at a leaf node, just return the module definition directly
+  const selectedModule = modulesByFullname[path];
+
+  return (
+    <React.Fragment>
+      <Breadcrumb style={{ margin: "16px 0" }}>
+        <Breadcrumb.Item href="/modules">
+          <HomeOutlined /><span>Modules</span>
+        </Breadcrumb.Item>
+        {(path || '').split("/").map((segment, index, array) => {
+          const path = "/modules/" + array.slice(0, index + 1).join("/");
+          return (
+            <Breadcrumb.Item key={index}>
+              <a href={path}>{segment}</a>
+            </Breadcrumb.Item>
+          );
+        })}
+      </Breadcrumb>
+      {
+        selectedModule
+          ? <ModuleDefinition module={selectedModule} />
+          : <ModuleExplorer />
+      }
+    </React.Fragment>
+  )
+}
+
 export const App = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const history = useHistory();
   let defaultSearch = "";
   // defaultSearch = "2wire";
   defaultSearch = "Jenkins-CI enum";
   const [search, setSearch] = React.useState(defaultSearch || "");
 
   const filteredModules = filterModules(modules, search);
-
-  const selectedModule = filteredModules[selectedIndex];
 
   const options = prefixes.map(function (prefix) {
     const matchedModules = filteredModules.filter(
@@ -376,23 +517,18 @@ export const App = () => {
     return {
       label: renderTitle(`${prefix} module`, matchedModules.length),
       options: matchedModules.map((module) => {
-        return renderItem(module);
+        return renderItem(module, search);
       }),
     };
   });
 
   const onSearch = (searchText) => {
-    // setOptions(
-    //     !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-    // );
-  };
-  const onSelect = (data) => {
-    debugger;
-    filterModules(modules, search);
+    setSearch(searchText);
   };
 
-  const onChange = (data) => {
-    setSearch(data);
+  const onSelect = (fullname) => {
+    history.push(`/modules/${fullname}`);
+    setSearch("");
   };
 
   return (
@@ -412,53 +548,41 @@ export const App = () => {
             value={search}
             onSelect={onSelect}
             onSearch={onSearch}
-            onChange={onChange}
           >
             <Input.Search size="large" placeholder={search} />
           </AutoComplete>
         </div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-          <Menu.Item key="1">Articles</Menu.Item>
-          <Menu.Item key="2">Modules</Menu.Item>
-          <Menu.Item key="3">Help</Menu.Item>
+          <Menu.Item key="1">
+            Articles
+            <Link to="/" />
+          </Menu.Item>
+          <Menu.Item key="2">
+            Modules
+            <Link to="/" />
+          </Menu.Item>
+          <Menu.Item key="3">
+            Help
+            <Link to="/" />
+          </Menu.Item>
         </Menu>
       </Header>
 
       <Content style={{ padding: "0 50px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          {selectedModule.fullname.split("/").map((segment, index) => {
-            return (
-              <Breadcrumb.Item key={index}>
-                <a href="">{segment}</a>
-              </Breadcrumb.Item>
-            );
-          })}
-        </Breadcrumb>
-        <PageHeader
-          className="site-page-header-responsive"
-          // onBack={() => window.history.back()}
-          title={selectedModule.name}
-          // subTitle="This is a subtitle"
-          tags={[<Rank rank={selectedModule.rank} />]}
-        >
-          <div className="card-container">
-            <Tabs defaultActiveKey="1" type="card">
-              <TabPane tab="Documentation" key="2">
-                <TabContent>
-                  <div style={{ marginTop: "15px" }}>
-                    <EmptyModuleDocumentation module={selectedModule} />
-                  </div>
-                </TabContent>
-              </TabPane>
-              <TabPane tab="Details" key="1">
-                <TabContent>
-                  <ModuleDetails module={selectedModule} />
-                  {/*<Empty/>*/}
-                </TabContent>
-              </TabPane>
-            </Tabs>
-          </div>
-        </PageHeader>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/modules" />
+          </Route>
+          <Route exact path="/articles">
+            Articles here
+          </Route>
+          <Route exact path="/modules/">
+            <Modules />
+          </Route>
+          <Route path="/modules/:path*">
+            <Modules />
+          </Route>
+        </Switch>
       </Content>
 
       {/*<Footer style={{textAlign: "center"}}>Metasploit spike</Footer>*/}
