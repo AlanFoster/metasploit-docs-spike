@@ -1,0 +1,107 @@
+# Extracts all module information so that it can be extracted for use within documentatio.
+# The information can be extracted with the following command:
+#     ./msfconsole --quiet --no-database --resource ./extract_module_metadata.rc --execute-command 'exit'
+# TODO: Confirm why `framework.modules.to_a.size != JSON.parse(File.read("./db/modules_metadata_base.json")).size`, `4061 != 4067`
+
+<ruby>
+
+# TODO: Investigate why calling "create" on most modules takes a minimum of 0.3 seconds
+# Metasploit::Framework::Profiler.record_cpu do
+#   framework.modules.create("windows/applocker_evasion_regasm_regsvcs")
+# end
+
+def record_time
+  starting = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  result = yield
+  ending = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  elapsed = ending - starting
+  [result, elapsed]
+end
+
+def parallel_each(enumerable, &block)
+  queue = Queue.new
+  enumerable.each { |enum| queue << enum }
+
+  threads = 16.times.map do
+    Thread.new do
+      until queue.empty?
+        element = queue.pop(non_block: true) rescue nil
+        next if element.nil?
+        yield element
+      end
+    end
+  end
+
+  threads.each(&:join)
+  queue.close
+end
+
+output_path = File.join(Msf::Config.install_root, 'tmp', 'module_metadata.jsonl')
+File.delete(output_path) if File.exist?(output_path)
+
+puts "Starting module extraction"
+index = 0
+_, total_time = record_time do
+  File.open(output_path, mode: 'a') do |output_file|
+    puts "Extracting module paths"
+    module_paths, module_paths_timing = record_time { framework.modules.to_a }
+    puts "Extracted module paths in #{module_paths_timing}"
+
+    parallel_each(module_paths) do |module_path, _module_class|
+      index += 1
+      puts "#{index} - #{module_path}"
+      mod, elapsed = record_time { framework.modules.create(module_path) }
+      puts "#{index} - #{module_path}, time taken: #{elapsed}, #{mod.type}"
+
+      metadata = {
+          name: mod.name.force_encoding(::Encoding::UTF_8),
+          fullname: mod.realname.force_encoding(::Encoding::UTF_8),
+          aliases: mod.aliases,
+          rank: mod.rank,
+          disclosure_date: mod.disclosure_date.nil? ? nil : mod.disclosure_date.to_s,
+          type: mod.type,
+          author: mod.author.map { |x| x.to_s.force_encoding(::Encoding::UTF_8) },
+          description: mod.description.to_s.strip.force_encoding(::Encoding::UTF_8),
+          # .force_encoding(Encoding::UTF_8)
+          references: mod.references,
+          platform: mod.platform_to_s,
+          arch: mod.arch_to_s,
+          autofilter_ports: (
+            mod.respond_to?(:autofilter_ports) ? mod.autofilter_ports : nil
+          ),
+          autofilter_services: (
+            mod.respond_to?(:autofilter_services) ? mod.autofilter_services : nil
+          ),
+          targets: (
+            (mod.respond_to?(:targets) && mod.targets) ? mod.targets.map(&:name) : nil
+          ),
+          path: mod.file_path.sub(%r{^#{Msf::Config.install_root}}, ""),
+          ref_name: mod.class.refname,
+          check: mod.has_check?,
+          post_auth: mod.post_auth?,
+          default_credential: mod.default_cred?,
+          notes: mod.notes,
+          needs_cleanup: (
+            mod.respond_to?(:needs_cleanup?) ? mod.needs_cleanup? : nil
+          ),
+          options: mod.options.values.map do |option|
+            {
+                type: option.type,
+                name: option.name,
+                required: option.required,
+                default: option.default,
+                aliases: option.aliases,
+                advanced: option.advanced,
+                description: option.desc
+            }
+          end
+      }
+
+      output_file.write("#{metadata.to_json}\n")
+    end
+  end
+end
+
+puts "The total time was: #{total_time}"
+puts "Results: #{output_path}"
+</ruby>
