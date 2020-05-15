@@ -1,0 +1,15 @@
+body {
+    background: #f0f2f5 !important;
+}
+
+.logo {
+    width: 120px;
+    height: 31px;
+    margin: 11px 28px 16px 0;
+    float: left;
+}
+
+.sider {
+    background: #fff;
+}
+

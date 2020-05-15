@@ -1,8 +1,11 @@
 import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
-import { Affix, Menu } from 'antd'
-import 'antd/lib/menu/style/css'
+import { Layout, Menu } from 'antd'
 import { pathPrefix } from '../../gatsby-config'
+import 'antd/lib/menu/style/css'
+
+const { Sider, Content, Header } = Layout
+const { SubMenu } = Menu
 
 interface LinkItem {
   id: string
@@ -29,9 +32,7 @@ function render(item: MenuItem, id: string) {
     return (
       <Menu.Item key={item.link}>
         <Link to={item.link}>
-          <div>
-            {item.name}
-          </div>
+          <div>{item.name}</div>
         </Link>
       </Menu.Item>
     )
@@ -68,23 +69,33 @@ export function Sidebar() {
         }
       `}
       render={(data: Query) => {
-        const rootItems = data.allSidebarJson.edges.map(v => v.node)
+        const rootItems = data.allSidebarJson.edges.map((v) => v.node)
         const currentPath =
           typeof window !== 'undefined'
             ? window.location.pathname.replace(pathPrefix, '')
             : '/'
-        const defaultOpenKeys = rootItems.map(item => item.id)
+        const defaultOpenKeys = rootItems.map((item) => item.id)
+
         return (
-          <Affix>
+          <Sider
+            width={256}
+            className="sider"
+            style={{
+              overflow: 'auto',
+              height: '100vh',
+              position: 'fixed',
+              left: 0,
+            }}
+          >
             <Menu
               mode="inline"
-              style={{ minWidth: 250, height: '100%', borderRight: 0 }}
+              defaultSelectedKeys={['1']}
               defaultOpenKeys={defaultOpenKeys}
               selectedKeys={[currentPath]}
             >
-              {rootItems.map(v => render(v, v.id))}
+              {rootItems.map((v) => render(v, v.id))}
             </Menu>
-          </Affix>
+          </Sider>
         )
       }}
     />

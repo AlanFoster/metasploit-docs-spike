@@ -5,11 +5,13 @@ import { RootLayout as Layout } from '../Layout'
 
 function PageTemplate({ data: { mdx } }: any) {
   return (
-    <Layout sidebarRoot={mdx.frontmatter.root}>
+    <Layout>
+      <h2>{mdx.frontmatter.title}</h2>
       <MDXRenderer>{mdx.body}</MDXRenderer>
     </Layout>
   )
 }
+
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
     mdx(id: { eq: $id }) {

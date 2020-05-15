@@ -4,7 +4,7 @@ const path = require('path')
 module.exports = exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const Template = path.resolve(`src/templates/template.tsx`)
+  const Template = path.resolve(`src/templates/wiki-template.tsx`)
 
   // sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000
   return graphql(`
@@ -20,7 +20,7 @@ module.exports = exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then(result => {
+  `).then((result) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }

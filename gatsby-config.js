@@ -1,79 +1,72 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Ant-Design Documentation Starter',
+    title: 'Metasploit Documentation',
   },
   plugins: [
-    `gatsby-plugin-typescript`,
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-json`,
+    'gatsby-transformer-json',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `menuItems`,
-        path: `${__dirname}/src/menuItems`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `sidebar`,
+        name: 'sidebar',
         path: `${__dirname}/src/sidebar`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `contents`,
+        name: 'contents',
         path: `${__dirname}/contents`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-markdown',
-        short_name: 'starter',
+        name: 'Metasploit',
+        short_name: 'metasploit',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/metasploit-icon.png', // This path is relative to the root of the site.
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [ `gatsby-remark-images` ],
-      }
+        plugins: ['gatsby-remark-images'],
+      },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: 'gatsby-plugin-mdx',
       options: {
         defaultLayouts: {
           default: require.resolve('./src/Layout.tsx'),
         },
         extensions: ['.mdx', '.md'],
         // workaround: https://github.com/gatsbyjs/gatsby/issues/16422#issuecomment-518985316
-        plugins: [`gatsby-remark-autolink-headers`],
+        plugins: ['gatsby-remark-autolink-headers'],
         gatsbyRemarkPlugins: [
-          `gatsby-remark-katex`,
+          'gatsby-remark-katex',
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1035,
             },
           },
-          `gatsby-remark-autolink-headers`,
+          'gatsby-remark-autolink-headers',
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {
               classPrefix: 'language-',
               inlineCodeMarker: null,
@@ -84,11 +77,12 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-remove-trailing-slashes`,
+    'gatsby-plugin-remove-trailing-slashes',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
   /// this must match the path your webpage is displayed from
-  pathPrefix: process.env.NODE_ENV === 'development' ? '' : '/gatsby-antd-docs',
+  pathPrefix:
+    process.env.NODE_ENV === 'development' ? '' : '/metasploit-docs-spike',
 }

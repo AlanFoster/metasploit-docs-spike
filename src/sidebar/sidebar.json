@@ -1,33 +1,25 @@
 [
   {
-    "name": "Get Started",
-    "link": "",
-    "items": [
-      { "name": "Introduction", "link": "/docs/get-started/introduction" },
-      { "name": "Introduction", "link": "/docs/get-started/latex" }
-    ]
-  },
-  {
-    "name": "Guide",
-    "link": "",
-    "items": [
-      { "name": "Anchor", "link": "/docs/guide/anchor" },
-      { "name": "Contents", "link": "/docs/guide/contents" },
-      { "name": "Menu Items", "link": "/docs/guide/menu_items" },
-      { "name": "Sidebar", "link": "/docs/guide/sidebar" }
-    ]
-  },
-  {
-    "name": "Lorem Ipsum",
+    "name": "Testing section",
     "link": "",
     "items": [
       {
-        "name": "Ipsum",
-        "link": "/docs/lorem-ipsum/Ipsum"
+        "name": "Testing Links",
+        "link": "/wiki/getting-started/setting-up-a-metasploit-development-environment"
+      }
+    ]
+  },
+  {
+    "name": "Not ordered",
+    "link": "",
+    "items": [
+      {
+        "name": "Hello world",
+        "link": "/wiki/not-ordered/hello-world"
       },
       {
-        "name": "Lorem",
-        "link": "/docs/lorem-ipsum/Lorem"
+        "name": "Something about modules",
+        "link": "/wiki/not-ordered/something-about-modules"
       }
     ]
   }

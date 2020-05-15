@@ -1,15 +1,15 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-import { Header } from './Header'
+import { StaticQuery, graphql, Link } from 'gatsby'
 import { pathPrefix } from '../gatsby-config'
-import { Layout } from 'antd'
+import { AutoComplete, Input, Layout, Menu } from 'antd'
+import { Logo } from './Logo'
+import './Layout.css'
 import { Sidebar } from './sidebar'
-import { TableOfContents } from './TableOfContents'
 
-const { Sider, Content } = Layout
+const { Sider, Content, Header } = Layout
 
-export function RootLayout({ children, sidebarRoot }: any) {
+export function RootLayout({ children }: React.PropsWithChildren<{}>) {
   return (
     <StaticQuery
       query={graphql`
@@ -30,7 +30,7 @@ export function RootLayout({ children, sidebarRoot }: any) {
           }
         }
       `}
-      render={data => {
+      render={(data) => {
         const allPosts = data.allMdx.edges.map(
           (edge: any) => edge.node.fields.slug
         )
@@ -50,10 +50,8 @@ export function RootLayout({ children, sidebarRoot }: any) {
           }
         }
 
-        const { title } = data.site.siteMetadata
-
         return (
-          <div style={{ width: '100%', padding: 0, overflow: 'hidden' }}>
+          <Layout>
             <Helmet
               title={data.site.siteMetadata.title}
               meta={[
@@ -63,37 +61,102 @@ export function RootLayout({ children, sidebarRoot }: any) {
             >
               <html lang="en" />
             </Helmet>
-            <Header siteTitle={title} />
 
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'auto 1fr auto',
-                height: '100%',
-              }}
-            >
-              <Sidebar root={sidebarRoot} />
-              <Layout>
+            <Header className="header">
+              <div className="logo">
+                <Link to="/">
+                  <Logo />
+                </Link>
+              </div>
+
+              {/*<div className="header-search">*/}
+              {/*  <AutoComplete*/}
+              {/*      dropdownClassName="certain-category-search-dropdown"*/}
+              {/*      dropdownMatchSelectWidth={500}*/}
+              {/*      style={{*/}
+              {/*        width: 250,*/}
+              {/*      }}*/}
+              {/*      options={options}*/}
+              {/*      value={search}*/}
+              {/*      onSelect={onSelect}*/}
+              {/*      onSearch={onSearch}*/}
+              {/*  >*/}
+              {/*    <Input.Search size="large" placeholder={search} />*/}
+              {/*  </AutoComplete>*/}
+              {/*</div>*/}
+              <Menu
+                theme="dark"
+                mode="horizontal"
+                defaultSelectedKeys={['wiki']}
+              >
+                <Menu.Item key="/wiki">
+                  <Link to="/wiki">
+                    <div>Wiki</div>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="modules">
+                  <Link to="/modules">
+                    <div>Modules</div>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="help">
+                  <Link to="/help">
+                    <div>Help</div>
+                  </Link>
+                </Menu.Item>
+              </Menu>
+            </Header>
+
+            <Layout>
+              <Sidebar />
+              <Layout style={{ padding: '0 24px 24px', marginLeft: '256px' }}>
                 <Content
                   style={{
-                    background: '#fff',
                     padding: 24,
-                    margin: 0,
+                    margin: '24px 0',
+                    minHeight: 'inherit',
+                    backgroundColor: '#fff',
                   }}
                 >
                   {children}
                 </Content>
               </Layout>
-              <TableOfContents />
-            </div>
-            <Layout>
-              <Sider
-                width={200}
-                style={{ background: '#fff', height: '100%' }}
-              />
             </Layout>
-          </div>
+          </Layout>
         )
+
+        // return (
+        //   <div style={{ width: '100%', padding: 0, overflow: 'hidden' }}>
+
+        //     <div
+        //       style={{
+        //         display: 'grid',
+        //         gridTemplateColumns: 'auto 1fr auto',
+        //         height: '100%',
+        //       }}
+        //     >
+        //       <Sidebar root={sidebarRoot} />
+        //       <Layout>
+        //         <Content
+        //           style={{
+        //             background: '#fff',
+        //             padding: 24,
+        //             margin: 0,
+        //           }}
+        //         >
+        //           {children}
+        //         </Content>
+        //       </Layout>
+        //       <TableOfContents />
+        //     </div>
+        //     <Layout>
+        //       <Sider
+        //         width={200}
+        //         style={{ background: '#fff', height: '100%' }}
+        //       />
+        //     </Layout>
+        //   </div>
+        // )
       }}
     />
   )
