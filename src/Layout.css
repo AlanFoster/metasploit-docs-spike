@@ -2,6 +2,17 @@ body {
     background: #f0f2f5 !important;
 }
 
+.header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+
+.content-wrapper {
+    /* Compensating for the header floating */
+    margin-top: 64px;
+}
+
 .logo {
     width: 120px;
     height: 31px;

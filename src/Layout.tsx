@@ -19,36 +19,14 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
               title
             }
           }
-          allMdx {
-            edges {
-              node {
-                fields {
-                  slug
-                }
-              }
-            }
-          }
         }
       `}
       render={(data) => {
-        const allPosts = data.allMdx.edges.map(
-          (edge: any) => edge.node.fields.slug
-        )
-        let onPostPage
-        if (typeof window !== 'undefined') {
-          const path = window.location.pathname.replace(
-            pathPrefix.slice(0, -1),
-            ''
-          )
-          if (
-            allPosts.indexOf(path) >= 0 ||
-            allPosts.indexOf(path.slice(0, -1)) >= 0
-          ) {
-            onPostPage = true
-          } else {
-            onPostPage = false
-          }
-        }
+        const currentPath =
+          typeof window !== 'undefined'
+            ? window.location.pathname.replace(pathPrefix, '')
+            : '/'
+        const menuSection = currentPath.split('/')[1]
 
         return (
           <Layout>
@@ -87,9 +65,9 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={['wiki']}
+                defaultSelectedKeys={[menuSection]}
               >
-                <Menu.Item key="/wiki">
+                <Menu.Item key="wiki">
                   <Link to="/wiki">
                     <div>Wiki</div>
                   </Link>
@@ -107,9 +85,9 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
               </Menu>
             </Header>
 
-            <Layout>
+            <Layout className="content-wrapper">
               <Sidebar />
-              <Layout style={{ padding: '0 24px 24px', marginLeft: '256px' }}>
+              <Layout style={{ padding: '0 24px 24px', marginLeft: '280px' }}>
                 <Content
                   style={{
                     padding: 24,

@@ -113,7 +113,7 @@ Congratulations! You have now set up a development environment and the latest ve
 
 ## Optional: Set up the REST API and PostgreSQL database
 
-<details><summary>The following optional section describes how to manually install PostgreSQL and set up the Metasploit database.  Alternatively, use our Omnibus installer which handles this more reliably.  Click to expand.</summary>
+The following optional section describes how to manually install PostgreSQL and set up the Metasploit database.  Alternatively, use our Omnibus installer which handles this more reliably.
 
 1. Confirm that the PostgreSQL server and client are installed:
 
@@ -141,11 +141,9 @@ $ ./msfconsole -qx "db_status; exit"
 
 Congratulations! You have now set up the [Metasploit Web Service (REST API)][msf-web-service] and the backend database.
 
-</details>
-
 ## Optional: Tips to speed up common workflows
 
-<details><summary>The following section is optional but may improve your efficiency.  Click to expand.</summary>
+The following section is optional but may improve your efficiency.
 
 - Making sure you're in the right directory to run `msfconsole` can become tedious, so consider using the following Bash alias:
 
@@ -191,8 +189,6 @@ rake spec
 
 You should see over 9000 tests run, mostly resulting in green dots, a few in yellow stars, and no red errors.
 
-</details>
- 
 # Great!  Now what?
 
 We're excited to see your upcoming contributions of new modules, documentation, and fixes!  Check out our [wiki documentation][wiki-documentation] and, if you're looking for inspiration, keep an eye out for [newbie-friendly pull requests and issues][newbie-friendly-prs-issues].   Please [submit your new pull requests][howto-PR] and reach out to us on [Slack] for community help.

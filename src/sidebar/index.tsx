@@ -12,6 +12,7 @@ interface LinkItem {
   name: string
   link: string
 }
+
 interface ParentItem {
   id: string
   name: string
@@ -38,10 +39,7 @@ function render(item: MenuItem, id: string) {
     )
   } else {
     return (
-      <Menu.SubMenu
-        key={id}
-        title={<span style={{ fontWeight: 900 }}>{item.name}</span>}
-      >
+      <Menu.SubMenu key={id} title={item.name}>
         {item.items && item.items.map((v, i) => render(v, id + '.' + i))}
       </Menu.SubMenu>
     )
@@ -53,15 +51,18 @@ export function Sidebar() {
     <StaticQuery
       query={graphql`
         query MyQuery {
-          allSidebarJson {
+          allMdx {
             edges {
               node {
                 id
-                name
-                link
-                items {
-                  name
-                  link
+                fileAbsolutePath
+                breadcrumbs
+                frontmatter {
+                  title
+                  ignored
+                }
+                fields {
+                  slug
                 }
               }
             }
@@ -69,7 +70,39 @@ export function Sidebar() {
         }
       `}
       render={(data: Query) => {
-        const rootItems = data.allSidebarJson.edges.map((v) => v.node)
+        // const rootItems = data.allSidebarJson.edges.map((v) => v.node)
+        const menuDataHash = data.allMdx.edges
+          .map((edge) => edge.node)
+          .reduce((acc, node) => {
+            if (node.frontmatter.ignored) {
+              return acc
+            }
+
+            const menuItem = node.breadcrumbs[0].replace(/-/g, ' ')
+            acc[menuItem] = acc[menuItem] || {
+              id: menuItem,
+              name: menuItem,
+              link: '',
+              items: [],
+            }
+            acc[menuItem].items.push({
+              name: node.frontmatter.title,
+              link: node.fields.slug,
+            })
+            return acc
+          }, {})
+        // Hack for now; Super brittle and doesn't support recursive menus etc.
+        const preferredOrder = [
+          'Getting Started',
+          'Contributing',
+          'Metasploit Development',
+          'Resources',
+          'Misc',
+        ]
+        const rootItems = preferredOrder.map(
+          (menuName) => menuDataHash[menuName]
+        )
+
         const currentPath =
           typeof window !== 'undefined'
             ? window.location.pathname.replace(pathPrefix, '')
@@ -78,7 +111,7 @@ export function Sidebar() {
 
         return (
           <Sider
-            width={256}
+            width={280}
             className="sider"
             style={{
               overflow: 'auto',

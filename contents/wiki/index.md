@@ -2,6 +2,7 @@
 title: Home
 root: '/wiki'
 parents: ['Getting Started']
+ignored: true
 ---
 
 Welcome to Metasploit-land.

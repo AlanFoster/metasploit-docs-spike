@@ -41,9 +41,6 @@ The function takes two parameters, a template name and a command:
 
 **Neither module developers nor users need to concern themselves with the following.**
 
-<details>
-<summary>Click to expand</summary>
-
 On occasion, Metasploit maintainers may want to re-run the script generation to incorporate new Java serialized objects from the ysoserial tool.
 
 To avoid invoking Java (and all its dependencies) at runtime, the serialized objects are generated and cached within a JSON file.  The JSON file can be refreshed using a standalone Ruby script, which comes prepackaged with a Docker image that handles downloading `ysoserial` and necessary dependencies.  The script, `Dockerimage` and a high-level `runme.sh` script is stored within `tools/payloads/ysoserial`.  An example run looks like:
@@ -161,4 +158,3 @@ DONE!  Successfully generated 0 static payloads and 22 dynamic payloads.  Skippe
 ```
 
 At completion, the `data/ysoserial_payloads.json` file is overwritten and the 22 dynamic payloads are ready for use within the framework.  Afterward, the developer should follow the standard `git` procedures to `add` and `commit` the new JSON file  before generating a pull request and landing the updated JSON into the framework's `master` branch.
-</details>
