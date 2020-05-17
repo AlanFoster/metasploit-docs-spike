@@ -2,8 +2,8 @@
 
 [Maven](https://maven.apache.org/) a software project management.
 This module seeks all settings.xml (Maven configuration file) on the target file system to extract credentials from them.
-Credentials are store in the <server> tag ; the module also tries to cross the identifier found with the <mirror> or
-<repository> tag in order to find the full realm the credentials belong to.
+Credentials are store in the `<server>` tag ; the module also tries to cross the identifier found with the `<mirror>` or
+`<repository>` tag in order to find the full realm the credentials belong to.
 
 This module was successfully tested against:
 
