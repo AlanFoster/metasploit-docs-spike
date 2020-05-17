@@ -1,19 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { RootLayout as Layout } from '../Layout'
+import { WikiLayout } from '../WikiLayout'
 
-function PageTemplate({ data: { mdx } }: any) {
+function WikiTemplate({ data: { mdx } }: any) {
   return (
-    <Layout>
+    <WikiLayout>
       <h2>{mdx.frontmatter.title}</h2>
       <MDXRenderer>{mdx.body}</MDXRenderer>
-    </Layout>
+    </WikiLayout>
   )
 }
 
-export const pageQuery = graphql`
-  query BlogPostQuery($id: String) {
+export const wikiQuery = graphql`
+  query WikiQuery($id: String) {
     mdx(id: { eq: $id }) {
       id
       frontmatter {
@@ -24,4 +24,4 @@ export const pageQuery = graphql`
     }
   }
 `
-export default PageTemplate
+export default WikiTemplate

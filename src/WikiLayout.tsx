@@ -9,11 +9,11 @@ import { Sidebar } from './sidebar'
 
 const { Sider, Content, Header } = Layout
 
-export function RootLayout({ children }: React.PropsWithChildren<{}>) {
+export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
   return (
     <StaticQuery
       query={graphql`
-        query SiteTitleQuery {
+        query SiteTitleQueryWikiLayout {
           site {
             siteMetadata {
               title
@@ -86,7 +86,8 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
             </Header>
 
             <Layout className="content-wrapper">
-              <Layout style={{ padding: '0 24px 24px' }}>
+              <Sidebar />
+              <Layout style={{ padding: '0 24px 24px', marginLeft: '280px' }}>
                 <Content
                   style={{
                     padding: 24,
@@ -106,4 +107,4 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
   )
 }
 
-export default RootLayout
+export default WikiLayout

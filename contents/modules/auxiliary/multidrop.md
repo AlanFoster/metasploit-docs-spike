@@ -38,12 +38,9 @@ This can be changed using set LHOST 192.168.1.25
 
 ### Microsoft Windows
 
-  
-  ```
-  Console output
-  ```
+Console output
 
-  ```
+```
   msf auxiliary(multidrop) > show info
 
        Name: Windows SMB Multi Dropper
@@ -96,4 +93,4 @@ msf auxiliary(multidrop) > exploit
 [] Auxiliary module execution completed
 msf auxiliary(multidrop) > back
  
-  ```
+```
