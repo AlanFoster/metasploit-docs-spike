@@ -183,7 +183,7 @@
       "aliases": [
 
       ],
-      "advanced": true,
+      "advanced": false,
       "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
     },
     {

@@ -6,7 +6,7 @@
 
 <ruby>
 
-    require 'fileutils'
+require 'fileutils'
 
 # TODO: Investigate why calling "create" on most modules takes a minimum of 0.3 seconds
 # Metasploit::Framework::Profiler.record_cpu do

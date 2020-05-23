@@ -206,7 +206,7 @@
       "type": "integer",
       "name": "TTL",
       "required": true,
-      "default": 42693,
+      "default": 31982,
       "aliases": [
 
       ],

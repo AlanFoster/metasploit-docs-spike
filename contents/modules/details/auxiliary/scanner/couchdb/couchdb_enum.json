@@ -138,7 +138,7 @@
       "type": "string",
       "name": "HttpUsername",
       "required": true,
-      "default": "gInGTfsSkmyZ",
+      "default": "rMyySNnzvGhI",
       "aliases": [
 
       ],
@@ -149,7 +149,7 @@
       "type": "string",
       "name": "HttpPassword",
       "required": true,
-      "default": "uYrFZEHpkPPH",
+      "default": "ZypxyvRXhjEc",
       "aliases": [
 
       ],

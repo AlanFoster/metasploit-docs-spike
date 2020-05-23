@@ -202,7 +202,7 @@
       "type": "string",
       "name": "PacketSize",
       "required": true,
-      "default": 4736,
+      "default": 4482,
       "aliases": [
 
       ],
