@@ -1,31 +1,31 @@
-import React from 'react'
-import { graphql, StaticQuery, Link } from 'gatsby'
-import { Layout, Menu } from 'antd'
-import { pathPrefix } from '../../gatsby-config'
-import 'antd/lib/menu/style/css'
+import React from 'react';
+import { graphql, StaticQuery, Link } from 'gatsby';
+import { Layout, Menu } from 'antd';
+import { pathPrefix } from '../../gatsby-config';
+import 'antd/lib/menu/style/css';
 
-const { Sider, Content, Header } = Layout
-const { SubMenu } = Menu
+const { Sider, Content, Header } = Layout;
+const { SubMenu } = Menu;
 
 interface LinkItem {
-  id: string
-  name: string
-  link: string
+  id: string;
+  name: string;
+  link: string;
 }
 
 interface ParentItem {
-  id: string
-  name: string
-  items: MenuItem[] | null
+  id: string;
+  name: string;
+  items: MenuItem[] | null;
 }
 
-type MenuItem = LinkItem | ParentItem
+type MenuItem = LinkItem | ParentItem;
 
-type Query = { allSidebarJson: { edges: { node: MenuItem }[] } }
+type Query = { allSidebarJson: { edges: { node: MenuItem }[] } };
 
 function isLinkItem(item: MenuItem): item is LinkItem {
-  const result = Boolean((item as LinkItem).link)
-  return result
+  const result = Boolean((item as LinkItem).link);
+  return result;
 }
 
 function render(item: MenuItem, id: string) {
@@ -36,13 +36,13 @@ function render(item: MenuItem, id: string) {
           <div>{item.name}</div>
         </Link>
       </Menu.Item>
-    )
+    );
   } else {
     return (
       <Menu.SubMenu key={id} title={item.name}>
         {item.items && item.items.map((v, i) => render(v, id + '.' + i))}
       </Menu.SubMenu>
-    )
+    );
   }
 }
 
@@ -51,7 +51,7 @@ export function Sidebar() {
     <StaticQuery
       query={graphql`
         query MyQuery {
-          allMdx {
+          allMarkdownRemark {
             edges {
               node {
                 id
@@ -71,26 +71,26 @@ export function Sidebar() {
       `}
       render={(data: Query) => {
         // const rootItems = data.allSidebarJson.edges.map((v) => v.node)
-        const menuDataHash = data.allMdx.edges
+        const menuDataHash = data.allMarkdownRemark.edges
           .map((edge) => edge.node)
           .reduce((acc, node) => {
             if (node.frontmatter.ignored) {
-              return acc
+              return acc;
             }
 
-            const menuItem = node.breadcrumbs[0].replace(/-/g, ' ')
+            const menuItem = node.breadcrumbs[1].replace(/-/g, ' ');
             acc[menuItem] = acc[menuItem] || {
               id: menuItem,
               name: menuItem,
               link: '',
               items: [],
-            }
+            };
             acc[menuItem].items.push({
               name: node.frontmatter.title,
               link: node.fields.slug,
-            })
-            return acc
-          }, {})
+            });
+            return acc;
+          }, {});
         // Hack for now; Super brittle and doesn't support recursive menus etc.
         const preferredOrder = [
           'Getting Started',
@@ -98,16 +98,16 @@ export function Sidebar() {
           'Metasploit Development',
           'Resources',
           'Misc',
-        ]
+        ];
         const rootItems = preferredOrder.map(
           (menuName) => menuDataHash[menuName]
-        )
+        );
 
         const currentPath =
           typeof window !== 'undefined'
             ? window.location.pathname.replace(pathPrefix, '')
-            : '/'
-        const defaultOpenKeys = rootItems.map((item) => item.id)
+            : '/';
+        const defaultOpenKeys = rootItems.map((item) => item.id);
 
         return (
           <Sider
@@ -129,8 +129,8 @@ export function Sidebar() {
               {rootItems.map((v) => render(v, v.id))}
             </Menu>
           </Sider>
-        )
+        );
       }}
     />
-  )
+  );
 }

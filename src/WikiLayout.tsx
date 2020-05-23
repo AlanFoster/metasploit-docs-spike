@@ -1,13 +1,13 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import { pathPrefix } from '../gatsby-config'
-import { AutoComplete, Input, Layout, Menu } from 'antd'
-import { Logo } from './Logo'
-import './Layout.css'
-import { Sidebar } from './sidebar'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { StaticQuery, graphql, Link } from 'gatsby';
+import { pathPrefix } from '../gatsby-config';
+import { AutoComplete, Input, Layout, Menu } from 'antd';
+import { Logo } from './Logo';
+import './Layout.css';
+import { Sidebar } from './sidebar';
 
-const { Sider, Content, Header } = Layout
+const { Sider, Content, Header } = Layout;
 
 export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
   return (
@@ -25,8 +25,8 @@ export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
         const currentPath =
           typeof window !== 'undefined'
             ? window.location.pathname.replace(pathPrefix, '')
-            : '/'
-        const menuSection = currentPath.split('/')[1]
+            : '/';
+        const menuSection = currentPath.split('/')[1];
 
         return (
           <Layout>
@@ -101,10 +101,10 @@ export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
               </Layout>
             </Layout>
           </Layout>
-        )
+        );
       }}
     />
-  )
+  );
 }
 
-export default WikiLayout
+export default WikiLayout;

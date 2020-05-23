@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const Logo = (props) => (
   <svg viewBox="0 0 292.8 63.7" {...props}>
@@ -7,4 +7,4 @@ export const Logo = (props) => (
       fill="#fff"
     />
   </svg>
-)
+);

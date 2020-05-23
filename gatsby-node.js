@@ -4,22 +4,36 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require('path')
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require('path');
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 // Replacing '/' would result in empty string which is invalid
-const replacePath = (path) => (path === `/` ? path : path.replace(/\/$/, ``))
+const replacePath = (path) => (path === `/` ? path : path.replace(/\/$/, ``));
 
 /**
- * Creating wiki pages
+ * Adding slug metadata to nodes on creation
+ */
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `src/pages` });
+    createNodeField({
+      node,
+      name: `slug`,
+      value: replacePath(slug),
+    });
+  }
+};
+
+/**
+ * Creating pages
  */
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-
-  const WikiTemplate = path.resolve(`src/templates/wiki-template.tsx`)
+  const { createPage } = actions;
   return graphql(`
     {
-      allMdx {
+      allMarkdownRemark {
         edges {
           node {
             id
@@ -32,47 +46,28 @@ exports.createPages = ({ actions, graphql }) => {
     }
   `).then((result) => {
     if (result.errors) {
-      return Promise.reject(result.errors)
+      return Promise.reject(result.errors);
     }
-    result.data.allMdx.edges.forEach(({ node }) => {
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      const isWiki = node.fields.slug.indexOf("/wiki") === 0;
+      const template = isWiki
+          ? path.resolve(`src/templates/wiki-template.tsx`)
+          : path.resolve(`src/templates/module-documentation-template.tsx`);
       createPage({
         path: replacePath(node.fields.slug),
-        component: WikiTemplate,
+        component: template,
         context: { id: node.id }, // additional data can be passed via context
-      })
-    })
-  })
-}
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
-    createNodeField({
-      node,
-      name: `slug`,
-      value: replacePath(slug),
-    })
-  } else if (node.internal.type === 'Mdx') {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      // Name of the field you are adding
-      name: 'slug',
-      // Individual MDX node
-      node,
-      // Generated value based on filepath with "blog" prefix
-      // value: `/blog${value}`,
-      value: replacePath(value),
-    })
-  }
-}
+      });
+    });
+  });
+};
 
 /**
  * Adding additional metadata to the existing data model
  */
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
-    Mdx: {
+    MarkdownRemark: {
       breadcrumbs: {
         type: `[String!]!`,
         /**
@@ -80,14 +75,14 @@ exports.createResolvers = ({ createResolvers }) => {
          * Example output: [ 'Contributing', 'Landing-Pull-Requests.md' ]
          */
         resolve(source, args, context, info) {
-          const fileAbsolutePath = source.fileAbsolutePath
-          const wikiRoot = path.resolve('./contents/wiki')
-          const relativeWikiPath = path.relative(wikiRoot, fileAbsolutePath)
+          const fileAbsolutePath = source.fileAbsolutePath;
+          const contentRoot = path.resolve('./contents');
+          const relativeWikiPath = path.relative(contentRoot, fileAbsolutePath);
 
-          return relativeWikiPath.split(path.sep)
+          return relativeWikiPath.split(path.sep);
         },
       },
     },
-  }
-  createResolvers(resolvers)
-}
+  };
+  createResolvers(resolvers);
+};

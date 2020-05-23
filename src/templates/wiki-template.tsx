@@ -1,27 +1,27 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { WikiLayout } from '../WikiLayout'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { WikiLayout } from '../WikiLayout';
 
-function WikiTemplate({ data: { mdx } }: any) {
+function WikiTemplate({ data }: any) {
+  const article = data.markdownRemark;
   return (
     <WikiLayout>
-      <h2>{mdx.frontmatter.title}</h2>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <h2>{article.frontmatter.title}</h2>
+      <div dangerouslySetInnerHTML={{ __html: article.html }} />
     </WikiLayout>
-  )
+  );
 }
 
 export const wikiQuery = graphql`
   query WikiQuery($id: String) {
-    mdx(id: { eq: $id }) {
+    markdownRemark(id: { eq: $id }) {
       id
       frontmatter {
         title
         root
       }
-      body
+      html
     }
   }
-`
-export default WikiTemplate
+`;
+export default WikiTemplate;

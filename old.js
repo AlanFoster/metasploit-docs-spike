@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import 'antd/dist/antd.css'
-import './App.css'
-import Highlighter from 'react-highlight-words'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
+import './App.css';
+import Highlighter from 'react-highlight-words';
 import {
   Layout,
   Menu,
@@ -23,7 +23,7 @@ import {
   Space,
   Tag,
   Divider,
-} from 'antd'
+} from 'antd';
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,53 +33,53 @@ import {
   useParams,
   useRouteMatch,
   useHistory,
-} from 'react-router-dom'
+} from 'react-router-dom';
 import {
   UserOutlined,
   SmileOutlined,
   HomeOutlined,
   FolderFilled,
   FileOutlined,
-} from '@ant-design/icons'
-import _ from 'lodash'
-import rawModules from './modules_metadata_base.json'
-import { ReactComponent as Logo } from './logo.svg'
+} from '@ant-design/icons';
+import _ from 'lodash';
+import rawModules from './modules_metadata_base.json';
+import { ReactComponent as Logo } from './logo.svg';
 
-const { Header, Content, Footer, Sider } = Layout
-const { Title, Text, Paragraph } = Typography
-const { TabPane } = Tabs
+const { Header, Content, Footer, Sider } = Layout;
+const { Title, Text, Paragraph } = Typography;
+const { TabPane } = Tabs;
 
 const modules = Object.values(rawModules).sort((a, b) =>
   a.type.localeCompare(b.type)
-)
+);
 // .filter(
 //   (mod) =>
 //     mod.fullname.indexOf("admin/db2/db2rcmd") === -1 &&
 //     mod.fullname.indexOf("multi/http/jenkins_xstream_deserialize") === -1
 // );
 const modulesByFullname = modules.reduce(function (acc, module) {
-  acc[module.fullname] = module
-  return acc
-}, {})
+  acc[module.fullname] = module;
+  return acc;
+}, {});
 // ["auxiliary", "exploit", "post", ... etc ...];
 const prefixes = Array.from(
   Object.keys(modulesByFullname)
     .reduce((prefixSet, name) => {
-      prefixSet.add(name.split('/')[0])
-      return prefixSet
+      prefixSet.add(name.split('/')[0]);
+      return prefixSet;
     }, new Set())
     .values()
-)
+);
 
 const stripPrefix = (s) => {
   for (let i = 0; i < prefixes.length; i++) {
-    let prefix = prefixes[i]
+    let prefix = prefixes[i];
     if (s.startsWith(prefix)) {
-      return s.substring(prefix.length + 1, s.length)
+      return s.substring(prefix.length + 1, s.length);
     }
   }
-  return s
-}
+  return s;
+};
 
 const Ranking = {
   Manual: 0,
@@ -89,7 +89,7 @@ const Ranking = {
   Good: 400,
   Great: 500,
   Excellent: 600,
-}
+};
 
 const getRankDetails = (rank) => {
   switch (rank) {
@@ -98,50 +98,50 @@ const getRankDetails = (rank) => {
         title: 'Manual',
         description:
           'The exploit is unstable or difficult to exploit and is basically a DoS. This ranking is also used when the module has no use unless specifically configured by the user',
-      }
+      };
     case Ranking.Low:
       return {
         title: 'Low',
         description:
           'The exploit is nearly impossible to exploit (or under 50% success rate) for common platforms.\n',
-      }
+      };
     case Ranking.Average:
       return {
         title: 'Average',
         description:
           'The exploit is generally unreliable or difficult to exploit.\n',
-      }
+      };
     case Ranking.Normal:
       return {
         title: 'Normal',
         description:
           "The exploit is otherwise reliable, but depends on a specific version and can't (or doesn't) reliably autodetect.\n",
-      }
+      };
     case Ranking.Good:
       return {
         title: 'Good',
         description:
           'The exploit has a default target and it is the "common case" for this type of software (English, Windows 7 for a desktop app, 2012 for server, etc).\n',
-      }
+      };
     case Ranking.Great:
       return {
         color: 'green',
         title: 'Great',
         description:
           'The exploit has a default target AND either auto-detects the appropriate target or uses an application-specific return address AFTER a version check.\n',
-      }
+      };
     case Ranking.Excellent:
       return {
         color: 'green',
         title: 'Excellent',
         description:
           'The exploit will never crash the service. This is the case for SQL Injection, CMD execution, RFI, LFI, etc. No typical memory corruption exploits should be given this ranking unless there are extraordinary circumstances (WMF Escape()).',
-      }
+      };
   }
-}
+};
 
 const Rank = ({ rank }) => {
-  const rankDetails = getRankDetails(rank)
+  const rankDetails = getRankDetails(rank);
 
   return (
     <Tooltip placement="bottom" title={rankDetails.description}>
@@ -149,8 +149,8 @@ const Rank = ({ rank }) => {
         {rankDetails.title} Ranking
       </Tag>
     </Tooltip>
-  )
-}
+  );
+};
 
 const filterModules = function (modules, search) {
   return modules
@@ -160,10 +160,10 @@ const filterModules = function (modules, search) {
         module.fullname.toLowerCase().includes(search.toLowerCase()) ||
         module.description.toLowerCase().includes(search.toLowerCase()) ||
         module.author.join(' ').toLowerCase().includes(search.toLowerCase())
-      )
+      );
     })
-    .sort((a, b) => a.fullname.localeCompare(b.fullname))
-}
+    .sort((a, b) => a.fullname.localeCompare(b.fullname));
+};
 
 const ModuleDetails = ({ module }) => {
   const columns = [
@@ -193,12 +193,12 @@ const ModuleDetails = ({ module }) => {
       dataIndex: 'description',
       key: 'Description',
     },
-  ]
+  ];
 
-  const orderedOptions = _.sortBy(module.options, (option) => !option.required)
+  const orderedOptions = _.sortBy(module.options, (option) => !option.required);
   const description = module.description
     .split('\n\n')
-    .map((line, index) => <Paragraph key={index}>{line}</Paragraph>)
+    .map((line, index) => <Paragraph key={index}>{line}</Paragraph>);
 
   return (
     <div>
@@ -223,7 +223,7 @@ const ModuleDetails = ({ module }) => {
       <Paragraph>
         <ul>
           {module.author.map((author) => {
-            return <li key={author}>{author}</li>
+            return <li key={author}>{author}</li>;
           })}
         </ul>
       </Paragraph>
@@ -234,7 +234,7 @@ const ModuleDetails = ({ module }) => {
         {module.notes.sideEffects ? (
           <Text>
             {module.notes.sideEffects.map((sideEffect) => {
-              return <div>{sideEffect}</div>
+              return <div>{sideEffect}</div>;
             })}
           </Text>
         ) : (
@@ -248,7 +248,7 @@ const ModuleDetails = ({ module }) => {
         {module.notes.reliability ? (
           <Text>
             {module.notes.reliability.map((reliability) => {
-              return <div>{reliability}</div>
+              return <div>{reliability}</div>;
             })}
           </Text>
         ) : (
@@ -262,7 +262,7 @@ const ModuleDetails = ({ module }) => {
         {module.notes.stability ? (
           <Text>
             {module.notes.stability.map((stability) => {
-              return <div>{stability}</div>
+              return <div>{stability}</div>;
             })}
           </Text>
         ) : (
@@ -271,12 +271,12 @@ const ModuleDetails = ({ module }) => {
       </Paragraph>
       {/*<pre>{JSON.stringify(module, null, 4)}</pre>*/}
     </div>
-  )
-}
+  );
+};
 
 const ModuleDocumentation = ({ module }) => {
-  return <div>testing</div>
-}
+  return <div>testing</div>;
+};
 
 const renderTitle = (title, amount) => (
   <span key={title}>
@@ -292,7 +292,7 @@ const renderTitle = (title, amount) => (
       {amount}
     </a>
   </span>
-)
+);
 
 const renderItem = (module, searchTerm) => ({
   value: module.fullname,
@@ -315,7 +315,7 @@ const renderItem = (module, searchTerm) => ({
       </span>
     </div>
   ),
-})
+});
 
 const TabContent = ({ children }) => {
   return (
@@ -324,21 +324,21 @@ const TabContent = ({ children }) => {
         {children}
       </Content>
     </Layout>
-  )
-}
+  );
+};
 
 const EmptyModuleDocumentation = ({ module }) => {
-  const [state, setState] = React.useState('default')
+  const [state, setState] = React.useState('default');
 
   const onSubmit = () => {
-    setState('submitted')
-    return false
-  }
+    setState('submitted');
+    return false;
+  };
 
   const onCancel = () => {
-    setState('default')
-    return false
-  }
+    setState('default');
+    return false;
+  };
 
   if (state === 'submitted') {
     return (
@@ -356,7 +356,7 @@ const EmptyModuleDocumentation = ({ module }) => {
           </React.Fragment>
         }
       />
-    )
+    );
   }
 
   return (
@@ -389,8 +389,8 @@ const EmptyModuleDocumentation = ({ module }) => {
         </div>
       }
     />
-  )
-}
+  );
+};
 
 const ModuleDefinition = ({ module }) => {
   return (
@@ -419,40 +419,40 @@ const ModuleDefinition = ({ module }) => {
         </Tabs>
       </div>
     </PageHeader>
-  )
-}
+  );
+};
 
 const ModuleFolders = () => {
-  return <div>"howdy module folders"</div>
-}
+  return <div>"howdy module folders"</div>;
+};
 
 const ModuleExplorer = () => {
-  let params = useParams()
-  let { url } = useRouteMatch()
-  const path = params.path || ''
+  let params = useParams();
+  let { url } = useRouteMatch();
+  const path = params.path || '';
 
   // Otherwise we need to calculate the 'folders' in the module hierarchy
   const fileMap = Object.keys(modulesByFullname).reduce(
     (fileMap, moduleKey) => {
       if (moduleKey.startsWith(path)) {
-        const prefixLength = path === '' ? 0 : path.length + '/'.length
-        const fileSegments = moduleKey.substring(prefixLength).split('/')
-        const file = fileSegments[0]
-        const type = fileSegments.length === 1 ? 'file' : 'folder'
-        fileMap[file] = fileMap[file] || { file: file, type: type }
-        fileMap[file].segments = fileSegments
+        const prefixLength = path === '' ? 0 : path.length + '/'.length;
+        const fileSegments = moduleKey.substring(prefixLength).split('/');
+        const file = fileSegments[0];
+        const type = fileSegments.length === 1 ? 'file' : 'folder';
+        fileMap[file] = fileMap[file] || { file: file, type: type };
+        fileMap[file].segments = fileSegments;
         if (type === 'folder') {
-          fileMap[file].count = fileMap[file].count || 0
-          fileMap[file].count++
+          fileMap[file].count = fileMap[file].count || 0;
+          fileMap[file].count++;
         }
       }
-      return fileMap
+      return fileMap;
     },
     {}
-  )
+  );
   const files = Object.values(fileMap).sort((a, b) =>
     a.file.localeCompare(b.file)
-  )
+  );
   const columns = [
     {
       title: 'Name',
@@ -470,20 +470,20 @@ const ModuleExplorer = () => {
       key: 'size',
       render: (count) => <Text>{count}</Text>,
     },
-  ]
+  ];
 
   return (
     <Content style={{ marginTop: '24px 16px' }}>
       <Table pagination={false} dataSource={files} columns={columns} />
     </Content>
-  )
-}
+  );
+};
 
 const Modules = () => {
-  let { path } = useParams()
+  let { path } = useParams();
 
   // If we're at a leaf node, just return the module definition directly
-  const selectedModule = modulesByFullname[path]
+  const selectedModule = modulesByFullname[path];
 
   return (
     <React.Fragment>
@@ -493,12 +493,12 @@ const Modules = () => {
           <span>Modules</span>
         </Breadcrumb.Item>
         {(path || '').split('/').map((segment, index, array) => {
-          const path = '/modules/' + array.slice(0, index + 1).join('/')
+          const path = '/modules/' + array.slice(0, index + 1).join('/');
           return (
             <Breadcrumb.Item key={index}>
               <a href={path}>{segment}</a>
             </Breadcrumb.Item>
-          )
+          );
         })}
       </Breadcrumb>
       {selectedModule ? (
@@ -507,38 +507,38 @@ const Modules = () => {
         <ModuleExplorer />
       )}
     </React.Fragment>
-  )
-}
+  );
+};
 
 export const App = () => {
-  const history = useHistory()
-  let defaultSearch = ''
+  const history = useHistory();
+  let defaultSearch = '';
   // defaultSearch = "2wire";
-  defaultSearch = 'Jenkins-CI enum'
-  const [search, setSearch] = React.useState(defaultSearch || '')
+  defaultSearch = 'Jenkins-CI enum';
+  const [search, setSearch] = React.useState(defaultSearch || '');
 
-  const filteredModules = filterModules(modules, search)
+  const filteredModules = filterModules(modules, search);
 
   const options = prefixes.map(function (prefix) {
     const matchedModules = filteredModules.filter(
       (module) => module.fullname.indexOf(prefix) === 0
-    )
+    );
     return {
       label: renderTitle(`${prefix} module`, matchedModules.length),
       options: matchedModules.map((module) => {
-        return renderItem(module, search)
+        return renderItem(module, search);
       }),
-    }
-  })
+    };
+  });
 
   const onSearch = (searchText) => {
-    setSearch(searchText)
-  }
+    setSearch(searchText);
+  };
 
   const onSelect = (fullname) => {
-    history.push(`/modules/${fullname}`)
-    setSearch('')
-  }
+    history.push(`/modules/${fullname}`);
+    setSearch('');
+  };
 
   return (
     <Layout>
@@ -596,5 +596,5 @@ export const App = () => {
 
       {/*<Footer style={{textAlign: "center"}}>Metasploit spike</Footer>*/}
     </Layout>
-  )
-}
+  );
+};
