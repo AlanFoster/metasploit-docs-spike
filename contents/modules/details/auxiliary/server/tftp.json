@@ -1,0 +1,103 @@
+{
+  "name": "TFTP File Server",
+  "fullname": "auxiliary/server/tftp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "jduck <jduck@metasploit.com>",
+    "todb <todb@metasploit.com>"
+  ],
+  "description": "This module provides a TFTP service",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/tftp.rb",
+  "ref_name": "server/tftp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host to listen on."
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 69,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to listen on."
+    },
+    {
+      "type": "path",
+      "name": "TFTPROOT",
+      "required": true,
+      "default": "/var/folders/7d/51tn0m652x364tq831tzs1kr0000gn/T",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TFTP root directory to serve files from"
+    },
+    {
+      "type": "path",
+      "name": "OUTPUTPATH",
+      "required": true,
+      "default": "/var/folders/7d/51tn0m652x364tq831tzs1kr0000gn/T",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The directory in which uploaded files will be written."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "name": "RF Transceiver Transmitter",
+  "fullname": "post/hardware/rftransceiver/transmitter",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Craig Smith"
+  ],
+  "description": "This module powers an HWBridge-connected radio transceiver,\n            effectively transmitting on the frequency set by the FREQ option.\n\n            NOTE: Users of this module should be aware of their local laws,\n            regulations, and licensing requirements for transmitting on any\n            given radio frequency.",
+  "references": [
+    "https://github.com/AndrewMohawk/RfCatHelpers"
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/rftransceiver/transmitter.rb",
+  "ref_name": "hardware/rftransceiver/transmitter",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "FREQ",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Frequency to transmit on"
+    },
+    {
+      "type": "integer",
+      "name": "SECONDS",
+      "required": false,
+      "default": 4,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Seconds to transmit"
+    },
+    {
+      "type": "integer",
+      "name": "BAUD",
+      "required": false,
+      "default": 4800,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Baud rate to use"
+    },
+    {
+      "type": "integer",
+      "name": "POWER",
+      "required": false,
+      "default": 100,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Power level"
+    },
+    {
+      "type": "integer",
+      "name": "INDEX",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "USB Index to use"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "CPUID-based Context Keyed Payload Encoder",
+  "fullname": "encoder/x86/context_cpuid",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "Dimitris Glynos"
+  ],
+  "description": "This is a Context-Keyed Payload Encoder based on CPUID and Shikata Ga Nai.",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/x86/context_cpuid.rb",
+  "ref_name": "x86/context_cpuid",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "CPUID_KEY",
+      "required": true,
+      "default": "0x00000000",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CPUID key from target host (see tools/context/cpuid-key utility)"
+    }
+  ]
+}

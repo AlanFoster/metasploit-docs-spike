@@ -1,0 +1,80 @@
+{
+  "name": "Socks4a Proxy Server",
+  "fullname": "auxiliary/server/socks4a",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "sf <stephen_fewer@harmonysecurity.com>"
+  ],
+  "description": "This module provides a socks4a proxy server that uses the builtin Metasploit routing to relay connections.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/socks4a.rb",
+  "ref_name": "server/socks4a",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The address to listen on"
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 1080,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The port to listen on."
+    }
+  ]
+}

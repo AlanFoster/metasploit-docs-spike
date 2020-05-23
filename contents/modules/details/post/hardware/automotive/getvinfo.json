@@ -1,0 +1,131 @@
+{
+  "name": "Get the Vehicle Information Such as the VIN from the Target Module",
+  "fullname": "post/hardware/automotive/getvinfo",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Craig Smith"
+  ],
+  "description": "Post Module to query DTCs, Some common engine info and Vehicle Info.\n                               It returns such things as engine speed, coolant temp, Diagnostic\n                               Trouble Codes as well as All info stored by Mode $09 Vehicle Info, VIN, etc",
+  "references": [
+
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/automotive/getvinfo.rb",
+  "ref_name": "hardware/automotive/getvinfo",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "SRCID",
+      "required": true,
+      "default": 2016,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Module ID to query"
+    },
+    {
+      "type": "integer",
+      "name": "DSTID",
+      "required": false,
+      "default": 2024,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Expected reponse ID, defaults to SRCID + 8"
+    },
+    {
+      "type": "integer",
+      "name": "PADDING",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Optinal end of packet padding"
+    },
+    {
+      "type": "bool",
+      "name": "FC",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Optinal forces flow control"
+    },
+    {
+      "type": "bool",
+      "name": "CLEAR_DTCS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Clear any DTCs and reset MIL if errors are present"
+    },
+    {
+      "type": "string",
+      "name": "CANBUS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN Bus to perform scan on, defaults to connected bus"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "name": "Unix Command Shell, Reverse TCP (stub)",
+  "fullname": "payload/cmd/unix/reverse_stub",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "Creates an interactive shell through an inbound connection (stub only, no payload)",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/unix/reverse_stub.rb",
+  "ref_name": "cmd/unix/reverse_stub",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen address (an interface may be specified)"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "port",
+      "name": "ReverseListenerBindPort",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port to bind to on the local system if different from LPORT"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseAllowProxy",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Allow reverse tcp even with Proxies specified. Connect back will NOT go through proxy but directly to LHOST"
+    },
+    {
+      "type": "string",
+      "name": "ReverseListenerComm",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific communication channel to use for this listener"
+    },
+    {
+      "type": "address",
+      "name": "ReverseListenerBindAddress",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific IP address to bind to on the local system"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseListenerThreaded",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Handle every connection in a new thread (experimental)"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryCount",
+      "required": false,
+      "default": 10,
+      "aliases": [
+        "ReverseConnectRetries"
+      ],
+      "advanced": true,
+      "description": "The number of times the stager should retry if the first connect fails"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryWait",
+      "required": false,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait for the stager between reconnect attempts"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Linux Gather Network Information",
+  "fullname": "post/linux/gather/enum_network",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "ohdae <bindshell@live.com>",
+    "Stephen Haywood <averagesecurityguy@gmail.com>"
+  ],
+  "description": "This module gathers network information from the target system\n          IPTables rules, interfaces, wireless information, open and listening\n          ports, active network connections, DNS information and SSH information.",
+  "references": [
+
+  ],
+  "platform": "Linux",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/linux/gather/enum_network.rb",
+  "ref_name": "linux/gather/enum_network",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "name": "Mac OS X Safari file:// Redirection Sandbox Escape",
+  "fullname": "auxiliary/gather/safari_file_url_navigation",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-01-16",
+  "type": "auxiliary",
+  "author": [
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "Versions of Safari before 8.0.6, 7.1.6, and 6.2.6 are vulnerable to a\n        \"state management issue\" that allows a browser window to be navigated\n        to a file:// URL. By dropping and loading a malicious .webarchive file,\n        an attacker can read arbitrary files, inject cross-domain Javascript, and\n        silently install Safari extensions.",
+  "references": [
+    "http://www.zerodayinitiative.com/advisories/ZDI-15-228",
+    "https://cvedetails.com/cve/CVE-2015-1155/",
+    "https://support.apple.com/en-us/HT204826"
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/safari_file_url_navigation.rb",
+  "ref_name": "gather/safari_file_url_navigation",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host or network interface to listen on. This must be an address on the local machine or 0.0.0.0 to listen on all addresses."
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 8081,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to use for the FTP server"
+    },
+    {
+      "type": "string",
+      "name": "ListenerComm",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific communication channel to use for this service"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Negotiate SSL for incoming connections"
+    },
+    {
+      "type": "path",
+      "name": "SSLCert",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path to a custom SSL certificate (default is randomly generated)"
+    },
+    {
+      "type": "bool",
+      "name": "SSLCompression",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable SSL/TLS-level compression"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher spec - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "port",
+      "name": "PASVPORT",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local PASV data port to listen on (0 is random)"
+    },
+    {
+      "type": "string",
+      "name": "URIPATH",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The URI to use for this exploit (default is random)"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": true,
+      "default": "msf.webarchive",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The file name"
+    },
+    {
+      "type": "string",
+      "name": "GRABPATH",
+      "required": false,
+      "default": "grab",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The URI to receive the UXSS'ed data"
+    },
+    {
+      "type": "string",
+      "name": "DOWNLOAD_PATH",
+      "required": true,
+      "default": "/msf.webarchive",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The path to download the webarchive"
+    },
+    {
+      "type": "string",
+      "name": "FILE_URLS",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Additional file:// URLs to steal. $USER will be resolved to the username."
+    },
+    {
+      "type": "bool",
+      "name": "STEAL_COOKIES",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable cookie stealing"
+    },
+    {
+      "type": "bool",
+      "name": "STEAL_FILES",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable local file stealing"
+    },
+    {
+      "type": "bool",
+      "name": "INSTALL_EXTENSION",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Silently install a Safari extensions (requires click)"
+    },
+    {
+      "type": "string",
+      "name": "EXTENSION_URL",
+      "required": false,
+      "default": "https://data.getadblock.com/safari/AdBlock.safariextz",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "HTTP URL of a Safari extension to install"
+    },
+    {
+      "type": "string",
+      "name": "EXTENSION_ID",
+      "required": false,
+      "default": "com.betafish.adblockforsafari-UAMUU4S2D9",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The ID of the Safari extension to install"
+    },
+    {
+      "type": "port",
+      "name": "HTTPPORT",
+      "required": true,
+      "default": 8080,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The HTTP server port"
+    }
+  ]
+}

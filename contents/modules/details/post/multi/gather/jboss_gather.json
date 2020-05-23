@@ -1,0 +1,65 @@
+{
+  "name": "Jboss Credential Collector",
+  "fullname": "post/multi/gather/jboss_gather",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Koen Riepe (koen.riepe <Koen Riepe (koen.riepe@fox-it.com)>"
+  ],
+  "description": "This module can be used to extract the Jboss admin passwords for version 4,5 and 6.",
+  "references": [
+
+  ],
+  "platform": "Linux, Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/jboss_gather.rb",
+  "ref_name": "multi/gather/jboss_gather",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

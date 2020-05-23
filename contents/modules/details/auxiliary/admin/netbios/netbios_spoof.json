@@ -1,0 +1,137 @@
+{
+  "name": "NetBIOS Response Brute Force Spoof (Direct)",
+  "fullname": "auxiliary/admin/netbios/netbios_spoof",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "vvalien",
+    "hdm <x@hdm.io>",
+    "tombkeeper"
+  ],
+  "description": "This module continuously spams NetBIOS responses to a target for given hostname,\n        causing the target to cache a malicious address for this name. On high-speed local\n        networks, the PPSRATE value should be increased to speed up this attack. As an\n        example, a value of around 30,000 is almost 100% successful when spoofing a\n        response for a 'WPAD' lookup. Distant targets may require more time and lower\n        rates for a successful attack.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/netbios/netbios_spoof.rb",
+  "ref_name": "admin/netbios/netbios_spoof",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 137,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "string",
+      "name": "NBNAME",
+      "required": true,
+      "default": "WPAD",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The NetBIOS name to spoof a reply for"
+    },
+    {
+      "type": "address",
+      "name": "NBADDR",
+      "required": true,
+      "default": "192.168.1.205",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The address that the NetBIOS name should resolve to"
+    },
+    {
+      "type": "integer",
+      "name": "PPSRATE",
+      "required": true,
+      "default": 1000,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The rate at which to send NetBIOS replies"
+    }
+  ]
+}

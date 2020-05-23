@@ -1,0 +1,564 @@
+{
+  "name": "Windows x64 VNC Server (Reflective Injection), Windows x64 Reverse HTTP Stager (wininet)",
+  "fullname": "payload/windows/x64/vncinject/reverse_https",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "sf <stephen_fewer@harmonysecurity.com>",
+    "hdm <x@hdm.io>",
+    "agix",
+    "rwincey"
+  ],
+  "description": "Inject a VNC Dll via a reflective loader (Windows x64) (staged). Tunnel communication over HTTP (Windows x64 wininet)",
+  "references": [
+    "https://github.com/stephenfewer/ReflectiveDLLInjection",
+    "https://github.com/rapid7/ReflectiveDLLInjection"
+  ],
+  "platform": "Windows",
+  "arch": "x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/stagers/windows/x64/reverse_https.rb",
+  "ref_name": "windows/x64/vncinject/reverse_https",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "path",
+      "name": "HandlerSSLCert",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to a SSL certificate in unified PEM format"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local listener hostname"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 8443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local listener port"
+    },
+    {
+      "type": "port",
+      "name": "ReverseListenerBindPort",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port to bind to on the local system if different from LPORT"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseAllowProxy",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Allow reverse tcp even with Proxies specified. Connect back will NOT go through proxy but directly to LHOST"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackRetries",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "How many additional successful pingbacks"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackSleep",
+      "required": true,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Time (in seconds) to sleep between pingbacks"
+    },
+    {
+      "type": "string",
+      "name": "LURI",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The HTTP Path"
+    },
+    {
+      "type": "address",
+      "name": "ReverseListenerBindAddress",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific IP address to bind to on the local system"
+    },
+    {
+      "type": "bool",
+      "name": "OverrideRequestHost",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Forces a specific host and port instead of using what the client requests, defaults to LHOST:LPORT"
+    },
+    {
+      "type": "string",
+      "name": "OverrideLHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "When OverrideRequestHost is set, use this value as the host name for secondary requests"
+    },
+    {
+      "type": "port",
+      "name": "OverrideLPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "When OverrideRequestHost is set, use this value as the port number for secondary requests"
+    },
+    {
+      "type": "string",
+      "name": "OverrideScheme",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "When OverrideRequestHost is set, use this value as the scheme for secondary requests, e.g http or https"
+    },
+    {
+      "type": "string",
+      "name": "HttpUserAgent",
+      "required": false,
+      "default": "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
+      "aliases": [
+        "MeterpreterUserAgent"
+      ],
+      "advanced": true,
+      "description": "The user-agent that the payload should use for communication Max parameter length: 255 characters"
+    },
+    {
+      "type": "string",
+      "name": "HttpServerName",
+      "required": false,
+      "default": "Apache",
+      "aliases": [
+        "MeterpreterServerName"
+      ],
+      "advanced": true,
+      "description": "The server header that the handler will send in response to requests"
+    },
+    {
+      "type": "string",
+      "name": "HttpUnknownRequestResponse",
+      "required": false,
+      "default": "<html><body><h1>It works!</h1></body></html>",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The returned HTML response body when the handler receives a request that is not from a payload"
+    },
+    {
+      "type": "bool",
+      "name": "IgnoreUnknownPayloads",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Whether to drop connections from payloads using unknown UUIDs"
+    },
+    {
+      "type": "bool",
+      "name": "StagerVerifySSLCert",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Whether to verify the SSL certificate in Meterpreter"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDSeed",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A string to use when generating the payload UUID (deterministic)"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDRaw",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A hex string representing the raw 8-byte PUID value for the UUID"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDName",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A human-friendly name to reference this unique payload (requires tracking)"
+    },
+    {
+      "type": "bool",
+      "name": "PayloadUUIDTracking",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Whether or not to automatically register generated UUIDs"
+    },
+    {
+      "type": "bool",
+      "name": "EnableStageEncoding",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode the second stage payload"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoder",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encoder to use if EnableStageEncoding is set"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoderSaveRegisters",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Additional registers to preserve in the staged payload if EnableStageEncoding is set"
+    },
+    {
+      "type": "bool",
+      "name": "StageEncodingFallback",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Fallback to no encoding if the selected StageEncoder is not compatible"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "integer",
+      "name": "StagerURILength",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The URI length for the stager (at least 5 bytes)"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryCount",
+      "required": false,
+      "default": 10,
+      "aliases": [
+        "ReverseConnectRetries"
+      ],
+      "advanced": true,
+      "description": "The number of times the stager should retry if the first connect fails"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryWait",
+      "required": false,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait for the stager between reconnect attempts"
+    },
+    {
+      "type": "string",
+      "name": "HttpHostHeader",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An optional value to use for the Host HTTP header"
+    },
+    {
+      "type": "string",
+      "name": "HttpCookie",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An optional value to use for the Cookie HTTP header"
+    },
+    {
+      "type": "string",
+      "name": "HttpReferer",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An optional value to use for the Referer HTTP header"
+    },
+    {
+      "type": "string",
+      "name": "HttpProxyHost",
+      "required": false,
+      "default": null,
+      "aliases": [
+        "PayloadProxyHost"
+      ],
+      "advanced": true,
+      "description": "An optional proxy server IP address or hostname"
+    },
+    {
+      "type": "port",
+      "name": "HttpProxyPort",
+      "required": false,
+      "default": null,
+      "aliases": [
+        "PayloadProxyPort"
+      ],
+      "advanced": true,
+      "description": "An optional proxy server port"
+    },
+    {
+      "type": "string",
+      "name": "HttpProxyUser",
+      "required": false,
+      "default": null,
+      "aliases": [
+        "PayloadProxyUser"
+      ],
+      "advanced": true,
+      "description": "An optional proxy server username Max parameter length: 63 characters"
+    },
+    {
+      "type": "string",
+      "name": "HttpProxyPass",
+      "required": false,
+      "default": null,
+      "aliases": [
+        "PayloadProxyPass"
+      ],
+      "advanced": true,
+      "description": "An optional proxy server password Max parameter length: 63 characters"
+    },
+    {
+      "type": "enum",
+      "name": "HttpProxyType",
+      "required": true,
+      "default": "HTTP",
+      "aliases": [
+        "PayloadProxyType"
+      ],
+      "advanced": true,
+      "description": "The type of HTTP proxy (Accepted: HTTP, SOCKS)"
+    },
+    {
+      "type": "port",
+      "name": "VNCPORT",
+      "required": true,
+      "default": 5900,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to use for the VNC proxy"
+    },
+    {
+      "type": "address",
+      "name": "VNCHOST",
+      "required": true,
+      "default": "127.0.0.1",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host to use for the VNC proxy"
+    },
+    {
+      "type": "bool",
+      "name": "DisableCourtesyShell",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Disables the Metasploit Courtesy shell"
+    },
+    {
+      "type": "bool",
+      "name": "ViewOnly",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Runs the viewer in view mode"
+    },
+    {
+      "type": "bool",
+      "name": "AUTOVNC",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Automatically launch VNC viewer if present"
+    },
+    {
+      "type": "bool",
+      "name": "DisableSessionTracking",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Disables the VNC payload from following the active session as users log in an out of the input desktop"
+    }
+  ]
+}

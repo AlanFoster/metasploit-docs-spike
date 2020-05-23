@@ -1,0 +1,135 @@
+{
+  "name": "TFTP Brute Forcer",
+  "fullname": "auxiliary/scanner/tftp/tftpbrute",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "antoine"
+  ],
+  "description": "This module uses a dictionary to brute force valid TFTP image names from a TFTP server.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/tftp/tftpbrute.rb",
+  "ref_name": "scanner/tftp/tftpbrute",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 69,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local client address"
+    },
+    {
+      "type": "path",
+      "name": "DICTIONARY",
+      "required": true,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/wordlists/tftp.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The list of filenames"
+    }
+  ]
+}

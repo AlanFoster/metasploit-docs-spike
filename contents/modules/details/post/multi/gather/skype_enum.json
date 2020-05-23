@@ -1,0 +1,76 @@
+{
+  "name": "Multi Gather Skype User Data Enumeration",
+  "fullname": "post/multi/gather/skype_enum",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Carlos Perez <carlos_perez@darkoperator.com>"
+  ],
+  "description": "This module will enumerate Skype account settings, contact list, call history, chat logs,\n          file transfer history, and voicemail logs, saving all the data to CSV files for analysis.",
+  "references": [
+
+  ],
+  "platform": "OSX, Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/skype_enum.rb",
+  "ref_name": "multi/gather/skype_enum",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 90,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Timeout in seconds when downloading main.db on a shell session."
+    }
+  ]
+}

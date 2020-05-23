@@ -1,0 +1,67 @@
+{
+  "name": "Microsoft Windows Defender Evasive Executable",
+  "fullname": "evasion/windows/windows_defender_exe",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "evasion",
+  "author": [
+    "sinn3r <sinn3r@metasploit.com>"
+  ],
+  "description": "This module allows you to generate a Windows EXE that evades against Microsoft\n        Windows Defender. Multiple techniques such as shellcode encryption, source code\n        obfuscation, Metasm, and anti-emulation are used to achieve this.\n\n        For best results, please try to use payloads that use a more secure channel\n        such as HTTPS or RC4 in order to avoid the payload network traffic getting\n        caught by antivirus better.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": [
+    "Microsoft Windows"
+  ],
+  "path": "/modules/evasion/windows/windows_defender_exe.rb",
+  "ref_name": "windows/windows_defender_exe",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": true,
+      "default": "BqMLn.exe",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the evasive file (default: random)"
+    }
+  ]
+}

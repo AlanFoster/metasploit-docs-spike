@@ -1,0 +1,87 @@
+{
+  "name": "Nagios XI Enumeration",
+  "fullname": "post/linux/gather/enum_nagios_xi",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2018-04-17",
+  "type": "post",
+  "author": [
+    "Cale Smith"
+  ],
+  "description": "NagiosXI may store credentials of the hosts it monitors. This module extracts these credentials,\n          creating opportunities for lateral movement.",
+  "references": [
+
+  ],
+  "platform": "Linux",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/linux/gather/enum_nagios_xi.rb",
+  "ref_name": "linux/gather/enum_nagios_xi",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "FileDropperDelay",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Delay in seconds before attempting cleanup"
+    },
+    {
+      "type": "string",
+      "name": "DB_ROOT_PWD",
+      "required": true,
+      "default": "nagiosxi",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password for DB root user, an option if they change this"
+    }
+  ]
+}

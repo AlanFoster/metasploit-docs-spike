@@ -1,0 +1,193 @@
+{
+  "name": "Dell OpenManage POST Request Heap Overflow (win32)",
+  "fullname": "auxiliary/dos/http/dell_openmanage_post",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2004-02-26",
+  "type": "auxiliary",
+  "author": [
+    "aushack <patrick@osisecurity.com.au>"
+  ],
+  "description": "This module exploits a heap overflow in the Dell OpenManage\n        Web Server (omws32.exe), versions 3.2-3.7.1. The vulnerability\n        exists due to a boundary error within the handling of POST requests,\n        where the application input is set to an overly long file name.\n        This module will crash the web server, however it is likely exploitable\n        under certain conditions.",
+  "references": [
+    "http://archives.neohapsis.com/archives/bugtraq/2004-02/0650.html",
+    "http://www.securityfocus.com/bid/9750",
+    "OSVDB (4077)",
+    "https://cvedetails.com/cve/CVE-2004-0331/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/http/dell_openmanage_post.rb",
+  "ref_name": "dos/http/dell_openmanage_post",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 1311,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use SSL"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    }
+  ]
+}

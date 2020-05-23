@@ -1,0 +1,234 @@
+{
+  "name": "NTP Protocol Fuzzer",
+  "fullname": "auxiliary/fuzzers/ntp/ntp_protocol_fuzzer",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Jon Hart <jon_hart@rapid7.com>"
+  ],
+  "description": "A simplistic fuzzer for the Network Time Protocol that sends the\n        following probes to understand NTP and look for anomalous NTP behavior:\n\n        * All possible combinations of NTP versions and modes, even if not\n          allowed or specified in the RFCs\n        * Short versions of the above\n        * Short, invalid datagrams\n        * Full-size, random datagrams\n        * All possible NTP control messages\n        * All possible NTP private messages\n\n        This findings of this fuzzer are not necessarily indicative of bugs,\n        let alone vulnerabilities, rather they point out interesting things\n        that might deserve more attention.  Furthermore, this module is not\n        particularly intelligent and there are many more areas of NTP that\n        could be explored, including:\n\n        * Warn if the response is 100% identical to the request\n        * Warn if the \"mode\" (if applicable) doesn't align with what we expect,\n        * Filter out the 12-byte mode 6 unsupported opcode errors.\n        * Fuzz the control message payload offset/size/etc.  There be bugs",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/fuzzers/ntp/ntp_protocol_fuzzer.rb",
+  "ref_name": "fuzzers/ntp/ntp_protocol_fuzzer",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FuzzTracer",
+      "required": true,
+      "default": "MSFROCKS",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Sets the magic string to embed into fuzzer string inputs"
+    },
+    {
+      "type": "string",
+      "name": "FuzzChar",
+      "required": true,
+      "default": "X",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Sets the character to use for generating long strings"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 123,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "integer",
+      "name": "SLEEP",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Sleep for this many ms between requests"
+    },
+    {
+      "type": "integer",
+      "name": "WAIT",
+      "required": true,
+      "default": 250,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Wait this many ms for responses"
+    },
+    {
+      "type": "string",
+      "name": "VERSIONS",
+      "required": false,
+      "default": "2,3,4",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specific versions to fuzz (csv)"
+    },
+    {
+      "type": "string",
+      "name": "MODES",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Modes to fuzz (csv)"
+    },
+    {
+      "type": "string",
+      "name": "MODE_6_OPERATIONS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Mode 6 operations to fuzz (csv)"
+    },
+    {
+      "type": "string",
+      "name": "MODE_7_IMPLEMENTATIONS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Mode 7 implementations to fuzz (csv)"
+    },
+    {
+      "type": "string",
+      "name": "MODE_7_REQUEST_CODES",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Mode 7 request codes to fuzz (csv)"
+    }
+  ]
+}

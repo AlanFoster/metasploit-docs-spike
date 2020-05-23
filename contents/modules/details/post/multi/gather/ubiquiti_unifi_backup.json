@@ -1,0 +1,92 @@
+{
+  "name": "Multi Gather Ubiquiti UniFi Controller Backup",
+  "fullname": "post/multi/gather/ubiquiti_unifi_backup",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "h00die",
+    "zhangyoufu",
+    "justingist"
+  ],
+  "description": "On an Ubiquiti UniFi controller, reads the system.properties configuration file\n        and downloads the backup and autobackup files.  The files are then decrypted using\n        a known encryption key, then attempted to be repaired by zip.  Meterpreter must be\n        used due to the large file sizes, which can be flaky on regular shells to read.\n        Confirmed to work on 5.10.19 - 5.10.23, but most likely quite a bit more.\n        If the zip can be repaired, the db and its information will be extracted.",
+  "references": [
+    "https://github.com/zhangyoufu/unifi-backup-decrypt/",
+    "https://github.com/justingist/POSH-Ubiquiti/blob/master/Posh-UBNT.psm1",
+    "https://help.ubnt.com/hc/en-us/articles/205202580-UniFi-system-properties-File-Explanation",
+    "https://community.ubnt.com/t5/UniFi-Wireless/unf-controller-backup-file-format/td-p/1624105"
+  ],
+  "platform": "Linux, Windows, OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/ubiquiti_unifi_backup.rb",
+  "ref_name": "multi/gather/ubiquiti_unifi_backup",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "path",
+      "name": "SYSTEMFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Custom system.properties file location"
+    },
+    {
+      "type": "path",
+      "name": "BACKUPFOLDER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Custom backup folder"
+    }
+  ]
+}

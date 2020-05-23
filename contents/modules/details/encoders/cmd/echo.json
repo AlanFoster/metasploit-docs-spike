@@ -1,0 +1,54 @@
+{
+  "name": "Echo Command Encoder",
+  "fullname": "encoder/cmd/echo",
+  "aliases": [
+
+  ],
+  "rank": 400,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This encoder uses echo and backlash escapes to avoid commonly restricted characters.",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/cmd/echo.rb",
+  "ref_name": "cmd/echo",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

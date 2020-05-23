@@ -1,0 +1,131 @@
+{
+  "name": "Windows Manage Persistent EXE Payload Installer",
+  "fullname": "post/windows/manage/persistence_exe",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Merlyn drforbin Cousins <drforbin6@gmail.com>"
+  ],
+  "description": "This Module will upload an executable to a remote host and make it Persistent.\n                            It can be installed as USER, SYSTEM, or SERVICE. USER will start on user login,\n                            SYSTEM will start on system boot but requires privs. SERVICE will create a new service\n                            which will start the payload. Again requires privs.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/persistence_exe.rb",
+  "ref_name": "windows/manage/persistence_exe",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "enum",
+      "name": "STARTUP",
+      "required": true,
+      "default": "USER",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Startup type for the persistent payload. (Accepted: USER, SYSTEM, SERVICE)"
+    },
+    {
+      "type": "path",
+      "name": "REXEPATH",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The remote executable to upload and execute."
+    },
+    {
+      "type": "string",
+      "name": "REXENAME",
+      "required": true,
+      "default": "default.exe",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name to call exe on remote system"
+    },
+    {
+      "type": "string",
+      "name": "LocalExePath",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local exe path to run. Use temp directory as default. "
+    },
+    {
+      "type": "string",
+      "name": "StartupName",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The name of service or registry. Random string as default."
+    },
+    {
+      "type": "string",
+      "name": "ServiceDescription",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The description of service. Random string as default."
+    }
+  ]
+}

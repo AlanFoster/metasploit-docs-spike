@@ -1,0 +1,135 @@
+{
+  "name": "Authentication Capture: SIP",
+  "fullname": "auxiliary/server/capture/sip",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Patrik Karlsson <patrik@cqure.net>"
+  ],
+  "description": "This module provides a fake SIP service that is designed to\n        capture authentication credentials. It captures\tchallenge and\n        response pairs that can be supplied to Cain or JtR for cracking.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/capture/sip.rb",
+  "ref_name": "server/capture/sip",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 5060,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to listen on."
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host to listen on."
+    },
+    {
+      "type": "string",
+      "name": "NONCE",
+      "required": true,
+      "default": "1234",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The server byte nonce"
+    },
+    {
+      "type": "string",
+      "name": "JOHNPWFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The prefix to the local filename to store the hashes in JOHN format"
+    },
+    {
+      "type": "string",
+      "name": "CAINPWFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local filename to store the hashes in Cain&Abel format"
+    },
+    {
+      "type": "string",
+      "name": "SRVVERSION",
+      "required": true,
+      "default": "ser (3.3.0-pre1 (i386/linux))",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The server version to report in the greeting response"
+    },
+    {
+      "type": "string",
+      "name": "REALM",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The SIP realm to which clients authenticate"
+    }
+  ]
+}

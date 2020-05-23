@@ -1,0 +1,186 @@
+{
+  "name": "Generic JCL Test for Mainframe Exploits",
+  "fullname": "payload/cmd/mainframe/generic_jcl",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "Bigendian Smalls"
+  ],
+  "description": "Provide JCL which can be used to submit\n                        a job to JES2 on z/OS which will exit and return 0.  This\n                        can be used as a template for other JCL based payloads",
+  "references": [
+
+  ],
+  "platform": "Mainframe",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/mainframe/generic_jcl.rb",
+  "ref_name": "cmd/mainframe/generic_jcl",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "string",
+      "name": "ACTNUM",
+      "required": true,
+      "default": "MSFUSER-ACCTING-INFO",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Accounting info for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "PGMNAME",
+      "required": true,
+      "default": "programmer name",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Programmer name for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "JCLASS",
+      "required": true,
+      "default": "A",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Job Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "NOTIFY",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Notify User for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGCLASS",
+      "required": true,
+      "default": "Z",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGLEVEL",
+      "required": true,
+      "default": "(0,0)",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Level for JCL JOB card"
+    },
+    {
+      "type": "bool",
+      "name": "NTFYUSR",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Include NOTIFY Parm?"
+    },
+    {
+      "type": "string",
+      "name": "JOBNAME",
+      "required": true,
+      "default": "DUMMY",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Job name for JCL JOB card"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "name": "OpenSSL Alternative Chains Certificate Forgery MITM Proxy",
+  "fullname": "auxiliary/server/openssl_altchainsforgery_mitm_proxy",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2015-07-09",
+  "type": "auxiliary",
+  "author": [
+    "David Benjamin",
+    "Adam Langley",
+    "Ramon de C Valle <rcvalle@metasploit.com>"
+  ],
+  "description": "This module exploits a logic error in OpenSSL by impersonating the server\n        and sending a specially-crafted chain of certificates, resulting in\n        certain checks on untrusted certificates to be bypassed on the client,\n        allowing it to use a valid leaf certificate as a CA certificate to sign a\n        fake certificate. The SSL/TLS session is then proxied to the server\n        allowing the session to continue normally and application data transmitted\n        between the peers to be saved.\n\n        The valid leaf certificate must not contain the keyUsage extension or it\n        must have at least the keyCertSign bit set (see X509_check_issued function\n        in crypto/x509v3/v3_purp.c); otherwise; X509_verify_cert fails with\n        X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY. This module requires an\n        active man-in-the-middle attack.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2015-1793/",
+    "https://cwe.mitre.org/data/definitions/754.html",
+    "http://git.openssl.org/?p=openssl.git;a=commit;h=f404943bcab4898d18f3ac1b36479d1d7bbbb9e6"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/openssl_altchainsforgery_mitm_proxy.rb",
+  "ref_name": "server/openssl_altchainsforgery_mitm_proxy",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "CACERT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The leaf certificate's CA certificate"
+    },
+    {
+      "type": "string",
+      "name": "CERT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The leaf certificate"
+    },
+    {
+      "type": "string",
+      "name": "KEY",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The leaf certificate's private key"
+    },
+    {
+      "type": "string",
+      "name": "PASSPHRASE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The pass phrase for the leaf certificate's private key"
+    },
+    {
+      "type": "string",
+      "name": "SUBJECT",
+      "required": false,
+      "default": "/C=US/ST=California/L=Mountain View/O=Example Inc/CN=*.example.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The subject field for the fake certificate"
+    },
+    {
+      "type": "string",
+      "name": "HOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The server address"
+    },
+    {
+      "type": "string",
+      "name": "PORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The server port"
+    },
+    {
+      "type": "string",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The proxy address"
+    },
+    {
+      "type": "string",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The proxy port"
+    }
+  ]
+}

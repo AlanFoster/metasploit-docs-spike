@@ -1,0 +1,80 @@
+{
+  "name": "Shodan Honeyscore Client",
+  "fullname": "auxiliary/gather/shodan_honeyscore",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "thecarterb"
+  ],
+  "description": "This module uses the shodan API to check\n        if a server is a honeypot or not. The api\n        returns a score from 0.0 to 1.0. 1.0 being a honeypot.\n        A shodan API key is needed for this module to work properly.\n\n        If you don't have an account, go here to register:\n        https://account.shodan.io/register\n        For more info on how their honeyscore system works, go here:\n        https://honeyscore.shodan.io/",
+  "references": [
+    "https://honeyscore.shodan.io/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/shodan_honeyscore.rb",
+  "ref_name": "gather/shodan_honeyscore",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "TARGET",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target to get the score of"
+    },
+    {
+      "type": "string",
+      "name": "SHODAN_APIKEY",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The SHODAN API key"
+    }
+  ]
+}

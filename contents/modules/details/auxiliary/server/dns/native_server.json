@@ -1,0 +1,388 @@
+{
+  "name": "Native DNS Server (Example)",
+  "fullname": "auxiliary/server/dns/native_server",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "RageLtMan <rageltman@sempervictus>"
+  ],
+  "description": "This module provides a Rex based DNS service which can store static entries,\n        resolve names over pivots, and serve DNS requests across routed session comms.\n        DNS tunnels can operate across the the Rex switchboard, and DNS other modules\n        can use this as a template. Setting static records via hostfile allows for DNS\n        spoofing attacks without direct traffic manipulation at the handlers. handlers\n        for requests and responses provided here mimic the internal Rex functionality,\n        but utilize methods within this module's namespace to output content processed\n        in the Proc contexts via vprint_status.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    53
+  ],
+  "autofilter_services": [
+    "dns"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/dns/native_server.rb",
+  "ref_name": "server/dns/native_server",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 53,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target domain name"
+    },
+    {
+      "type": "string",
+      "name": "NS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Specify the nameservers to use for queries, space separated"
+    },
+    {
+      "type": "string",
+      "name": "SEARCHLIST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "DNS domain search list, comma separated"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Number of threads to use in threaded queries"
+    },
+    {
+      "type": "string",
+      "name": "DnsClientDefaultNS",
+      "required": false,
+      "default": "8.8.8.8 8.8.4.4",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the default to use for queries, space separated"
+    },
+    {
+      "type": "integer",
+      "name": "DnsClientRetry",
+      "required": false,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of times to try to resolve a record if no response is received"
+    },
+    {
+      "type": "integer",
+      "name": "DnsClientRetryInterval",
+      "required": false,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait before doing a retry"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientReportARecords",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Add hosts found via BRT and RVL to DB"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientRVLExistingOnly",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Only perform lookups on hosts in DB"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientTcpDns",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Run queries over TCP"
+    },
+    {
+      "type": "path",
+      "name": "DnsClientResolvconf",
+      "required": true,
+      "default": "/dev/null",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Resolvconf formatted configuration file to use for Resolver"
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host or network interface to listen on. This must be an address on the local machine or 0.0.0.0 to listen on all addresses."
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 53,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to listen on."
+    },
+    {
+      "type": "string",
+      "name": "ListenerComm",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific communication channel to use for this service"
+    },
+    {
+      "type": "string",
+      "name": "STATIC_ENTRIES",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "DNS domain search list (hosts file or space/semicolon separate entries)"
+    },
+    {
+      "type": "bool",
+      "name": "DISABLE_RESOLVER",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Disable DNS request forwarding"
+    },
+    {
+      "type": "bool",
+      "name": "DISABLE_NS_CACHE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Disable DNS response caching"
+    },
+    {
+      "type": "bool",
+      "name": "DnsServerUdp",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Serve UDP DNS requests"
+    },
+    {
+      "type": "bool",
+      "name": "DnsServerTcp",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Serve TCP DNS requests"
+    }
+  ]
+}

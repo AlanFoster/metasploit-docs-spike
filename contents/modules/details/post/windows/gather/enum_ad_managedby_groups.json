@@ -1,0 +1,120 @@
+{
+  "name": "Windows Gather Active Directory Managed Groups",
+  "fullname": "post/windows/gather/enum_ad_managedby_groups",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Stuart Morgan <stuart.morgan@mwrinfosecurity.com>"
+  ],
+  "description": "This module will enumerate AD groups on the specified domain which are specifically managed.\n        It cannot at the moment identify whether the 'Manager can update membership list' option\n        option set; if so, it would allow that member to update the contents of that group. This\n        could either be used as a persistence mechanism (for example, set your user as the 'Domain\n        Admins' group manager) or could be used to detect privilege escalation opportunities\n        without having domain admin privileges.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_ad_managedby_groups.rb",
+  "ref_name": "windows/gather/enum_ad_managedby_groups",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The domain to query or distinguished name (e.g. DC=test,DC=com)"
+    },
+    {
+      "type": "integer",
+      "name": "MAX_SEARCH",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum values to retrieve, 0 for all."
+    },
+    {
+      "type": "string",
+      "name": "ADDITIONAL_FIELDS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Additional group fields to retrieve, comma separated."
+    },
+    {
+      "type": "bool",
+      "name": "RESOLVE_MANAGERS",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Query LDAP to get the account name of group managers."
+    },
+    {
+      "type": "bool",
+      "name": "SECURITY_GROUPS_ONLY",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Only include security groups."
+    }
+  ]
+}

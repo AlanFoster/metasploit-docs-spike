@@ -1,0 +1,201 @@
+{
+  "name": "UDP Empty Prober",
+  "fullname": "auxiliary/scanner/discovery/empty_udp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Jon Hart <jon_hart@rapid7.com>"
+  ],
+  "description": "Detect UDP services that reply to empty probes",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/discovery/empty_udp.rb",
+  "ref_name": "scanner/discovery/empty_udp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "integer",
+      "name": "BATCHSIZE",
+      "required": true,
+      "default": 256,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of hosts to probe in each set"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "integer",
+      "name": "ScannerRecvInterval",
+      "required": true,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The maximum numbers of sends before entering the processing loop"
+    },
+    {
+      "type": "integer",
+      "name": "ScannerMaxResends",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The maximum times to resend a packet when out of buffers"
+    },
+    {
+      "type": "integer",
+      "name": "ScannerRecvQueueLimit",
+      "required": true,
+      "default": 100,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The maximum queue size before breaking out of the processing loop"
+    },
+    {
+      "type": "integer",
+      "name": "ScannerRecvWindow",
+      "required": true,
+      "default": 15,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The number of seconds to wait post-scan to catch leftover replies"
+    },
+    {
+      "type": "string",
+      "name": "PORTS",
+      "required": true,
+      "default": "1-1024,1194,2000,2049,4353,5060,5061,5351,8443",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Ports to probe"
+    }
+  ]
+}

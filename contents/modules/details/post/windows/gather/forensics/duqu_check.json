@@ -1,0 +1,66 @@
+{
+  "name": "Windows Gather Forensics Duqu Registry Check",
+  "fullname": "post/windows/gather/forensics/duqu_check",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Marcus J. Carey <mjc@threatagent.com>"
+  ],
+  "description": "This module searches for CVE-2011-3402 (Duqu) related registry artifacts.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2011-3402/",
+    "http://r-7.co/w5h7fY"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/forensics/duqu_check.rb",
+  "ref_name": "windows/gather/forensics/duqu_check",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

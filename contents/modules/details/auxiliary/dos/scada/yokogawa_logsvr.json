@@ -1,0 +1,116 @@
+{
+  "name": "Yokogawa CENTUM CS 3000 BKCLogSvr.exe Heap Buffer Overflow",
+  "fullname": "auxiliary/dos/scada/yokogawa_logsvr",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-03-10",
+  "type": "auxiliary",
+  "author": [
+    "juan vazquez <juan.vazquez@metasploit.com>",
+    "Redsadic <julian.vilas@gmail.com>"
+  ],
+  "description": "This module abuses a buffer overflow vulnerability to trigger a Denial of Service\n        of the BKCLogSvr component in the Yokogaca CENTUM CS 3000 product. The vulnerability\n        exists in the handling of malformed log packets, with an unexpected long level field.\n        The root cause of the vulnerability is a combination of usage of uninitialized memory\n        from the stack and a dangerous string copy. This module has been tested successfully\n        on Yokogawa CENTUM CS 3000 R3.08.50.",
+  "references": [
+    "http://www.yokogawa.com/dcs/security/ysar/YSAR-14-0001E.pdf",
+    "https://blog.rapid7.com/2014/03/10/yokogawa-centum-cs3000-vulnerabilities",
+    "https://cvedetails.com/cve/CVE-2014-0781/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/scada/yokogawa_logsvr.rb",
+  "ref_name": "dos/scada/yokogawa_logsvr",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 52302,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "RLIMIT",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Number of packets to send"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "name": "Windows MessageBox x64",
+  "fullname": "payload/windows/x64/messagebox",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "pasta <jaguinaga@infobytesec.com>"
+  ],
+  "description": "Spawn a dialog via MessageBox using a customizable title, text & icon",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/windows/x64/messagebox.rb",
+  "ref_name": "windows/x64/messagebox",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "string",
+      "name": "TITLE",
+      "required": true,
+      "default": "MessageBox",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Messagebox Title"
+    },
+    {
+      "type": "string",
+      "name": "TEXT",
+      "required": true,
+      "default": "Hello, from MSF!",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Messagebox Text"
+    },
+    {
+      "type": "enum",
+      "name": "ICON",
+      "required": true,
+      "default": "NO",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Icon type (Accepted: NO, ERROR, INFORMATION, WARNING, QUESTION)"
+    }
+  ]
+}

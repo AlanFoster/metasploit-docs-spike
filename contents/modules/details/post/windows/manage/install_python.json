@@ -1,0 +1,330 @@
+{
+  "name": "Install Python for Windows",
+  "fullname": "post/windows/manage/install_python",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Michael Long <bluesentinel@protonmail.com>"
+  ],
+  "description": "This module places an embeddable Python3 distribution onto the target file system,\n                        granting pentesters access to a lightweight Python interpreter.\n                        This module does not require administrative privileges or user interaction with\n                        installation prompts.",
+  "references": [
+    "https://docs.python.org/3/using/windows.html#windows-embeddable",
+    "https://attack.mitre.org/techniques/T1064/"
+  ],
+  "platform": "Windows",
+  "arch": "x86, x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/install_python.rb",
+  "ref_name": "windows/manage/install_python",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::persist",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Run the payload in a loop"
+    },
+    {
+      "type": "integer",
+      "name": "Powershell::prepend_sleep",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend seconds of sleep"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::prepend_protections_bypass",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend AMSI/SBL bypass"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::strip_comments",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Strip comments"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::strip_whitespace",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Strip whitespace"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::sub_vars",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Substitute variable names"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::sub_funcs",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Substitute function names"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::exec_in_place",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Produce PSH without executable wrapper"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::exec_rc4",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encrypt PSH with RC4"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::remove_comspec",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Produce script calling powershell directly"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::noninteractive",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Execute powershell without interaction"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::encode_final_payload",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode final payload for -EncodedCommand"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::encode_inner_payload",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode inner payload for -EncodedCommand"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::wrap_double_quotes",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Wraps the -Command argument in single quotes"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::no_equals",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Pad base64 until no \"=\" remains"
+    },
+    {
+      "type": "enum",
+      "name": "Powershell::method",
+      "required": true,
+      "default": "reflection",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Payload delivery method (Accepted: net, reflection, old, msil)"
+    },
+    {
+      "type": "integer",
+      "name": "Powershell::Post::timeout",
+      "required": true,
+      "default": 15,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Powershell execution timeout, set < 0 to run async without termination"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::log_output",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Write output to log file"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::dry_run",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Return encoded output to caller"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::force_wow64",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Force WOW64 execution"
+    },
+    {
+      "type": "string",
+      "name": "PYTHON_VERSION",
+      "required": true,
+      "default": "3.8.2",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Python version to download"
+    },
+    {
+      "type": "string",
+      "name": "PYTHON_URL",
+      "required": true,
+      "default": "https://www.python.org/ftp/python/",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "URL to Python distributions"
+    },
+    {
+      "type": "string",
+      "name": "FILE_PATH",
+      "required": true,
+      "default": ".\\python-3.8.2-embed-win32.zip",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File path to store the python zip file; current directory by default"
+    },
+    {
+      "type": "bool",
+      "name": "CLEANUP",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Remove module artifacts; set to true when ready to cleanup"
+    }
+  ]
+}

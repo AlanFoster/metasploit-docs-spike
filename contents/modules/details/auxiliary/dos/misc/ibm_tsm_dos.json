@@ -1,0 +1,192 @@
+{
+  "name": "IBM Tivoli Storage Manager FastBack Server Opcode 0x534 Denial of Service",
+  "fullname": "auxiliary/dos/misc/ibm_tsm_dos",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2015-12-15",
+  "type": "auxiliary",
+  "author": [
+    "Gianni Gnesa",
+    "William Webb <william_webb@rapid7.com>"
+  ],
+  "description": "This module exploits a denial of service condition present in IBM Tivoli Storage Manager\n          FastBack Server when dealing with packets triggering the opcode 0x534 handler.",
+  "references": [
+    "https://www.exploit-db.com/exploits/38979",
+    "OSVDB (132307)"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/misc/ibm_tsm_dos.rb",
+  "ref_name": "dos/misc/ibm_tsm_dos",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 11460,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    }
+  ]
+}

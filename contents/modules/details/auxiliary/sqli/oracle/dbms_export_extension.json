@@ -1,0 +1,127 @@
+{
+  "name": "Oracle DB SQL Injection via DBMS_EXPORT_EXTENSION",
+  "fullname": "auxiliary/sqli/oracle/dbms_export_extension",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2006-04-26",
+  "type": "auxiliary",
+  "author": [
+    "MC <mc@metasploit.com>"
+  ],
+  "description": "This module will escalate an Oracle DB user to DBA by exploiting a\n        sql injection bug in the DBMS_EXPORT_EXTENSION.GET_DOMAIN_INDEX_METADATA package.\n\n        Note: This module has been tested against 9i, 10gR1 and 10gR2.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2006-2081/",
+    "OSVDB (25002)",
+    "http://www.securityfocus.com/bid/17699",
+    "http://www.red-database-security.com/exploits/oracle-sql-injection-oracle-dbms_export_extension.html"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/sqli/oracle/dbms_export_extension.rb",
+  "ref_name": "sqli/oracle/dbms_export_extension",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "RHOST",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Oracle host."
+    },
+    {
+      "type": "string",
+      "name": "RPORT",
+      "required": true,
+      "default": "1521",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TNS port."
+    },
+    {
+      "type": "string",
+      "name": "SID",
+      "required": true,
+      "default": "ORCL",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The sid to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBUSER",
+      "required": true,
+      "default": "SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBPASS",
+      "required": true,
+      "default": "TIGER",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "SQL",
+      "required": false,
+      "default": "GRANT DBA TO SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SQL to execute."
+    }
+  ]
+}

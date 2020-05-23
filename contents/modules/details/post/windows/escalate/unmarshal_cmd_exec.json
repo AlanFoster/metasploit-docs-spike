@@ -1,0 +1,115 @@
+{
+  "name": "Windows unmarshal post exploitation",
+  "fullname": "post/windows/escalate/unmarshal_cmd_exec",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2018-08-05",
+  "type": "post",
+  "author": [
+    "Nicolas Joly",
+    "Matthias Kaiser",
+    "Sanjay Gondaliya",
+    "Pratik Shah <pratik@notsosecure.com>"
+  ],
+  "description": "This module exploits a local privilege escalation bug which exists\n        in microsoft COM for windows when it fails to properly handle serialized objects.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2018-0824/",
+    "https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2018-0824",
+    "https://github.com/x73x61x6ex6ax61x79/UnmarshalPwn",
+    "https://www.exploit-db.com/exploits/44906"
+  ],
+  "platform": "Windows",
+  "arch": "x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/escalate/unmarshal_cmd_exec.rb",
+  "ref_name": "windows/escalate/unmarshal_cmd_exec",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "COMMAND",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The command to execute as SYSTEM (Can only be a cmd.exe builtin or Windows binary, (net user /add %RAND% %RAND% & net localgroup administrators /add <user>)."
+    },
+    {
+      "type": "string",
+      "name": "EXPLOIT_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The filename to use for the exploit binary (%RAND% by default)."
+    },
+    {
+      "type": "string",
+      "name": "SCRIPT_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The filename to use for the COM script file (%RAND% by default)."
+    },
+    {
+      "type": "string",
+      "name": "PATH",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path to write binaries (%TEMP% by default)."
+    }
+  ]
+}

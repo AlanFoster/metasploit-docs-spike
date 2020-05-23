@@ -1,0 +1,344 @@
+{
+  "name": "OpenSSL Heartbeat (Heartbleed) Information Leak",
+  "fullname": "auxiliary/scanner/ssl/openssl_heartbleed",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-04-07",
+  "type": "auxiliary",
+  "author": [
+    "Neel Mehta",
+    "Riku",
+    "Antti",
+    "Matti",
+    "Jared Stafford <jspenguin@jspenguin.org>",
+    "FiloSottile",
+    "Christian Mehlmauer <FireFart@gmail.com>",
+    "wvu <wvu@metasploit.com>",
+    "juan vazquez <juan.vazquez@metasploit.com>",
+    "Sebastiano Di Paola",
+    "Tom Sellers",
+    "jjarmoc",
+    "Ben Buchanan",
+    "herself"
+  ],
+  "description": "This module implements the OpenSSL Heartbleed attack. The problem\n        exists in the handling of heartbeat requests, where a fake length can\n        be used to leak memory data in the response. Services that support\n        STARTTLS may also be vulnerable.\n\n        The module supports several actions, allowing for scanning, dumping of\n        memory contents to loot, and private key recovery.\n\n        The LEAK_COUNT option can be used to specify leaks per SCAN or DUMP.\n\n        The repeat command can be used to make running the SCAN or DUMP many\n        times more powerful. As in:\n            repeat -t 60 run; sleep 2\n        To run every two seconds for one minute.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2014-0160/",
+    "https://www.kb.cert.org/vuls/id/720951",
+    "https://www.us-cert.gov/ncas/alerts/TA14-098A",
+    "http://heartbleed.com/",
+    "https://github.com/FiloSottile/Heartbleed",
+    "https://gist.github.com/takeshixx/10107280",
+    "http://filippo.io/Heartbleed/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/ssl/openssl_heartbleed.rb",
+  "ref_name": "scanner/ssl/openssl_heartbleed",
+  "check": true,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+    "AKA": [
+      "Heartbleed"
+    ]
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "enum",
+      "name": "TLS_CALLBACK",
+      "required": true,
+      "default": "None",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Protocol to use, \"None\" to use raw TLS sockets (Accepted: None, SMTP, IMAP, JABBER, POP3, FTP, POSTGRES)"
+    },
+    {
+      "type": "enum",
+      "name": "TLS_VERSION",
+      "required": true,
+      "default": "1.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "TLS/SSL version to use (Accepted: SSLv3, 1.0, 1.1, 1.2)"
+    },
+    {
+      "type": "integer",
+      "name": "MAX_KEYTRIES",
+      "required": true,
+      "default": 50,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Max tries to dump key"
+    },
+    {
+      "type": "integer",
+      "name": "STATUS_EVERY",
+      "required": true,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many retries until key dump status"
+    },
+    {
+      "type": "regexp",
+      "name": "DUMPFILTER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Pattern to filter leaked memory before storing"
+    },
+    {
+      "type": "integer",
+      "name": "RESPONSE_TIMEOUT",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Number of seconds to wait for a server response"
+    },
+    {
+      "type": "integer",
+      "name": "LEAK_COUNT",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Number of times to leak memory per SCAN or DUMP invocation"
+    },
+    {
+      "type": "integer",
+      "name": "HEARTBEAT_LENGTH",
+      "required": true,
+      "default": 65535,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Heartbeat length"
+    },
+    {
+      "type": "string",
+      "name": "XMPPDOMAIN",
+      "required": true,
+      "default": "localhost",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The XMPP Domain to use when Jabber is selected"
+    }
+  ]
+}

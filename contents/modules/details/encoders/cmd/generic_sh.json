@@ -1,0 +1,54 @@
+{
+  "name": "Generic Shell Variable Substitution Command Encoder",
+  "fullname": "encoder/cmd/generic_sh",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This encoder uses standard Bourne shell variable substitution\n      tricks to avoid commonly restricted characters.",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/cmd/generic_sh.rb",
+  "ref_name": "cmd/generic_sh",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

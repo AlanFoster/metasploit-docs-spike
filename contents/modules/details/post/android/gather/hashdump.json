@@ -1,0 +1,67 @@
+{
+  "name": "Android Gather Dump Password Hashes for Android Systems",
+  "fullname": "post/android/gather/hashdump",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "h00die",
+    "timwr"
+  ],
+  "description": "Post Module to dump the password hashes for Android System. Root is required.\n           To perform this operation, two things are needed.  First, a password.key file\n           is required as this contains the hash but no salt.  Next, a sqlite3 database\n           is needed (with supporting files) to pull the salt from.  Combined, this\n           creates the hash we need.  Samsung based devices change the hash slightly.",
+  "references": [
+    "https://www.pentestpartners.com/security-blog/cracking-android-passwords-a-how-to/",
+    "https://hashcat.net/forum/thread-2202.html"
+  ],
+  "platform": "Android",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/android/gather/hashdump.rb",
+  "ref_name": "android/gather/hashdump",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "name": "Unix Command, Interact with Established Connection",
+  "fullname": "payload/cmd/unix/interact",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "Interacts with a shell on an established socket connection",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/unix/interact.rb",
+  "ref_name": "cmd/unix/interact",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}

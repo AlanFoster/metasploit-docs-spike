@@ -1,0 +1,87 @@
+{
+  "name": "Multi Gather DNS Forward Lookup Bruteforce",
+  "fullname": "post/multi/gather/dns_bruteforce",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Carlos Perez <carlos_perez@darkoperator.com>"
+  ],
+  "description": "Brute force subdomains and hostnames via wordlist.",
+  "references": [
+
+  ],
+  "platform": "BSD, Linux, OSX, Solaris, Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/dns_bruteforce.rb",
+  "ref_name": "multi/gather/dns_bruteforce",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Domain to do a forward lookup bruteforce against."
+    },
+    {
+      "type": "path",
+      "name": "NAMELIST",
+      "required": true,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/wordlists/namelist.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "List of hostnames or subdomains to use."
+    }
+  ]
+}

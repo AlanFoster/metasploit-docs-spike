@@ -1,0 +1,98 @@
+{
+  "name": "Firefox XPCOM Execute Command",
+  "fullname": "payload/firefox/exec",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module runs a shell command on the target OS without touching the disk.\n        On Windows, this command will flash the command prompt momentarily.\n        This can be avoided by setting WSCRIPT to true, which drops a jscript\n        \"launcher\" to disk that hides the prompt.",
+  "references": [
+
+  ],
+  "platform": "Firefox",
+  "arch": "firefox",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/firefox/exec.rb",
+  "ref_name": "firefox/exec",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "JsObfuscate",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of times to obfuscate JavaScript"
+    },
+    {
+      "type": "string",
+      "name": "JsIdentifiers",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Identifiers to preserve for JsObfu"
+    },
+    {
+      "type": "string",
+      "name": "CMD",
+      "required": true,
+      "default": "touch /tmp/a.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The command string to execute"
+    },
+    {
+      "type": "bool",
+      "name": "WSCRIPT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "On Windows, drop a vbscript to hide the cmd prompt"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "name": "SIP Invite Spoof",
+  "fullname": "auxiliary/voip/sip_invite_spoof",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "David Maynor <dave@erratasec.com>",
+    "ChrisJohnRiley"
+  ],
+  "description": "This module will create a fake SIP invite request making the targeted device ring\n        and display fake caller id information.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/voip/sip_invite_spoof.rb",
+  "ref_name": "voip/sip_invite_spoof",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 5060,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "SRCADDR",
+      "required": true,
+      "default": "192.168.1.1",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The sip address the spoofed call is coming from"
+    },
+    {
+      "type": "string",
+      "name": "MSG",
+      "required": true,
+      "default": "The Metasploit has you",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The spoofed caller id to send"
+    },
+    {
+      "type": "string",
+      "name": "EXTENSION",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The specific extension or name to target"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a specific SIP domain"
+    },
+    {
+      "type": "address",
+      "name": "SIP_PROXY_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use a specific SIP proxy"
+    },
+    {
+      "type": "port",
+      "name": "SIP_PROXY_PORT",
+      "required": false,
+      "default": 5060,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SIP Proxy port to use"
+    }
+  ]
+}

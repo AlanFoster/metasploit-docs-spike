@@ -1,0 +1,363 @@
+{
+  "name": "Install OpenSSH for Windows",
+  "fullname": "post/windows/manage/install_ssh",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Michael Long <bluesentinel@protonmail.com>"
+  ],
+  "description": "This module installs OpenSSH server and client for Windows using PowerShell.\n                        SSH on Windows can provide pentesters persistent access to a secure interactive terminal, interactive filesystem access, and port forwarding over SSH.",
+  "references": [
+    "https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview",
+    "https://github.com/PowerShell/openssh-portable"
+  ],
+  "platform": "Windows",
+  "arch": "x86, x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/install_ssh.rb",
+  "ref_name": "windows/manage/install_ssh",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::persist",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Run the payload in a loop"
+    },
+    {
+      "type": "integer",
+      "name": "Powershell::prepend_sleep",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend seconds of sleep"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::prepend_protections_bypass",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend AMSI/SBL bypass"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::strip_comments",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Strip comments"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::strip_whitespace",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Strip whitespace"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::sub_vars",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Substitute variable names"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::sub_funcs",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Substitute function names"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::exec_in_place",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Produce PSH without executable wrapper"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::exec_rc4",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encrypt PSH with RC4"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::remove_comspec",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Produce script calling powershell directly"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::noninteractive",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Execute powershell without interaction"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::encode_final_payload",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode final payload for -EncodedCommand"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::encode_inner_payload",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode inner payload for -EncodedCommand"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::wrap_double_quotes",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Wraps the -Command argument in single quotes"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::no_equals",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Pad base64 until no \"=\" remains"
+    },
+    {
+      "type": "enum",
+      "name": "Powershell::method",
+      "required": true,
+      "default": "reflection",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Payload delivery method (Accepted: net, reflection, old, msil)"
+    },
+    {
+      "type": "integer",
+      "name": "Powershell::Post::timeout",
+      "required": true,
+      "default": 15,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Powershell execution timeout, set < 0 to run async without termination"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::log_output",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Write output to log file"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::dry_run",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Return encoded output to caller"
+    },
+    {
+      "type": "bool",
+      "name": "Powershell::Post::force_wow64",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Force WOW64 execution"
+    },
+    {
+      "type": "bool",
+      "name": "INSTALL_SERVER",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Install OpenSSH.Server for Windows"
+    },
+    {
+      "type": "bool",
+      "name": "INSTALL_CLIENT",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Install OpenSSH.Client for Windows"
+    },
+    {
+      "type": "bool",
+      "name": "UNINSTALL_SERVER",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Uninstall OpenSSH.Server for Windows"
+    },
+    {
+      "type": "bool",
+      "name": "UNINSTALL_CLIENT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Uninstall OpenSSH.Client for Windows"
+    },
+    {
+      "type": "string",
+      "name": "SERVER_VER",
+      "required": true,
+      "default": "OpenSSH.Server~~~~0.0.1.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "OpenSSH.Server version"
+    },
+    {
+      "type": "string",
+      "name": "CLIENT_VER",
+      "required": true,
+      "default": "OpenSSH.Client~~~~0.0.1.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "OpenSSH.Client version"
+    },
+    {
+      "type": "bool",
+      "name": "AUTOSTART",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Sets sshd service to startup automatically at system boot for persistence"
+    }
+  ]
+}

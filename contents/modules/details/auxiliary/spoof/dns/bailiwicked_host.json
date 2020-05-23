@@ -1,0 +1,216 @@
+{
+  "name": "DNS BailiWicked Host Attack",
+  "fullname": "auxiliary/spoof/dns/bailiwicked_host",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2008-07-21",
+  "type": "auxiliary",
+  "author": [
+    "I)ruid <druid@caughq.org>",
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This exploit attacks a fairly ubiquitous flaw in DNS implementations which\n        Dan Kaminsky found and disclosed ~Jul 2008.  This exploit caches a single\n        malicious host entry into the target nameserver by sending random hostname\n        queries to the target DNS server coupled with spoofed replies to those\n        queries from the authoritative nameservers for that domain. Eventually, a\n        guessed ID will match, the spoofed packet will get accepted, and due to the\n        additional hostname entry being within bailiwick constraints of the original\n        request the malicious host entry will get cached.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2008-1447/",
+    "OSVDB (46776)",
+    "https://www.kb.cert.org/vuls/id/800113",
+    "http://www.caughq.org/exploits/CAU-EX-2008-0002.txt"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/spoof/dns/bailiwicked_host.rb",
+  "ref_name": "spoof/dns/bailiwicked_host",
+  "check": true,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "integer",
+      "name": "SNAPLEN",
+      "required": true,
+      "default": 65535,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of bytes to capture"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of seconds to wait for new data"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "SECRET",
+      "required": true,
+      "default": 1297303073,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A 32-bit cookie for probe requests."
+    },
+    {
+      "type": "address",
+      "name": "GATEWAY_PROBE_HOST",
+      "required": true,
+      "default": "8.8.8.8",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send a TTL=1 random UDP datagram to this host to discover the default gateway's MAC"
+    },
+    {
+      "type": "port",
+      "name": "GATEWAY_PROBE_PORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port on GATEWAY_PROBE_HOST to send a random UDP probe to (random if 0 or unset)"
+    },
+    {
+      "type": "enum",
+      "name": "SRCADDR",
+      "required": true,
+      "default": "Real",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The source address to use for sending the queries (Accepted: Real, Random)"
+    },
+    {
+      "type": "port",
+      "name": "SRCPORT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target server's source query port (0 for automatic)"
+    },
+    {
+      "type": "string",
+      "name": "HOSTNAME",
+      "required": true,
+      "default": "pwned.example.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Hostname to hijack"
+    },
+    {
+      "type": "address",
+      "name": "NEWADDR",
+      "required": true,
+      "default": "1.3.3.7",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "New address for hostname"
+    },
+    {
+      "type": "address",
+      "name": "RECONS",
+      "required": true,
+      "default": "208.67.222.222",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The nameserver used for reconnaissance"
+    },
+    {
+      "type": "integer",
+      "name": "XIDS",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of XIDs to try for each query (0 for automatic)"
+    },
+    {
+      "type": "integer",
+      "name": "TTL",
+      "required": true,
+      "default": 46705,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TTL for the malicious host entry"
+    }
+  ]
+}

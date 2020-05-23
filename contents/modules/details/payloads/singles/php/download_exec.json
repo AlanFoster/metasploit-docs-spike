@@ -1,0 +1,65 @@
+{
+  "name": "PHP Executable Download and Execute",
+  "fullname": "payload/php/download_exec",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "egypt <egypt@metasploit.com>"
+  ],
+  "description": "Download an EXE from an HTTP URL and execute it",
+  "references": [
+
+  ],
+  "platform": "PHP",
+  "arch": "php",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/php/download_exec.rb",
+  "ref_name": "php/download_exec",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "URL",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The pre-encoded URL to the executable"
+    }
+  ]
+}

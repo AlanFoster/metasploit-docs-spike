@@ -1,0 +1,587 @@
+{
+  "name": "ManageEngine Multiple Products Arbitrary Directory Listing",
+  "fullname": "auxiliary/admin/http/manageengine_dir_listing",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2015-01-28",
+  "type": "auxiliary",
+  "author": [
+    "Pedro Ribeiro <pedrib@gmail.com>"
+  ],
+  "description": "This module exploits a directory listing information disclosure vulnerability in the\n        FailOverHelperServlet on ManageEngine OpManager, Applications Manager and IT360. It\n        makes a recursive listing, so it will list the whole drive if you ask it to list / in\n        Linux or C:\\ in Windows. This vulnerability is unauthenticated on OpManager and\n        Applications Manager, but authenticated in IT360. This module will attempt to login\n        using the default credentials for the administrator and guest accounts; alternatively\n        you can provide a pre-authenticated cookie or a username / password combo. For IT360\n        targets enter the RPORT of the OpManager instance (usually 8300). This module has been\n        tested on both Windows and Linux with several different versions. Windows paths have to\n        be escaped with 4 backslashes on the command line. There is a companion module that\n        allows for arbitrary file download. This vulnerability has been fixed in Applications\n        Manager v11.9 b11912 and OpManager 11.6.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2014-7863/",
+    "OSVDB (117696)",
+    "https://seclists.org/fulldisclosure/2015/Jan/114",
+    "https://github.com/pedrib/PoC/blob/master/advisories/ManageEngine/me_failservlet.txt"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    80,
+    8080,
+    443,
+    8000,
+    8888,
+    8880,
+    8008,
+    3000,
+    8443
+  ],
+  "autofilter_services": [
+    "http",
+    "https"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/http/manageengine_dir_listing.rb",
+  "ref_name": "admin/http/manageengine_dir_listing",
+  "check": false,
+  "post_auth": true,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 80,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "VHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "HTTP server virtual host"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "string",
+      "name": "UserAgent",
+      "required": false,
+      "default": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The User-Agent header to use for all requests"
+    },
+    {
+      "type": "string",
+      "name": "HttpUsername",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The HTTP username to specify for authentication"
+    },
+    {
+      "type": "string",
+      "name": "HttpPassword",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The HTTP password to specify for authentication"
+    },
+    {
+      "type": "path",
+      "name": "HttpRawHeaders",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to ERB-templatized raw headers to append to existing headers"
+    },
+    {
+      "type": "bool",
+      "name": "DigestAuthIIS",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Conform to IIS, should work for most servers. Only set to false for non-IIS servers"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "bool",
+      "name": "FingerprintCheck",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Conduct a pre-exploit fingerprint verification"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": "WORKSTATION",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The domain to use for Windows authentication"
+    },
+    {
+      "type": "float",
+      "name": "HttpClientTimeout",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "HTTP connection and receive timeout"
+    },
+    {
+      "type": "bool",
+      "name": "HttpPartialResponses",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Return partial HTTP responses despite timeouts"
+    },
+    {
+      "type": "bool",
+      "name": "HttpTrace",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show the raw HTTP requests and responses"
+    },
+    {
+      "type": "bool",
+      "name": "HttpTraceHeadersOnly",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show HTTP headers only in HttpTrace"
+    },
+    {
+      "type": "string",
+      "name": "HttpTraceColors",
+      "required": false,
+      "default": "red/blu",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "HTTP request and response colors for HttpTrace (unset to disable)"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::uri_encode_mode",
+      "required": false,
+      "default": "hex-normal",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable URI encoding (Accepted: none, hex-normal, hex-noslashes, hex-random, hex-all, u-normal, u-all, u-random)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_full_url",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use the full URL for all HTTP requests"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_method_uri_count",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many whitespace characters to use between the method and uri"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_uri_version_count",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many whitespace characters to use between the uri and version"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::pad_method_uri_type",
+      "required": false,
+      "default": "space",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "What type of whitespace to use between the method and uri (Accepted: space, tab, apache)"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::pad_uri_version_type",
+      "required": false,
+      "default": "space",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "What type of whitespace to use between the uri and version (Accepted: space, tab, apache)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_valid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random, but valid, HTTP method for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_invalid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random invalid, HTTP method for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_case",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use random casing for the HTTP method"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::version_random_valid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random, but valid, HTTP version for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::version_random_invalid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random invalid, HTTP version for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_dir_self_reference",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert self-referential directories into the uri"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_dir_fake_relative",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert fake relative directories into the uri"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_use_backslashes",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use back slashes instead of forward slashes in the uri "
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_fake_headers",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake headers into the HTTP request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_fake_headers_count",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake headers to insert into the HTTP request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_get_params",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake query string variables into the request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_get_params_count",
+      "required": false,
+      "default": 16,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake query string variables to insert into the request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_post_params",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake post variables into the request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_post_params_count",
+      "required": false,
+      "default": 16,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake post variables to insert into the request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_fake_end",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add a fake end of URI (eg: /%20HTTP/1.0/../../)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_fake_params_start",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add a fake start of params to the URI (eg: /%3fa=b/../)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::header_folding",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable folding of HTTP headers"
+    },
+    {
+      "type": "string",
+      "name": "TARGETURI",
+      "required": true,
+      "default": "/",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The base path to OpManager, AppManager or IT360"
+    },
+    {
+      "type": "string",
+      "name": "DIRECTORY",
+      "required": true,
+      "default": "/etc/",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path of the directory to list"
+    },
+    {
+      "type": "string",
+      "name": "IAMAGENTTICKET",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Pre-authenticated IAMAGENTTICKET cookie (IT360 target only)"
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to login as (IT360 target only)"
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password for the specified username (IT360 target only)"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Name of the domain to logon to (IT360 target only)"
+    }
+  ]
+}

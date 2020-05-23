@@ -1,0 +1,87 @@
+{
+  "name": "Windows Manage Trojanize Support Account",
+  "fullname": "post/windows/manage/enable_support_account",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "salcho <salchoman@gmail.com>"
+  ],
+  "description": "This module enables alternative access to servers and workstations\n        by modifying the support account's properties. It will enable\n        the account for remote access as the administrator user while\n        taking advantage of some weird behavior in lusrmgr.msc. It will\n        check if sufficient privileges are available for registry operations,\n        otherwise it exits.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/enable_support_account.rb",
+  "ref_name": "windows/manage/enable_support_account",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": true,
+      "default": "password",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password of the support user account"
+    },
+    {
+      "type": "bool",
+      "name": "GETSYSTEM",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Attempt to get SYSTEM privilege on the target host."
+    }
+  ]
+}

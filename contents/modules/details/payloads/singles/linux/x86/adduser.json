@@ -1,0 +1,210 @@
+{
+  "name": "Linux Add User",
+  "fullname": "payload/linux/x86/adduser",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "skape <mmiller@hick.org>",
+    "vlad902 <vlad902@gmail.com>",
+    "spoonm <spoonm@no$email.com>"
+  ],
+  "description": "Create a new user with UID 0",
+  "references": [
+
+  ],
+  "platform": "Linux",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/linux/x86/adduser.rb",
+  "ref_name": "linux/x86/adduser",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "PrependFork",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes: if (fork()) { exit(0); }"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetresuid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setresuid(0, 0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetreuid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setreuid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetuid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setuid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetresgid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setresgid(0, 0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetregid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setregid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetgid",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setgid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependChrootBreak",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that will break out of a chroot (includes setreuid to root)"
+    },
+    {
+      "type": "bool",
+      "name": "AppendExit",
+      "required": false,
+      "default": "false",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Append a stub that executes the exit(0) system call"
+    },
+    {
+      "type": "integer",
+      "name": "MeterpreterDebugLevel",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Set debug level for meterpreter 0-3 (Default output is strerr)"
+    },
+    {
+      "type": "string",
+      "name": "RemoteMeterpreterDebugFile",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Redirect Debug Info to a Log File"
+    },
+    {
+      "type": "string",
+      "name": "USER",
+      "required": true,
+      "default": "metasploit",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to create"
+    },
+    {
+      "type": "string",
+      "name": "PASS",
+      "required": true,
+      "default": "metasploit",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password for this user"
+    },
+    {
+      "type": "string",
+      "name": "SHELL",
+      "required": false,
+      "default": "/bin/sh",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The shell for this user"
+    }
+  ]
+}

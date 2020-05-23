@@ -1,0 +1,87 @@
+{
+  "name": "OS X Gather Messages",
+  "fullname": "post/osx/gather/enum_messages",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Geckom <geckom@redteamr.com>"
+  ],
+  "description": "This module will collect the Messages sqlite3 database files and chat logs\n        from the victim's machine. There are four actions you may choose: DBFILE,\n        READABLE, LATEST, and ALL. DBFILE and READABLE will retrieve all messages, and\n        LATEST will retrieve the last X number of messages (useful with 2FA). Module\n        was tested with OS X 10.11 (El Capitan).",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/gather/enum_messages.rb",
+  "ref_name": "osx/gather/enum_messages",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "MSGCOUNT",
+      "required": false,
+      "default": 3,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Number of latest messages to retrieve."
+    },
+    {
+      "type": "string",
+      "name": "USER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Username to retrieve messages from (defaults to current user)"
+    }
+  ]
+}

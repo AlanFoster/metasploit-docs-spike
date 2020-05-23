@@ -1,0 +1,145 @@
+{
+  "name": "Windows Execute net user /ADD",
+  "fullname": "payload/windows/adduser",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "hdm <x@hdm.io>",
+    "Chris John Riley",
+    "vlad902 <vlad902@gmail.com>",
+    "sf <stephen_fewer@harmonysecurity.com>"
+  ],
+  "description": "Create a new user and add them to local administration group.\n\n        Note: The specified password is checked for common complexity\n        requirements to prevent the target machine rejecting the user\n        for failing to meet policy requirements.\n\n        Complexity check: 8-14 chars (1 UPPER, 1 lower, 1 digit/special)",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/windows/adduser.rb",
+  "ref_name": "windows/adduser",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "string",
+      "name": "USER",
+      "required": true,
+      "default": "metasploit",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to create"
+    },
+    {
+      "type": "string",
+      "name": "PASS",
+      "required": true,
+      "default": "Metasploit$1",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password for this user"
+    },
+    {
+      "type": "string",
+      "name": "CUSTOM",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Custom group name to be used instead of default"
+    },
+    {
+      "type": "bool",
+      "name": "WMIC",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use WMIC on the target to resolve administrators group"
+    },
+    {
+      "type": "bool",
+      "name": "COMPLEXITY",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Check password for complexity rules"
+    }
+  ]
+}

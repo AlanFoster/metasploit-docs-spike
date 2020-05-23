@@ -1,0 +1,341 @@
+{
+  "name": "Microsoft SQL Server Interesting Data Finder",
+  "fullname": "auxiliary/admin/mssql/mssql_idf",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Robin Wood <robin@digininja.org>"
+  ],
+  "description": "This module will search the specified MSSQL server for\n        'interesting' columns and data.\n\n        The module has been tested against SQL Server 2005 but it should also work on\n        SQL Server 2008. The module will not work against SQL Server 2000 at this time,\n        if you are interested in supporting this platform, please contact the author.",
+  "references": [
+    "http://www.digininja.org/metasploit/mssql_idf.php"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    1433,
+    1434,
+    1435,
+    14330,
+    2533,
+    9152,
+    2638
+  ],
+  "autofilter_services": [
+    "ms-sql-s",
+    "ms-sql2000",
+    "sybase"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/mssql/mssql_idf.rb",
+  "ref_name": "admin/mssql/mssql_idf",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 1433,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLMv2",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use NTLMv2 instead of NTLM2_session when 'Negotiate NTLM2' key is true"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLM2_session",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM2 key' flag, forcing the use of a NTLMv2_session"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Always send the LANMAN response (except when NTLMv2_session is specified)"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseLMKey",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate Lan Manager Key' flag, using the LM key when the LM response is sent"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendNTLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM key' flag, indicating the use of NTLM responses"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendSPN",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send an avp of type SPN in the ntlmv2 client blob, this allows authentication on Windows 7+/Server 2008 R2+ when SPN is required"
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": false,
+      "default": "sa",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate as"
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password for the specified username"
+    },
+    {
+      "type": "bool",
+      "name": "TDSENCRYPTION",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use TLS/SSL for TDS data \"Force Encryption\""
+    },
+    {
+      "type": "bool",
+      "name": "USE_WINDOWS_AUTHENT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use windows authentification (requires DOMAIN option set)"
+    },
+    {
+      "type": "path",
+      "name": "HEX2BINARY",
+      "required": false,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/exploits/mssql/h2b",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The path to the hex2binary script on the disk"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": "WORKSTATION",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The domain to use for windows authentication"
+    },
+    {
+      "type": "string",
+      "name": "NAMES",
+      "required": true,
+      "default": "passw|bank|credit|card",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Pipe separated list of column names"
+    }
+  ]
+}

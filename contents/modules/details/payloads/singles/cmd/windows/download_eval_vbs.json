@@ -1,0 +1,142 @@
+{
+  "name": "Windows Executable Download and Evaluate VBS",
+  "fullname": "payload/cmd/windows/download_eval_vbs",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "scriptjunkie"
+  ],
+  "description": "Downloads a file from an HTTP(S) URL and executes it as a vbs script.\n            Use it to stage a vbs encoded payload from a short command line.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/windows/download_eval_vbs.rb",
+  "ref_name": "cmd/windows/download_eval_vbs",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "string",
+      "name": "URL",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The pre-encoded URL to the script"
+    },
+    {
+      "type": "bool",
+      "name": "INCLUDECMD",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Include the cmd /q /c"
+    },
+    {
+      "type": "bool",
+      "name": "INCLUDEWSCRIPT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Include the wscript command"
+    },
+    {
+      "type": "bool",
+      "name": "DELETE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delete created .vbs after download"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "name": "Windows Manage Remote Packet Capture Service Starter",
+  "fullname": "post/windows/manage/rpcapd_start",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "This module enables the Remote Packet Capture System (rpcapd service)\n        included in the default installation of Winpcap. The module allows you to set up\n        the service in passive or active mode (useful if the client is behind a firewall).\n        If authentication is enabled you need a local user account to capture traffic.\n        PORT will be used depending of the mode configured.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/rpcapd_start.rb",
+  "ref_name": "windows/manage/rpcapd_start",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "NULLAUTH",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable Null Authentication."
+    },
+    {
+      "type": "bool",
+      "name": "ACTIVE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable rpcapd in active mode (passive by default)."
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Remote host to connect (set in active mode only)."
+    },
+    {
+      "type": "integer",
+      "name": "PORT",
+      "required": true,
+      "default": 2002,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Local/Remote port to capture traffic."
+    }
+  ]
+}

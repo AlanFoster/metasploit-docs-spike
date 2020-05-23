@@ -1,0 +1,66 @@
+{
+  "name": "Multi Gather GnuPG Credentials Collection",
+  "fullname": "post/multi/gather/gpg_creds",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Dhiru Kholia <dhiru@openwall.com>",
+    "Henry Hoggard"
+  ],
+  "description": "This module will collect the contents of all users' .gnupg directories on the targeted\n        machine. Password protected secret keyrings can be cracked with John the Ripper (JtR).",
+  "references": [
+
+  ],
+  "platform": "BSD, Linux, OSX, Unix",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/gpg_creds.rb",
+  "ref_name": "multi/gather/gpg_creds",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

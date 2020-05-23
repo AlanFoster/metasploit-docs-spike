@@ -1,0 +1,119 @@
+{
+  "name": "Microsoft Windows Browser Pool DoS",
+  "fullname": "auxiliary/dos/windows/smb/ms11_019_electbowser",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Cupidon-3005",
+    "jduck <jduck@metasploit.com>"
+  ],
+  "description": "This module exploits a denial of service flaw in the Microsoft\n        Windows SMB service on versions of Windows Server 2003 that have been\n        configured as a domain controller. By sending a specially crafted election\n        request, an attacker can cause a pool overflow.\n\n        The vulnerability appears to be due to an error handling a length value\n        while calculating the amount of memory to copy to a buffer. When there are\n        zero bytes left in the buffer, the length value is improperly decremented\n        and an integer underflow occurs. The resulting value is used in several\n        calculations and is then passed as the length value to an inline memcpy\n        operation.\n\n        Unfortunately, the length value appears to be fixed at -2 (0xfffffffe) and\n        causes considerable damage to kernel heap memory. While theoretically possible,\n        it does not appear to be trivial to turn this vulnerability into remote (or\n        even local) code execution.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2011-0654/",
+    "http://www.securityfocus.com/bid/46360",
+    "OSVDB (70881)",
+    "https://docs.microsoft.com/en-us/security-updates/SecurityBulletins/2011/MS11-019",
+    "https://www.exploit-db.com/exploits/16166",
+    "https://seclists.org/fulldisclosure/2011/Feb/285"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/windows/smb/ms11_019_electbowser.rb",
+  "ref_name": "dos/windows/smb/ms11_019_electbowser",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 138,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the domain that the target controls"
+    }
+  ]
+}

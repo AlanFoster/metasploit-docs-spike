@@ -1,0 +1,165 @@
+{
+  "name": "JCL to Escalate Privileges",
+  "fullname": "payload/cmd/mainframe/apf_privesc_jcl",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "Bigendian Smalls",
+    "Ayoub"
+  ],
+  "description": "(Elevate privileges for user. Adds\n         SYSTEM SPECIAL and BPX.SUPERUSER to user profile. Does this by using\n         an unsecured/updateable APF authorized library (APFLIB) and updating\n         the user's ACEE using this program/library.  Note: This privesc only\n         works with z/OS systems using RACF, no other ESM is supported.)",
+  "references": [
+
+  ],
+  "platform": "Mainframe",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/mainframe/apf_privesc_jcl.rb",
+  "ref_name": "cmd/mainframe/apf_privesc_jcl",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 21,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "ACTNUM",
+      "required": true,
+      "default": "MSFUSER-ACCTING-INFO",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Accounting info for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "PGMNAME",
+      "required": true,
+      "default": "programmer name",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Programmer name for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "JCLASS",
+      "required": true,
+      "default": "A",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Job Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "NOTIFY",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Notify User for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGCLASS",
+      "required": true,
+      "default": "Z",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGLEVEL",
+      "required": true,
+      "default": "(0,0)",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Level for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "APFLIB",
+      "required": true,
+      "default": "SYS1.LINKLIB",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "APF Authorized Library to use"
+    },
+    {
+      "type": "bool",
+      "name": "NTFYUSR",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Include NOTIFY Parm?"
+    },
+    {
+      "type": "string",
+      "name": "JOBNAME",
+      "required": true,
+      "default": "DUMMY",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Job name for JCL JOB card"
+    }
+  ]
+}

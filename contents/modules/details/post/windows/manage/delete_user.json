@@ -1,0 +1,87 @@
+{
+  "name": "Windows Manage Local User Account Deletion",
+  "fullname": "post/windows/manage/delete_user",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "chao-mu"
+  ],
+  "description": "This module deletes a local user account from the specified server,\n        or the local machine if no server is given.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/delete_user.rb",
+  "ref_name": "windows/manage/delete_user",
+  "check": false,
+  "post_auth": true,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username of the user to delete (not-qualified, e.g. BOB)"
+    },
+    {
+      "type": "string",
+      "name": "SERVER_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": " DNS or NetBIOS name of remote server on which to delete user"
+    }
+  ]
+}

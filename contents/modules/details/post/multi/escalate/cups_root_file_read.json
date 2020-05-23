@@ -1,0 +1,90 @@
+{
+  "name": "CUPS 1.6.1 Root File Read",
+  "fullname": "post/multi/escalate/cups_root_file_read",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2012-11-20",
+  "type": "post",
+  "author": [
+    "Jann Horn",
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module exploits a vulnerability in CUPS < 1.6.2, an open source printing system.\n        CUPS allows members of the lpadmin group to make changes to the cupsd.conf\n        configuration, which can specify an Error Log path. When the user visits the\n        Error Log page in the web interface, the cupsd daemon (running with setuid root)\n        reads the Error Log path and echoes it as plaintext.\n\n        This module is known to work on Mac OS X < 10.8.4 and Ubuntu Desktop <= 12.0.4\n        as long as the session is in the lpadmin group.\n\n        Warning: if the user has set up a custom path to the CUPS error log,\n        this module might fail to reset that path correctly. You can specify\n        a custom error log path with the ERROR_LOG datastore option.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2012-5519/",
+    "OSVDB (87635)",
+    "http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=692791"
+  ],
+  "platform": "Linux, OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/escalate/cups_root_file_read.rb",
+  "ref_name": "multi/escalate/cups_root_file_read",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "FILE",
+      "required": true,
+      "default": "/etc/shadow",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The file to steal."
+    },
+    {
+      "type": "string",
+      "name": "ERROR_LOG",
+      "required": true,
+      "default": "/var/log/cups/error_log",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The original path to the CUPS error log"
+    }
+  ]
+}

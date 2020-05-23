@@ -1,0 +1,76 @@
+{
+  "name": "Linux Manage Download and Execute",
+  "fullname": "post/linux/manage/download_exec",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Joshua D. Abraham <jabra@praetorian.com>"
+  ],
+  "description": "This module downloads and runs a file with bash. It first tries to uses curl as\n        its HTTP client and then wget if it's not found. Bash found in the PATH is used\n        to execute the file.",
+  "references": [
+
+  ],
+  "platform": "Linux",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/linux/manage/download_exec.rb",
+  "ref_name": "linux/manage/download_exec",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "URL",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Full URL of file to download."
+    }
+  ]
+}

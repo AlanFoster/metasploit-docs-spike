@@ -1,0 +1,125 @@
+{
+  "name": "VxWorks WDB Agent Boot Parameter Scanner",
+  "fullname": "auxiliary/scanner/vxworks/wdbrpc_bootline",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "Scan for exposed VxWorks wdbrpc daemons and dump the boot parameters from memory",
+  "references": [
+    "http://blog.metasploit.com/2010/08/vxworks-vulnerabilities.html",
+    "https://www.kb.cert.org/vuls/id/362332"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/vxworks/wdbrpc_bootline.rb",
+  "ref_name": "scanner/vxworks/wdbrpc_bootline",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "integer",
+      "name": "BATCHSIZE",
+      "required": true,
+      "default": 256,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of hosts to probe in each set"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 17185,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    }
+  ]
+}

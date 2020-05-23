@@ -1,0 +1,201 @@
+{
+  "name": "MS12-020 Microsoft Remote Desktop Use-After-Free DoS",
+  "fullname": "auxiliary/dos/windows/rdp/ms12_020_maxchannelids",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2012-03-16",
+  "type": "auxiliary",
+  "author": [
+    "Luigi Auriemma",
+    "Daniel Godas-Lopez",
+    "Alex Ionescu",
+    "jduck <jduck@metasploit.com>",
+    "#ms12-020"
+  ],
+  "description": "This module exploits the MS12-020 RDP vulnerability originally discovered and\n        reported by Luigi Auriemma.  The flaw can be found in the way the T.125\n        ConnectMCSPDU packet is handled in the maxChannelIDs field, which will result\n        an invalid pointer being used, therefore causing a denial-of-service condition.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2012-0002/",
+    "https://docs.microsoft.com/en-us/security-updates/SecurityBulletins/2012/MS12-020",
+    "http://www.privatepaste.com/ffe875e04a",
+    "http://pastie.org/private/4egcqt9nucxnsiksudy5dw",
+    "http://pastie.org/private/feg8du0e9kfagng4rrg",
+    "http://stratsec.blogspot.com.au/2012/03/ms12-020-vulnerability-for-breakfast.html",
+    "https://www.exploit-db.com/exploits/18606",
+    "https://blog.rapid7.com/2012/03/21/metasploit-update"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/windows/rdp/ms12_020_maxchannelids.rb",
+  "ref_name": "dos/windows/rdp/ms12_020_maxchannelids",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 3389,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    }
+  ]
+}

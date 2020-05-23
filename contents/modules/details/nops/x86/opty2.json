@@ -1,0 +1,55 @@
+{
+  "name": "Opty2",
+  "fullname": "nop/x86/opty2",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "nop",
+  "author": [
+    "spoonm <spoonm@no$email.com>",
+    "optyx <optyx@no$email.com>"
+  ],
+  "description": "Opty2 multi-byte NOP generator",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/nops/x86/opty2.rb",
+  "ref_name": "x86/opty2",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

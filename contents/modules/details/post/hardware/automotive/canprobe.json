@@ -1,0 +1,131 @@
+{
+  "name": "Module to Probe Different Data Points in a CAN Packet",
+  "fullname": "post/hardware/automotive/canprobe",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Craig Smith"
+  ],
+  "description": "Scans between two CAN IDs and writes data at each byte position. It will\n                               either write a set byte value (Default 0xFF) or iterate through all possible values\n                               of that byte position (takes much longer). Does not check for responses and is\n                               basically a simple blind fuzzer.",
+  "references": [
+
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/automotive/canprobe.rb",
+  "ref_name": "hardware/automotive/canprobe",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "STARTID",
+      "required": false,
+      "default": 768,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN ID to start scan"
+    },
+    {
+      "type": "integer",
+      "name": "STOPID",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN ID to stop scan"
+    },
+    {
+      "type": "integer",
+      "name": "PROBEVALUE",
+      "required": false,
+      "default": 255,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Value to inject in the data stream"
+    },
+    {
+      "type": "integer",
+      "name": "PADDING",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "If a value is given a full 8 bytes will be used and padded with this value"
+    },
+    {
+      "type": "bool",
+      "name": "FUZZ",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "If true interates through all possible values for each data position"
+    },
+    {
+      "type": "string",
+      "name": "CANBUS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN Bus to perform scan on, defaults to connected bus"
+    }
+  ]
+}

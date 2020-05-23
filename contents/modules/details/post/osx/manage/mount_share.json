@@ -1,0 +1,132 @@
+{
+  "name": "OSX Network Share Mounter",
+  "fullname": "post/osx/manage/mount_share",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Peter Toth <globetother@gmail.com>",
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module lists saved network shares and tries to connect to them using stored\n          credentials. This does not require root privileges.",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/manage/mount_share.rb",
+  "ref_name": "osx/manage/mount_share",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "VOLUME",
+      "required": true,
+      "default": "localhost",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Name of network share volume. `set ACTION LIST` to get a list."
+    },
+    {
+      "type": "enum",
+      "name": "PROTOCOL",
+      "required": true,
+      "default": "smb",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Network share protocol. (Accepted: smb, nfs, cifs, ftp, afp)"
+    },
+    {
+      "type": "string",
+      "name": "SECURITY_PATH",
+      "required": true,
+      "default": "/usr/bin/security",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to the security executable."
+    },
+    {
+      "type": "string",
+      "name": "OSASCRIPT_PATH",
+      "required": true,
+      "default": "/usr/bin/osascript",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to the osascript executable."
+    },
+    {
+      "type": "string",
+      "name": "SIDEBAR_PLIST_PATH",
+      "required": true,
+      "default": "~/Library/Preferences/com.apple.sidebarlists.plist",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to the finder sidebar plist."
+    },
+    {
+      "type": "string",
+      "name": "RECENT_PLIST_PATH",
+      "required": true,
+      "default": "~/Library/Preferences/com.apple.recentitems.plist",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to the finder recent plist."
+    }
+  ]
+}

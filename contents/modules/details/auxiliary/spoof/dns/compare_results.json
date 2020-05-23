@@ -1,0 +1,113 @@
+{
+  "name": "DNS Lookup Result Comparison",
+  "fullname": "auxiliary/spoof/dns/compare_results",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2008-07-21",
+  "type": "auxiliary",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This module can be used to determine differences\n      in the cache entries between two DNS servers. This is\n      primarily useful for detecting cache poisoning attacks,\n      but can also be used to detect geo-location load balancing.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/spoof/dns/compare_results.rb",
+  "ref_name": "spoof/dns/compare_results",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "BASEDNS",
+      "required": true,
+      "default": "4.2.2.3",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The DNS cache server to use as a baseline"
+    },
+    {
+      "type": "address",
+      "name": "TARGDNS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The DNS cache server to test"
+    },
+    {
+      "type": "string",
+      "name": "NAMES",
+      "required": true,
+      "default": "www.google.com,www.yahoo.com,www.msn.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The list of host names that should be tested (comma separated)"
+    },
+    {
+      "type": "bool",
+      "name": "CHECK_AUTHORITY",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set this to true to verify authority records"
+    },
+    {
+      "type": "bool",
+      "name": "CHECK_ADDITIONAL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set this to true to verify additional records"
+    }
+  ]
+}

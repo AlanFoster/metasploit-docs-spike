@@ -1,0 +1,195 @@
+{
+  "name": "Fortinet SSH Backdoor Scanner",
+  "fullname": "auxiliary/scanner/ssh/fortinet_backdoor",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2016-01-09",
+  "type": "auxiliary",
+  "author": [
+    "operator8203 <operator8203@runbox.com>",
+    "wvu <wvu@metasploit.com>"
+  ],
+  "description": "This module scans for the Fortinet SSH backdoor.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2016-1909/",
+    "https://www.exploit-db.com/exploits/39224",
+    "https://packetstormsecurity.com/files/135225",
+    "https://seclists.org/fulldisclosure/2016/Jan/26",
+    "https://blog.fortinet.com/post/brief-statement-regarding-issues-found-with-fortios"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/ssh/fortinet_backdoor.rb",
+  "ref_name": "scanner/ssh/fortinet_backdoor",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 22,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "SSH_IDENT",
+      "required": true,
+      "default": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSH client identification string"
+    },
+    {
+      "type": "integer",
+      "name": "SSH_TIMEOUT",
+      "required": false,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSH timeout"
+    },
+    {
+      "type": "bool",
+      "name": "SSH_DEBUG",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSH debugging"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}

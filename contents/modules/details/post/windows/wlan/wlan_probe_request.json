@@ -1,0 +1,87 @@
+{
+  "name": "Windows Send Probe Request Packets",
+  "fullname": "post/windows/wlan/wlan_probe_request",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "This module send probe requests through the wlan interface.\n        The ESSID field will be use to set a custom message.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/wlan/wlan_probe_request.rb",
+  "ref_name": "windows/wlan/wlan_probe_request",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "SSID",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message to be embedded in the SSID field"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": false,
+      "default": "30",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Timeout in seconds running probes"
+    }
+  ]
+}

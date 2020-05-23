@@ -1,0 +1,168 @@
+{
+  "name": "NAT-PMP Port Mapper",
+  "fullname": "auxiliary/admin/natpmp/natpmp_map",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Jon Hart <jhart@spoofed.org>"
+  ],
+  "description": "Map (forward) TCP and UDP ports on NAT devices using NAT-PMP",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/natpmp/natpmp_map.rb",
+  "ref_name": "admin/natpmp/natpmp_map",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 5351,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "LIFETIME",
+      "required": true,
+      "default": 3600000,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Time in ms to keep this port forwarded (set to 0 to destroy a mapping)"
+    },
+    {
+      "type": "enum",
+      "name": "PROTOCOL",
+      "required": true,
+      "default": "TCP",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Protocol to forward (Accepted: TCP, UDP)"
+    },
+    {
+      "type": "string",
+      "name": "EXTERNAL_PORTS",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The external ports to foward from (0 to let the target choose)"
+    },
+    {
+      "type": "string",
+      "name": "INTERNAL_PORTS",
+      "required": true,
+      "default": "22,135-139,80,443,445",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The internal ports to forward to"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "name": "OS X Gather Keychain Enumeration",
+  "fullname": "post/osx/gather/enum_keychain",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "ipwnstuff <e@ipwnstuff.com>",
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module presents a way to quickly go through the current user's keychains and\n        collect data such as email accounts, servers, and other services.  Please note:\n        when using the GETPASS and GETPASS_AUTO_ACCEPT option, the user may see an authentication\n        alert flash briefly on their screen that gets dismissed by a programmatically triggered click.",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/gather/enum_keychain.rb",
+  "ref_name": "osx/gather/enum_keychain",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "FileDropperDelay",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Delay in seconds before attempting cleanup"
+    },
+    {
+      "type": "bool",
+      "name": "GETPASS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Collect passwords."
+    },
+    {
+      "type": "bool",
+      "name": "GETPASS_AUTO_ACCEPT",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Attempt to auto-accept any prompts when collecting passwords."
+    },
+    {
+      "type": "integer",
+      "name": "GETPASS_TIMEOUT",
+      "required": false,
+      "default": 999999,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum time to wait on all passwords to be dumped."
+    },
+    {
+      "type": "string",
+      "name": "WritableDir",
+      "required": true,
+      "default": "/.Trashes",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Writable directory"
+    }
+  ]
+}

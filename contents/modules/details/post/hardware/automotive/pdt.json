@@ -1,0 +1,112 @@
+{
+  "name": "Check For and Prep the Pyrotechnic Devices (Airbags, Battery Clamps, etc.)",
+  "fullname": "post/hardware/automotive/pdt",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Johannes Braun",
+    "Juergen Duerrwang",
+    "Craig Smith"
+  ],
+  "description": "Acting in the role of a Pyrotechnical Device Deployment Tool (PDT), this module\n                               will first query all Pyrotechnic Control Units (PCUs) in the target vehicle\n                               to discover how many pyrotechnic devices are present, then attempt to validate\n                               the security access token using the default simplified algorithm.  On success,\n                               the vehicle will be in a state that is prepped to deploy its pyrotechnic devices\n                               (e.g. airbags, battery clamps, etc.) via the service routine. (ISO 26021)",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2017-14937/",
+    "https://www.researchgate.net/publication/321183727_Security_Evaluation_of_an_Airbag-ECU_by_Reusing_Threat_Modeling_Artefacts"
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/automotive/pdt.rb",
+  "ref_name": "hardware/automotive/pdt",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "SRCID",
+      "required": true,
+      "default": 2033,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Module ID to query"
+    },
+    {
+      "type": "integer",
+      "name": "DSTID",
+      "required": false,
+      "default": 2041,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Expected reponse ID, defaults to SRCID + 8"
+    },
+    {
+      "type": "integer",
+      "name": "PADDING",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Pad the packet with extra bytes to always be 8 bytes long"
+    },
+    {
+      "type": "string",
+      "name": "CANBUS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN Bus to perform scan on, defaults to connected bus"
+    }
+  ]
+}

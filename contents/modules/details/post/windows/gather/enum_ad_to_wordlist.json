@@ -1,0 +1,109 @@
+{
+  "name": "Windows Active Directory Wordlist Builder",
+  "fullname": "post/windows/gather/enum_ad_to_wordlist",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Thomas Ring"
+  ],
+  "description": "This module will gather information from the default Active Domain (AD) directory\n        and use these words to seed a wordlist. By default it enumerates user accounts to\n        build the wordlist.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_ad_to_wordlist.rb",
+  "ref_name": "windows/gather/enum_ad_to_wordlist",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The domain to query or distinguished name (e.g. DC=test,DC=com)"
+    },
+    {
+      "type": "integer",
+      "name": "MAX_SEARCH",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum values to retrieve, 0 for all."
+    },
+    {
+      "type": "string",
+      "name": "FIELDS",
+      "required": true,
+      "default": "sn,givenName,state,postalCode,physicalDeliveryOfficeName,telephoneNumber,mobile,facsimileTelephoneNumber,displayName,title,department,company,streetAddress,sAMAccountName,comment,description",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Fields to retrieve (ie, sn, givenName, displayName, description, comment)"
+    },
+    {
+      "type": "string",
+      "name": "FILTER",
+      "required": true,
+      "default": "(&(objectClass=organizationalPerson)(objectClass=user)(objectClass=person)(!(objectClass=computer)))",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Search filter."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "name": "Chrome Gather Cookies",
+  "fullname": "post/multi/gather/chrome_cookies",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "mangopdf <mangodotpdf@gmail.com>"
+  ],
+  "description": "Read all cookies from the Default Chrome profile of the target user.",
+  "references": [
+
+  ],
+  "platform": "Linux, Unix, BSD, OSX, Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/gather/chrome_cookies.rb",
+  "ref_name": "multi/gather/chrome_cookies",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "CHROME_BINARY_PATH",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The path to the user's Chrome binary (leave blank to use the default for the OS)"
+    },
+    {
+      "type": "string",
+      "name": "WRITEABLE_DIR",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Where to write the html used to steal cookies temporarily, and the cookies. Leave blank to use the default for the OS (/tmp or AppData\\Local\\Temp)"
+    },
+    {
+      "type": "integer",
+      "name": "REMOTE_DEBUGGING_PORT",
+      "required": false,
+      "default": 9222,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Port on target machine to use for remote debugging protocol"
+    }
+  ]
+}

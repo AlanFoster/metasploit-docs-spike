@@ -1,0 +1,104 @@
+{
+  "name": "rsyslog Long Tag Off-By-Two DoS",
+  "fullname": "auxiliary/dos/syslog/rsyslog_long_tag",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2011-09-01",
+  "type": "auxiliary",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This module triggers an off-by-two overflow in the\n        rsyslog daemon. This flaw is unlikely to yield code execution\n        but is effective at shutting down a remote log daemon. This bug\n        was introduced in version 4.6.0 and corrected in 4.6.8/5.8.5.\n        Compiler differences may prevent this bug from causing any\n        noticeable result on many systems (RHEL6 is affected).",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2011-3200/",
+    "http://www.rsyslog.com/potential-dos-with-malformed-tag/",
+    "https://bugzilla.redhat.com/show_bug.cgi?id=727644"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/syslog/rsyslog_long_tag.rb",
+  "ref_name": "dos/syslog/rsyslog_long_tag",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 514,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Siemens Profinet Scanner",
+  "fullname": "auxiliary/scanner/scada/profinet_siemens",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Tijl Deneut <tijl.deneut@howest.be>"
+  ],
+  "description": "This module will use Layer2 packets, known as Profinet Discovery packets,\n        to detect all Siemens (and sometimes other) devices on a network.\n        It is perfectly SCADA-safe, as there will only be ONE single packet sent out.\n        Devices will respond with their IP configuration and hostnames.\n        Created by XiaK Industrial Security Research Center (www[dot]xiak[dot]be))",
+  "references": [
+    "https://wiki.wireshark.org/PROFINET/DCP",
+    "https://github.com/tijldeneut/ICSSecurityScripts"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/scada/profinet_siemens.rb",
+  "ref_name": "scanner/scada/profinet_siemens",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": true,
+      "default": "eth0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set an interface"
+    },
+    {
+      "type": "integer",
+      "name": "ANSWERTIME",
+      "required": true,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Seconds to wait for answers, set longer on slower networks"
+    }
+  ]
+}

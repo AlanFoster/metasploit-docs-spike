@@ -1,0 +1,136 @@
+{
+  "name": "Oracle DB Privilege Escalation via Function-Based Index",
+  "fullname": "auxiliary/admin/oracle/oracle_index_privesc",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2015-01-21",
+  "type": "auxiliary",
+  "author": [
+    "David Litchfield",
+    "Moshe Kaplan"
+  ],
+  "description": "This module will escalate an Oracle DB user to DBA by creating a\n        function-based index on a table owned by a more-privileged user.\n        Credits to David Litchfield for publishing the technique.",
+  "references": [
+    "http://www.davidlitchfield.com/Privilege_Escalation_via_Oracle_Indexes.pdf"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/oracle/oracle_index_privesc.rb",
+  "ref_name": "admin/oracle/oracle_index_privesc",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "RHOST",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Oracle host."
+    },
+    {
+      "type": "string",
+      "name": "RPORT",
+      "required": true,
+      "default": "1521",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TNS port."
+    },
+    {
+      "type": "string",
+      "name": "SID",
+      "required": true,
+      "default": "ORCL",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The sid to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBUSER",
+      "required": true,
+      "default": "SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBPASS",
+      "required": true,
+      "default": "TIGER",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "SQL",
+      "required": true,
+      "default": "GRANT DBA to SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SQL to execute."
+    },
+    {
+      "type": "string",
+      "name": "TABLE",
+      "required": true,
+      "default": "SYS.DUAL",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Table to create the index on."
+    }
+  ]
+}

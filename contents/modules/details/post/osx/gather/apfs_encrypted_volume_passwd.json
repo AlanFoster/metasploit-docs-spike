@@ -1,0 +1,78 @@
+{
+  "name": "Mac OS X APFS Encrypted Volume Password Disclosure",
+  "fullname": "post/osx/gather/apfs_encrypted_volume_passwd",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2018-03-21",
+  "type": "post",
+  "author": [
+    "Sarah Edwards",
+    "cbrnrd"
+  ],
+  "description": "This module exploits a flaw in OSX 10.13 through 10.13.3\n        that discloses the passwords of encrypted APFS volumes.\n\n        In OSX a normal user can use the 'log' command to view the system\n        logs. In OSX 10.13 to 10.13.2 when a user creates an encrypted APFS\n        volume the password is visible in plaintext within these logs.",
+  "references": [
+    "https://thehackernews.com/2018/03/macos-apfs-password.html",
+    "https://www.mac4n6.com/blog/2018/3/21/uh-oh-unified-logs-in-high-sierra-1013-show-plaintext-password-for-apfs-encrypted-external-volumes-via-disk-utilityapp"
+  ],
+  "platform": "OSX",
+  "arch": "x86, x86_64, x64, mips, mipsle, mipsbe, mips64, mips64le, ppc, ppce500v2, ppc64, ppc64le, cbea, cbea64, sparc, sparc64, armle, armbe, aarch64, cmd, php, tty, java, ruby, dalvik, python, nodejs, firefox, zarch, r",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/gather/apfs_encrypted_volume_passwd.rb",
+  "ref_name": "osx/gather/apfs_encrypted_volume_passwd",
+  "check": true,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "MOUNT_PATH",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The mount path of the volume to get the password of (Leave blank for all)"
+    }
+  ]
+}

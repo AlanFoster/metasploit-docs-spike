@@ -1,0 +1,105 @@
+{
+  "name": "Wireshark CAPWAP Dissector DoS",
+  "fullname": "auxiliary/dos/wireshark/capwap",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-04-28",
+  "type": "auxiliary",
+  "author": [
+    "Laurent Butti",
+    "j0sm1"
+  ],
+  "description": "This module injects a malformed UDP packet to crash Wireshark and TShark 1.8.0 to 1.8.7, as well\n        as 1.6.0 to 1.6.15. The vulnerability exists in the CAPWAP dissector which fails to handle a\n        packet correctly when an incorrect length is given.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2013-4074/",
+    "OSVDB (94091)",
+    "http://www.securityfocus.com/bid/60500"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/wireshark/capwap.rb",
+  "ref_name": "dos/wireshark/capwap",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 5247,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    }
+  ]
+}

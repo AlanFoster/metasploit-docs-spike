@@ -1,0 +1,129 @@
+{
+  "name": "Java Secure Socket Extension (JSSE) SKIP-TLS MITM Proxy",
+  "fullname": "auxiliary/server/jsse_skiptls_mitm_proxy",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2015-01-20",
+  "type": "auxiliary",
+  "author": [
+    "Ramon de C Valle <rcvalle@metasploit.com>"
+  ],
+  "description": "This module exploits an incomplete internal state distinction in Java Secure\n        Socket Extension (JSSE) by impersonating the server and finishing the\n        handshake before the peers have authenticated themselves and instantiated\n        negotiated security parameters, resulting in a plaintext SSL/TLS session\n        with the client. This plaintext SSL/TLS session is then proxied to the\n        server using a second SSL/TLS session from the proxy to the server (or an\n        alternate fake server) allowing the session to continue normally and\n        plaintext application data transmitted between the peers to be saved. This\n        module requires an active man-in-the-middle attack.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2014-6593/",
+    "https://cwe.mitre.org/data/definitions/372.html",
+    "https://www.smacktls.com/#skip",
+    "https://www.smacktls.com/smack.pdf",
+    "http://www.oracle.com/technetwork/topics/security/cpujan2015-1972971.html",
+    "https://www-304.ibm.com/support/docview.wss?uid=swg21695474"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/jsse_skiptls_mitm_proxy.rb",
+  "ref_name": "server/jsse_skiptls_mitm_proxy",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FAKEHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The fake server address"
+    },
+    {
+      "type": "string",
+      "name": "FAKEPORT",
+      "required": false,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The fake server port"
+    },
+    {
+      "type": "string",
+      "name": "HOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The server address"
+    },
+    {
+      "type": "string",
+      "name": "PORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The server port"
+    },
+    {
+      "type": "string",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The proxy address"
+    },
+    {
+      "type": "string",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The proxy port"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "name": "Oracle DB SQL Injection via SYS.DBMS_CDC_SUBSCRIBE.ACTIVATE_SUBSCRIPTION",
+  "fullname": "auxiliary/sqli/oracle/dbms_cdc_subscribe_activate_subscription",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2005-04-18",
+  "type": "auxiliary",
+  "author": [
+    "Esteban Martinez Fayo",
+    "juan vazquez <juan.vazquez@metasploit.com>"
+  ],
+  "description": "This module will escalate an Oracle DB user to DBA by exploiting a sql injection\n        bug in the SYS.DBMS_CDC_SUBSCRIBE.ACTIVATE_SUBSCRIPTION package/function.\n        This vulnerability affects to Oracle Database Server 9i up to 9.2.0.5 and\n        10g up to 10.1.0.4.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2005-4832/",
+    "http://www.securityfocus.com/bid/13236",
+    "OSVDB (15553)",
+    "http://www.appsecinc.com/resources/alerts/oracle/2005-02.html",
+    "http://www.argeniss.com/research/OraDBMS_CDC_SUBSCRIBEExploit.txt"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/sqli/oracle/dbms_cdc_subscribe_activate_subscription.rb",
+  "ref_name": "sqli/oracle/dbms_cdc_subscribe_activate_subscription",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "RHOST",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Oracle host."
+    },
+    {
+      "type": "string",
+      "name": "RPORT",
+      "required": true,
+      "default": "1521",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TNS port."
+    },
+    {
+      "type": "string",
+      "name": "SID",
+      "required": true,
+      "default": "ORCL",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The sid to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBUSER",
+      "required": true,
+      "default": "SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBPASS",
+      "required": true,
+      "default": "TIGER",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "SQL",
+      "required": false,
+      "default": "GRANT DBA to SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SQL to execute."
+    }
+  ]
+}

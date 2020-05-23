@@ -1,0 +1,708 @@
+{
+  "name": "Launches Hosts in AWS",
+  "fullname": "auxiliary/admin/aws/aws_launch_instances",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Javier Godinez <godinezj@gmail.com>"
+  ],
+  "description": "This module will attempt to launch an AWS instances (hosts) in EC2.",
+  "references": [
+    "https://drive.google.com/open?id=0B2Ka7F_6TetSNFdfbkI1cnJHUTQ",
+    "https://published-prd.lanyonevents.com/published/rsaus17/sessionsFiles/4721/IDY-W10-DevSecOps-on-the-Offense-Automating-Amazon-Web-Services-Account-Takeover.pdf"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/aws/aws_launch_instances.rb",
+  "ref_name": "admin/aws/aws_launch_instances",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "string",
+      "name": "RPORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "AWS EC2 Endpoint TCP Port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "AWS EC2 Endpoint SSL"
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "string",
+      "name": "UserAgent",
+      "required": false,
+      "default": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The User-Agent header to use for all requests"
+    },
+    {
+      "type": "string",
+      "name": "HttpUsername",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The HTTP username to specify for authentication"
+    },
+    {
+      "type": "string",
+      "name": "HttpPassword",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The HTTP password to specify for authentication"
+    },
+    {
+      "type": "path",
+      "name": "HttpRawHeaders",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Path to ERB-templatized raw headers to append to existing headers"
+    },
+    {
+      "type": "bool",
+      "name": "DigestAuthIIS",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Conform to IIS, should work for most servers. Only set to false for non-IIS servers"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "bool",
+      "name": "FingerprintCheck",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Conduct a pre-exploit fingerprint verification"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": "WORKSTATION",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The domain to use for Windows authentication"
+    },
+    {
+      "type": "float",
+      "name": "HttpClientTimeout",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "HTTP connection and receive timeout"
+    },
+    {
+      "type": "bool",
+      "name": "HttpPartialResponses",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Return partial HTTP responses despite timeouts"
+    },
+    {
+      "type": "bool",
+      "name": "HttpTrace",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show the raw HTTP requests and responses"
+    },
+    {
+      "type": "bool",
+      "name": "HttpTraceHeadersOnly",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show HTTP headers only in HttpTrace"
+    },
+    {
+      "type": "string",
+      "name": "HttpTraceColors",
+      "required": false,
+      "default": "red/blu",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "HTTP request and response colors for HttpTrace (unset to disable)"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::uri_encode_mode",
+      "required": false,
+      "default": "hex-normal",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable URI encoding (Accepted: none, hex-normal, hex-noslashes, hex-random, hex-all, u-normal, u-all, u-random)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_full_url",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use the full URL for all HTTP requests"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_method_uri_count",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many whitespace characters to use between the method and uri"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_uri_version_count",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many whitespace characters to use between the uri and version"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::pad_method_uri_type",
+      "required": false,
+      "default": "space",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "What type of whitespace to use between the method and uri (Accepted: space, tab, apache)"
+    },
+    {
+      "type": "enum",
+      "name": "HTTP::pad_uri_version_type",
+      "required": false,
+      "default": "space",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "What type of whitespace to use between the uri and version (Accepted: space, tab, apache)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_valid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random, but valid, HTTP method for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_invalid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random invalid, HTTP method for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::method_random_case",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use random casing for the HTTP method"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::version_random_valid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random, but valid, HTTP version for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::version_random_invalid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a random invalid, HTTP version for request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_dir_self_reference",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert self-referential directories into the uri"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_dir_fake_relative",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert fake relative directories into the uri"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_use_backslashes",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use back slashes instead of forward slashes in the uri "
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_fake_headers",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake headers into the HTTP request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_fake_headers_count",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake headers to insert into the HTTP request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_get_params",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake query string variables into the request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_get_params_count",
+      "required": false,
+      "default": 16,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake query string variables to insert into the request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::pad_post_params",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Insert random, fake post variables into the request"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP::pad_post_params_count",
+      "required": false,
+      "default": 16,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many fake post variables to insert into the request"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_fake_end",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add a fake end of URI (eg: /%20HTTP/1.0/../../)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::uri_fake_params_start",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add a fake start of params to the URI (eg: /%3fa=b/../)"
+    },
+    {
+      "type": "bool",
+      "name": "HTTP::header_folding",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable folding of HTTP headers"
+    },
+    {
+      "type": "string",
+      "name": "AccessKeyId",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "AWS access key"
+    },
+    {
+      "type": "string",
+      "name": "SecretAccessKey",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "AWS secret key"
+    },
+    {
+      "type": "string",
+      "name": "Token",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "AWS session token"
+    },
+    {
+      "type": "string",
+      "name": "RHOST",
+      "required": true,
+      "default": "ec2.us-west-2.amazonaws.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "AWS region specific EC2 endpoint"
+    },
+    {
+      "type": "string",
+      "name": "Region",
+      "required": true,
+      "default": "us-west-2",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The default region"
+    },
+    {
+      "type": "string",
+      "name": "AMI_ID",
+      "required": true,
+      "default": "ami-1e299d7e",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Amazon Machine Image (AMI) ID"
+    },
+    {
+      "type": "string",
+      "name": "KEY_NAME",
+      "required": true,
+      "default": "admin",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The SSH key to be used for ec2-user"
+    },
+    {
+      "type": "string",
+      "name": "SSH_PUB_KEY",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The public SSH key to be used for ec2-user, e.g., \"ssh-rsa ABCDE...\""
+    },
+    {
+      "type": "string",
+      "name": "USERDATA_FILE",
+      "required": false,
+      "default": "tools/modules/aws-aggregator-userdata.sh",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The script that will be executed on start"
+    },
+    {
+      "type": "string",
+      "name": "INSTANCE_TYPE",
+      "required": true,
+      "default": "m3.medium",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The instance type"
+    },
+    {
+      "type": "string",
+      "name": "ROLE_NAME",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The instance profile/role name"
+    },
+    {
+      "type": "string",
+      "name": "VPC_ID",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The EC2 VPC ID"
+    },
+    {
+      "type": "string",
+      "name": "SUBNET_ID",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The public subnet to use"
+    },
+    {
+      "type": "string",
+      "name": "SEC_GROUP_ID",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The EC2 security group to use"
+    },
+    {
+      "type": "string",
+      "name": "SEC_GROUP_CIDR",
+      "required": true,
+      "default": "0.0.0.0/0",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "EC2 security group network access CIDR"
+    },
+    {
+      "type": "string",
+      "name": "SEC_GROUP_PORT",
+      "required": true,
+      "default": "tcp:22",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "EC2 security group network access PORT"
+    },
+    {
+      "type": "string",
+      "name": "SEC_GROUP_NAME",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Optional EC2 security group name"
+    },
+    {
+      "type": "integer",
+      "name": "MaxCount",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of instances to launch"
+    },
+    {
+      "type": "integer",
+      "name": "MinCount",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Minumum number of instances to launch"
+    }
+  ]
+}

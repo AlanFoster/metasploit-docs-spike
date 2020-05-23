@@ -1,0 +1,166 @@
+{
+  "name": "Windows Command Shell, Hidden Bind TCP Inline",
+  "fullname": "payload/windows/shell_hidden_bind_tcp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "vlad902 <vlad902@gmail.com>",
+    "sd",
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "Listen for a connection from certain IP and spawn a command shell.\n                          The shellcode will reply with a RST packet if the connections is not\n                          coming from the IP defined in AHOST. This way the port will appear\n                          as \"closed\" helping us to hide the shellcode.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/windows/shell_hidden_bind_tcp.rb",
+  "ref_name": "windows/shell_hidden_bind_tcp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "address",
+      "name": "AHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "IP address allowed"
+    }
+  ]
+}

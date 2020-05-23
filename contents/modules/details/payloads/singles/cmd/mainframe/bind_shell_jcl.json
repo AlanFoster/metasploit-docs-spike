@@ -1,0 +1,219 @@
+{
+  "name": "Z/OS (MVS) Command Shell, Bind TCP",
+  "fullname": "payload/cmd/mainframe/bind_shell_jcl",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "Bigendian Smalls"
+  ],
+  "description": "Provide JCL which creates a bind shell\n                     This implmentation does not include ebcdic character translation,\n                     so a client with translation capabilities is required.  MSF handles\n                     this automatically.",
+  "references": [
+
+  ],
+  "platform": "Mainframe",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/mainframe/bind_shell_jcl.rb",
+  "ref_name": "cmd/mainframe/bind_shell_jcl",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 32700,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen address (an interface may be specified)"
+    },
+    {
+      "type": "string",
+      "name": "ACTNUM",
+      "required": true,
+      "default": "MSFUSER-ACCTING-INFO",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Accounting info for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "PGMNAME",
+      "required": true,
+      "default": "programmer name",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Programmer name for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "JCLASS",
+      "required": true,
+      "default": "A",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Job Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "NOTIFY",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Notify User for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGCLASS",
+      "required": true,
+      "default": "Z",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Class for JCL JOB card"
+    },
+    {
+      "type": "string",
+      "name": "MSGLEVEL",
+      "required": true,
+      "default": "(0,0)",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Message Level for JCL JOB card"
+    },
+    {
+      "type": "bool",
+      "name": "NTFYUSR",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Include NOTIFY Parm?"
+    },
+    {
+      "type": "string",
+      "name": "JOBNAME",
+      "required": true,
+      "default": "DUMMY",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Job name for JCL JOB card"
+    }
+  ]
+}

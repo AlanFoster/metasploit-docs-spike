@@ -1,0 +1,76 @@
+{
+  "name": "Linux Gather 802-11-Wireless-Security Credentials",
+  "fullname": "post/linux/gather/enum_psk",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Cenk Kalpakoglu"
+  ],
+  "description": "This module collects 802-11-Wireless-Security credentials such as\n          Access-Point name and Pre-Shared-Key from your target CLIENT Linux\n          machine using /etc/NetworkManager/system-connections/ files.\n          The module gathers NetworkManager's plaintext \"psk\" information.",
+  "references": [
+
+  ],
+  "platform": "Linux",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/linux/gather/enum_psk.rb",
+  "ref_name": "linux/gather/enum_psk",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DIR",
+      "required": true,
+      "default": "/etc/NetworkManager/system-connections/",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The default path for network connections"
+    }
+  ]
+}

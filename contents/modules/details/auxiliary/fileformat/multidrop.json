@@ -1,0 +1,95 @@
+{
+  "name": "Windows SMB Multi Dropper",
+  "fullname": "auxiliary/fileformat/multidrop",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Richard Davy - secureyourit.co.uk",
+    "Lnk Creation Code by Mubix",
+    "asoto-r7"
+  ],
+  "description": "This module dependent on the given filename extension creates either\n          a .lnk, .scf, .url, .xml, or desktop.ini file which includes a reference\n          to the the specified remote host, causing SMB connections to be initiated\n          from any user that views the file.",
+  "references": [
+    "https://malicious.link/blog/2012/02/11/ms08_068-ms10_046-fun-until-2018",
+    "https://malicious.link/post/2012/2012-02-19-developing-the-lnk-metasploit-post-module-with-mona/",
+    "https://bohops.com/2018/08/04/capturing-netntlm-hashes-with-office-dot-xml-documents/"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/fileformat/multidrop.rb",
+  "ref_name": "fileformat/multidrop",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": true,
+      "default": "word.lnk",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename - supports *.lnk, *.scf, *.url, *.xml, desktop.ini"
+    },
+    {
+      "type": "bool",
+      "name": "DisablePayloadHandler",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Disable the handler code for the selected payload"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Host listening for incoming SMB/WebDAV traffic"
+    }
+  ]
+}

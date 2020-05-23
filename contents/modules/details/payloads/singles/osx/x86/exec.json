@@ -1,0 +1,122 @@
+{
+  "name": "OS X Execute Command",
+  "fullname": "payload/osx/x86/exec",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "snagg <snagg@openssl.it>",
+    "argp <argp@census-labs.com>",
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "Execute an arbitrary command",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/osx/x86/exec.rb",
+  "ref_name": "osx/x86/exec",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetreuid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setreuid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetuid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setuid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetregid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setregid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetgid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setgid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "AppendExit",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Append a stub that executes the exit(0) system call"
+    },
+    {
+      "type": "string",
+      "name": "CMD",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The command string to execute"
+    }
+  ]
+}

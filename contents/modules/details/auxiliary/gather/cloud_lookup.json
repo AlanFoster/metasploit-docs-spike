@@ -1,0 +1,465 @@
+{
+  "name": "Cloud Lookup (and Bypass)",
+  "fullname": "auxiliary/gather/cloud_lookup",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "mekhalleh (RAMELLA Sébastien)"
+  ],
+  "description": "This module can be useful if you need to test the security of your server and your\n          website behind a solution Cloud based. By discovering the origin IP address of the\n          targeted host.\n\n          More precisely, this module uses multiple data sources (in order ViewDNS.info, DNS enumeration\n          and Censys) to collect assigned (or have been assigned) IP addresses from the targeted site or domain\n          that uses the following:\n            * Amazon Cloudflare, Amazon CloudFront, ArvanCloud, Envoy Proxy, Fastly, Stackpath Fireblade,\n              Stackpath MaxCDN, Imperva Incapsula, InGen Security (BinarySec EasyWAF), KeyCDN, Microsoft AzureCDN,\n              Netlify and Sucuri.",
+  "references": [
+    "https://citadelo.com/en/blog/cloudflare-how-to-do-it-right-and-do-not-reveal-your-real-ip/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    53
+  ],
+  "autofilter_services": [
+    "dns"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/cloud_lookup.rb",
+  "ref_name": "gather/cloud_lookup",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "RPORT",
+      "required": true,
+      "default": 443,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target TCP port on which the protected website responds"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target domain name"
+    },
+    {
+      "type": "string",
+      "name": "NS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Specify the nameservers to use for queries, space separated"
+    },
+    {
+      "type": "string",
+      "name": "SEARCHLIST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "DNS domain search list, comma separated"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 8,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Threads for DNS enumeration"
+    },
+    {
+      "type": "string",
+      "name": "DnsClientDefaultNS",
+      "required": false,
+      "default": "8.8.8.8 8.8.4.4",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the default to use for queries, space separated"
+    },
+    {
+      "type": "integer",
+      "name": "DnsClientRetry",
+      "required": false,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of times to try to resolve a record if no response is received"
+    },
+    {
+      "type": "integer",
+      "name": "DnsClientRetryInterval",
+      "required": false,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait before doing a retry"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientReportARecords",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Add hosts found via BRT and RVL to DB"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientRVLExistingOnly",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Only perform lookups on hosts in DB"
+    },
+    {
+      "type": "bool",
+      "name": "DnsClientTcpDns",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Run queries over TCP"
+    },
+    {
+      "type": "path",
+      "name": "DnsClientResolvconf",
+      "required": true,
+      "default": "/dev/null",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Resolvconf formatted configuration file to use for Resolver"
+    },
+    {
+      "type": "bool",
+      "name": "DnsNote",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Save all DNS results as notes"
+    },
+    {
+      "type": "integer",
+      "name": "DnsClientUdpTimeout",
+      "required": true,
+      "default": 8,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait for a response to a UDP query"
+    },
+    {
+      "type": "string",
+      "name": "CENSYS_SECRET",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys API SECRET"
+    },
+    {
+      "type": "string",
+      "name": "CENSYS_UID",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys API UID"
+    },
+    {
+      "type": "string",
+      "name": "COMPSTR",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "You can use a custom string to perform the comparison (read documentation)"
+    },
+    {
+      "type": "string",
+      "name": "HOSTNAME",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The hostname or domain name where we want to find the real IP address"
+    },
+    {
+      "type": "path",
+      "name": "IPBLACKLIST_FILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Files containing IP addresses to blacklist during the analysis process, one per line"
+    },
+    {
+      "type": "string",
+      "name": "URIPATH",
+      "required": true,
+      "default": "/",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The URI path on which to perform the page comparison"
+    },
+    {
+      "type": "path",
+      "name": "WORDLIST",
+      "required": false,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/wordlists/namelist.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Wordlist of subdomains"
+    },
+    {
+      "type": "bool",
+      "name": "ALLOW_NOWAF",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Automatically switch to NoWAFBypass when detection fails with the Automatic action"
+    },
+    {
+      "type": "bool",
+      "name": "ENUM_BRT",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Set DNS bruteforce as optional"
+    },
+    {
+      "type": "bool",
+      "name": "REPORT_LEAKS",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Set to write leaked ip addresses in notes"
+    },
+    {
+      "type": "string",
+      "name": "USERAGENT",
+      "required": true,
+      "default": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify a personalized User-Agent header in HTTP requests"
+    },
+    {
+      "type": "enum",
+      "name": "TAG",
+      "required": true,
+      "default": "title",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the HTML tag in which you want to find the fingerprint (Accepted: title, html)"
+    },
+    {
+      "type": "integer",
+      "name": "HTTP_TIMEOUT",
+      "required": true,
+      "default": 8,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "HTTP(s) request timeout"
+    }
+  ]
+}

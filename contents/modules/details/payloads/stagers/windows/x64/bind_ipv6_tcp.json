@@ -1,0 +1,263 @@
+{
+  "name": "Windows x64 Command Shell, Windows x64 IPv6 Bind TCP Stager",
+  "fullname": "payload/windows/x64/shell/bind_ipv6_tcp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "sf <stephen_fewer@harmonysecurity.com>"
+  ],
+  "description": "Spawn a piped command shell (Windows x64) (staged). Listen for an IPv6 connection (Windows x64)",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/stagers/windows/x64/bind_ipv6_tcp.rb",
+  "ref_name": "windows/x64/shell/bind_ipv6_tcp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackRetries",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "How many additional successful pingbacks"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackSleep",
+      "required": true,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Time (in seconds) to sleep between pingbacks"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDSeed",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A string to use when generating the payload UUID (deterministic)"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDRaw",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A hex string representing the raw 8-byte PUID value for the UUID"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDName",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A human-friendly name to reference this unique payload (requires tracking)"
+    },
+    {
+      "type": "bool",
+      "name": "PayloadUUIDTracking",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Whether or not to automatically register generated UUIDs"
+    },
+    {
+      "type": "bool",
+      "name": "EnableStageEncoding",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode the second stage payload"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoder",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encoder to use if EnableStageEncoding is set"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoderSaveRegisters",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Additional registers to preserve in the staged payload if EnableStageEncoding is set"
+    },
+    {
+      "type": "bool",
+      "name": "StageEncodingFallback",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Fallback to no encoding if the selected StageEncoder is not compatible"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}

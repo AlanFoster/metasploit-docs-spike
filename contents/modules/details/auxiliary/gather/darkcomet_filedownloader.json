@@ -1,0 +1,258 @@
+{
+  "name": "DarkComet Server Remote File Download Exploit",
+  "fullname": "auxiliary/gather/darkcomet_filedownloader",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2012-10-08",
+  "type": "auxiliary",
+  "author": [
+    "Shawn Denbow & Jesse Hertz",
+    "Jos Wetzels"
+  ],
+  "description": "This module exploits an arbitrary file download vulnerability in the DarkComet C&C server versions 3.2 and up.\n        The exploit does not need to know the password chosen for the bot/server communication.",
+  "references": [
+    "https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/PEST-CONTROL.pdf",
+    "http://samvartaka.github.io/exploitation/2016/06/03/dead-rats-exploiting-malware"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/darkcomet_filedownloader.rb",
+  "ref_name": "gather/darkcomet_filedownloader",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 1604,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "This is our IP (as it appears to the DarkComet C2 server)"
+    },
+    {
+      "type": "string",
+      "name": "KEY",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "DarkComet RC4 key (include DC prefix with key eg. #KCMDDC51#-890password)"
+    },
+    {
+      "type": "bool",
+      "name": "NEWVERSION",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set to true if DarkComet version >= 5.1, set to false if version < 5.1"
+    },
+    {
+      "type": "string",
+      "name": "TARGETFILE",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Target file to download (assumes password is set)"
+    },
+    {
+      "type": "bool",
+      "name": "STORE_LOOT",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Store file in loot (will simply output file to console if set to false)."
+    },
+    {
+      "type": "integer",
+      "name": "BRUTETIMEOUT",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Timeout (in seconds) for bruteforce attempts"
+    }
+  ]
+}

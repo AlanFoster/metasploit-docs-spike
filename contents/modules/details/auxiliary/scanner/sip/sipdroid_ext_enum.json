@@ -1,0 +1,125 @@
+{
+  "name": "SIPDroid Extension Grabber",
+  "fullname": "auxiliary/scanner/sip/sipdroid_ext_enum",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Anibal Aguiar <anibal.aguiar@gmail.com>"
+  ],
+  "description": "This module exploits a leak of extension/SIP Gateway\n      on SIPDroid 1.6.1 beta, 2.0.1 beta, 2.2 beta (tested in Android 2.1 and 2.2 - official Motorola release)\n      (other versions may be affected).",
+  "references": [
+    "http://www.securityfocus.com/bid/47710",
+    "https://seclists.org/fulldisclosure/2011/May/83"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/sip/sipdroid_ext_enum.rb",
+  "ref_name": "scanner/sip/sipdroid_ext_enum",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "RPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Remote port to probe"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "STRTPORT",
+      "required": true,
+      "default": 59150,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The start probe port"
+    },
+    {
+      "type": "integer",
+      "name": "FNLPORT",
+      "required": true,
+      "default": 59159,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The final probe port"
+    }
+  ]
+}

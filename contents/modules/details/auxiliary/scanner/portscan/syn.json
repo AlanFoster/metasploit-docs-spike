@@ -1,0 +1,212 @@
+{
+  "name": "TCP SYN Port Scanner",
+  "fullname": "auxiliary/scanner/portscan/syn",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "kris katterjohn <katterjohn@gmail.com>"
+  ],
+  "description": "Enumerate open TCP services using a raw SYN scan.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/portscan/syn.rb",
+  "ref_name": "scanner/portscan/syn",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "integer",
+      "name": "SNAPLEN",
+      "required": true,
+      "default": 65535,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of bytes to capture"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The reply read timeout in milliseconds"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "SECRET",
+      "required": true,
+      "default": 1297303073,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A 32-bit cookie for probe requests."
+    },
+    {
+      "type": "address",
+      "name": "GATEWAY_PROBE_HOST",
+      "required": true,
+      "default": "8.8.8.8",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send a TTL=1 random UDP datagram to this host to discover the default gateway's MAC"
+    },
+    {
+      "type": "port",
+      "name": "GATEWAY_PROBE_PORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port on GATEWAY_PROBE_HOST to send a random UDP probe to (random if 0 or unset)"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "string",
+      "name": "PORTS",
+      "required": true,
+      "default": "1-10000",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Ports to scan (e.g. 22-25,80,110-900)"
+    },
+    {
+      "type": "integer",
+      "name": "BATCHSIZE",
+      "required": true,
+      "default": 256,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of hosts to scan per set"
+    },
+    {
+      "type": "integer",
+      "name": "DELAY",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The delay between connections, per thread, in milliseconds"
+    },
+    {
+      "type": "integer",
+      "name": "JITTER",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The delay jitter factor (maximum value by which to +/- DELAY) in milliseconds."
+    }
+  ]
+}

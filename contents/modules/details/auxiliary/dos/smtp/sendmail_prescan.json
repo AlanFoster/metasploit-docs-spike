@@ -1,0 +1,221 @@
+{
+  "name": "Sendmail SMTP Address prescan Memory Corruption",
+  "fullname": "auxiliary/dos/smtp/sendmail_prescan",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2003-09-17",
+  "type": "auxiliary",
+  "author": [
+    "aushack <patrick@osisecurity.com.au>"
+  ],
+  "description": "This is a proof of concept denial of service module for Sendmail versions\n        8.12.8 and earlier. The vulnerability is within the prescan() method when\n        parsing SMTP headers. Due to the prescan function, only 0x5c and 0x00\n        bytes can be used, limiting the likelihood for arbitrary code execution.",
+  "references": [
+    "OSVDB (2577)",
+    "https://cvedetails.com/cve/CVE-2003-0694/",
+    "http://www.securityfocus.com/bid/8641",
+    "https://www.exploit-db.com/exploits/24"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    25,
+    465,
+    587,
+    2525,
+    25025,
+    25000
+  ],
+  "autofilter_services": [
+    "smtp",
+    "smtps"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/smtp/sendmail_prescan.rb",
+  "ref_name": "dos/smtp/sendmail_prescan",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 25,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "string",
+      "name": "MAILFROM",
+      "required": true,
+      "default": "sender@example.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "FROM address of the e-mail"
+    },
+    {
+      "type": "string",
+      "name": "MAILTO",
+      "required": true,
+      "default": "target@example.com",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "TO address of the e-mail"
+    }
+  ]
+}

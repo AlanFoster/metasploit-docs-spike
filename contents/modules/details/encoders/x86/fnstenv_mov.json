@@ -1,0 +1,54 @@
+{
+  "name": "Variable-length Fnstenv/mov Dword XOR Encoder",
+  "fullname": "encoder/x86/fnstenv_mov",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "spoonm <spoonm@no$email.com>"
+  ],
+  "description": "This encoder uses a variable-length mov equivalent instruction\n        with fnstenv for getip.",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/x86/fnstenv_mov.rb",
+  "ref_name": "x86/fnstenv_mov",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "name": "ARP Spoof",
+  "fullname": "auxiliary/spoof/arp/arp_poisoning",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "1999-12-22",
+  "type": "auxiliary",
+  "author": [
+    "amaloteaux <alex_maloteaux@metasploit.com>"
+  ],
+  "description": "Spoof ARP replies and poison remote ARP caches to conduct IP address spoofing or a denial of service.",
+  "references": [
+    "OSVDB (11169)",
+    "https://cvedetails.com/cve/CVE-1999-0667/",
+    "http://en.wikipedia.org/wiki/ARP_spoofing"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/spoof/arp/arp_poisoning.rb",
+  "ref_name": "spoof/arp/arp_poisoning",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The number of seconds to wait for new data during host detection"
+    },
+    {
+      "type": "string",
+      "name": "SHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Spoofed ip addresses"
+    },
+    {
+      "type": "string",
+      "name": "SMAC",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The spoofed mac"
+    },
+    {
+      "type": "string",
+      "name": "DHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Target ip addresses"
+    },
+    {
+      "type": "bool",
+      "name": "BIDIRECTIONAL",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Spoof also the source with the dest"
+    },
+    {
+      "type": "bool",
+      "name": "AUTO_ADD",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Auto add new host when discovered by the listener"
+    },
+    {
+      "type": "bool",
+      "name": "LISTENER",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use an additional thread that will listen for arp requests to reply as fast as possible"
+    },
+    {
+      "type": "string",
+      "name": "LOCALSMAC",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The MAC address of the local interface to use for hosts detection, this is usefull only if you want to spoof to another host with SMAC"
+    },
+    {
+      "type": "string",
+      "name": "LOCALSIP",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The IP address of the local interface to use for hosts detection"
+    },
+    {
+      "type": "integer",
+      "name": "PKT_DELAY",
+      "required": true,
+      "default": 100,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The delay in milliseconds between each packet during poisoning"
+    },
+    {
+      "type": "bool",
+      "name": "BROADCAST",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "If set, the module will send replies on the broadcast address witout consideration of DHOSTS"
+    }
+  ]
+}

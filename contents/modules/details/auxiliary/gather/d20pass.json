@@ -1,0 +1,113 @@
+{
+  "name": "General Electric D20 Password Recovery",
+  "fullname": "auxiliary/gather/d20pass",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2012-01-19",
+  "type": "auxiliary",
+  "author": [
+    "K. Reid Wightman <wightman@digitalbond.com>"
+  ],
+  "description": "The General Electric D20ME and possibly other units (D200?) feature\n        TFTP readable configurations with plaintext passwords.  This module\n        retrieves the username, password, and authentication level list.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2012-6663/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/d20pass.rb",
+  "ref_name": "gather/d20pass",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": "192.168.255.1",
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 69,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "string",
+      "name": "REMOTE_CONFIG_NAME",
+      "required": true,
+      "default": "NVRAM\\D20.zlb",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The remote filename used to retrieve the configuration"
+    }
+  ]
+}

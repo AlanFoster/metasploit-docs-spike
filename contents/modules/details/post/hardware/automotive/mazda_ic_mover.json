@@ -1,0 +1,76 @@
+{
+  "name": "Mazda 2 Instrument Cluster Accelorometer Mover",
+  "fullname": "post/hardware/automotive/mazda_ic_mover",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Jay Turla"
+  ],
+  "description": "This module moves the needle of the accelorometer and speedometer of the Mazda 2 instrument cluster",
+  "references": [
+
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/automotive/mazda_ic_mover.rb",
+  "ref_name": "hardware/automotive/mazda_ic_mover",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "CANBUS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN Bus to perform scan on, defaults to connected bus"
+    }
+  ]
+}

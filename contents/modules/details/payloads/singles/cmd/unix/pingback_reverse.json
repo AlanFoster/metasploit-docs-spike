@@ -1,0 +1,175 @@
+{
+  "name": "Unix Command Shell, Pingback Reverse TCP (via netcat)",
+  "fullname": "payload/cmd/unix/pingback_reverse",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "asoto-r7"
+  ],
+  "description": "Creates a socket, send a UUID, then exit",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/unix/pingback_reverse.rb",
+  "ref_name": "cmd/unix/pingback_reverse",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen address (an interface may be specified)"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "port",
+      "name": "ReverseListenerBindPort",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port to bind to on the local system if different from LPORT"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseAllowProxy",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Allow reverse tcp even with Proxies specified. Connect back will NOT go through proxy but directly to LHOST"
+    },
+    {
+      "type": "string",
+      "name": "ReverseListenerComm",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific communication channel to use for this listener"
+    },
+    {
+      "type": "address",
+      "name": "ReverseListenerBindAddress",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific IP address to bind to on the local system"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseListenerThreaded",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Handle every connection in a new thread (experimental)"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryCount",
+      "required": false,
+      "default": 10,
+      "aliases": [
+        "ReverseConnectRetries"
+      ],
+      "advanced": true,
+      "description": "The number of times the stager should retry if the first connect fails"
+    },
+    {
+      "type": "integer",
+      "name": "StagerRetryWait",
+      "required": false,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of seconds to wait for the stager between reconnect attempts"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackRetries",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "How many additional successful pingbacks"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackSleep",
+      "required": true,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Time (in seconds) to sleep between pingbacks"
+    }
+  ]
+}

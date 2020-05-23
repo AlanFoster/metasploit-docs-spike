@@ -1,0 +1,355 @@
+{
+  "name": "Oracle TNS Listener SID Bruteforce",
+  "fullname": "auxiliary/scanner/oracle/sid_brute",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "todb <todb@metasploit.com>"
+  ],
+  "description": "This module queries the TNS listener for a valid Oracle database\n        instance name (also known as a SID).\n        Any response other than a \"reject\" will be considered a success.\n        If a specific SID is provided, that SID will be attempted. Otherwise,\n        SIDs read from the named file will be attempted in sequence instead.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/oracle/sid_brute.rb",
+  "ref_name": "scanner/oracle/sid_brute",
+  "check": false,
+  "post_auth": true,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Whether to print output for all attempts"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 1521,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "integer",
+      "name": "BRUTEFORCE_SPEED",
+      "required": true,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How fast to bruteforce, from 0 to 5"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_CREDS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Try each user/password couple stored in the current database"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_USERS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add all users in the current database to the list"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_PASS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add all passwords in the current database to the list"
+    },
+    {
+      "type": "bool",
+      "name": "STOP_ON_SUCCESS",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Stop guessing when a credential works for a host"
+    },
+    {
+      "type": "bool",
+      "name": "PASSWORD_SPRAY",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Reverse the credential pairing order. For each password, attempt every possible user."
+    },
+    {
+      "type": "integer",
+      "name": "TRANSITION_DELAY",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Amount of time (in minutes) to delay before transitioning to the next user in the array (or password when PASSWORD_SPRAY=true)"
+    },
+    {
+      "type": "integer",
+      "name": "MaxGuessesPerService",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of credentials to try per service instance. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "integer",
+      "name": "MaxMinutesPerService",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum time in minutes to bruteforce the service instance. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "integer",
+      "name": "MaxGuessesPerUser",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": " Maximum guesses for a particular username for the service instance. Note that users are considered unique among different services, so a user at 10.1.1.1:22 is different from one at 10.2.2.2:22, and both will be tried up to the MaxGuessesPerUser limit. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "path",
+      "name": "SID_FILE",
+      "required": false,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/wordlists/sid.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File containing instance names, one per line"
+    },
+    {
+      "type": "string",
+      "name": "SID",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A specific SID to attempt."
+    }
+  ]
+}

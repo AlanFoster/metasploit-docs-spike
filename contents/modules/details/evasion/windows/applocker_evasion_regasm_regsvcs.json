@@ -1,0 +1,79 @@
+{
+  "name": "Applocker Evasion - Microsoft .NET Assembly Registration Utility",
+  "fullname": "evasion/windows/applocker_evasion_regasm_regsvcs",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "evasion",
+  "author": [
+    "Nick Tyrer <@NickTyrer>",
+    "Casey Smith"
+  ],
+  "description": "This module will assist you in evading Microsoft\n         Windows Applocker and Software Restriction Policies.\n         This technique utilises the Microsoft signed binaries\n         RegAsm.exe or RegSvcs.exe to execute user supplied code.",
+  "references": [
+    "https://attack.mitre.org/techniques/T1121/"
+  ],
+  "platform": "Windows",
+  "arch": "x86, x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": [
+    "Microsoft Windows"
+  ],
+  "path": "/modules/evasion/windows/applocker_evasion_regasm_regsvcs.rb",
+  "ref_name": "windows/applocker_evasion_regasm_regsvcs",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "TXT_FILE",
+      "required": true,
+      "default": "regasm_regsvcs.txt",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the evasive file (default: regasm_regsvcs.txt)"
+    },
+    {
+      "type": "string",
+      "name": "SNK_FILE",
+      "required": true,
+      "default": "key.snk",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the .snk file (default: key.snk)"
+    }
+  ]
+}

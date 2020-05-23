@@ -1,0 +1,139 @@
+{
+  "name": "DNS Server Dynamic Update Record Injection",
+  "fullname": "auxiliary/admin/dns/dyn_dns_update",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "King Sabri <king.sabri@gmail.com>",
+    "Brent Cook <brent_cook@rapid7.com>"
+  ],
+  "description": "This module allows adding and/or deleting a record to\n        any remote DNS server that allows unrestricted dynamic updates.",
+  "references": [
+    "http://www.tenable.com/plugins/index.php?view=single&id=35372",
+    "https://github.com/KINGSABRI/CVE-in-Ruby/tree/master/NONE-CVE/DNSInject",
+    "https://www.christophertruncer.com/dns-modification-dnsinject-nessus-plugin-35372/",
+    "https://github.com/ChrisTruncer/PenTestScripts/blob/master/DNSInject.py"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/dns/dyn_dns_update.rb",
+  "ref_name": "admin/dns/dyn_dns_update",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The domain name"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The vulnerable DNS server IP address"
+    },
+    {
+      "type": "string",
+      "name": "HOSTNAME",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name record you want to add"
+    },
+    {
+      "type": "address",
+      "name": "IP",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The IP you want to assign to the record"
+    },
+    {
+      "type": "string",
+      "name": "VALUE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The string to be added with TXT or CNAME record"
+    },
+    {
+      "type": "enum",
+      "name": "TYPE",
+      "required": true,
+      "default": "A",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The record type you want to add. (Accepted: A, AAAA, CNAME, TXT)"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The source address to use for queries and updates"
+    }
+  ]
+}

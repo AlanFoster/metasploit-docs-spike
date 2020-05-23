@@ -1,0 +1,134 @@
+{
+  "name": "Unix Command Shell, Bind TCP (via jjs)",
+  "fullname": "payload/cmd/unix/bind_jjs",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "conerpirate",
+    "bcoles <bcoles@gmail.com>"
+  ],
+  "description": "Listen for a connection and spawn a command shell via jjs",
+  "references": [
+    "https://gtfobins.github.io/gtfobins/jjs/",
+    "https://cornerpirate.com/2018/08/17/java-gives-a-shell-for-everything/",
+    "https://h4wkst3r.blogspot.com/2018/05/code-execution-with-jdk-scripting-tools.html"
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/unix/bind_jjs.rb",
+  "ref_name": "cmd/unix/bind_jjs",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "string",
+      "name": "SHELL",
+      "required": true,
+      "default": "/bin/sh",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The shell to execute."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "name": "TFTP File Transfer Utility",
+  "fullname": "auxiliary/admin/tftp/tftp_transfer_util",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "todb <todb@metasploit.com>"
+  ],
+  "description": "This module will transfer a file to or from a remote TFTP server.\n          Note that the target must be able to connect back to the Metasploit system,\n          and NAT traversal for TFTP is often unsupported.\n\n          Two actions are supported: \"Upload\" and \"Download,\" which behave as one might\n          expect -- use 'set action Actionname' to use either mode of operation.\n\n          If \"Download\" is selected, at least one of FILENAME or REMOTE_FILENAME\n          must be set. If \"Upload\" is selected, either FILENAME must be set to a valid path to\n          a source file, or FILEDATA must be populated. FILENAME may be a fully qualified path,\n          or the name of a file in the Msf::Config.local_directory or Msf::Config.data_directory.",
+  "references": [
+    "http://www.faqs.org/rfcs/rfc1350.html",
+    "http://www.networksorcery.com/enp/protocol/tftp.htm"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/tftp/tftp_transfer_util.rb",
+  "ref_name": "admin/tftp/tftp_transfer_util",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local filename"
+    },
+    {
+      "type": "string",
+      "name": "FILEDATA",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Data to upload in lieu of a real local file."
+    },
+    {
+      "type": "string",
+      "name": "REMOTE_FILENAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The remote filename"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The remote TFTP server"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port the TFTP client should listen on (default is random)"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local address the TFTP client should bind to"
+    },
+    {
+      "type": "string",
+      "name": "MODE",
+      "required": false,
+      "default": "octet",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TFTP mode; usual choices are netascii and octet."
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 69,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    }
+  ]
+}

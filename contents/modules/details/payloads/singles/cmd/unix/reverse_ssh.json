@@ -1,0 +1,165 @@
+{
+  "name": "Unix Command Shell, Reverse TCP SSH",
+  "fullname": "payload/cmd/unix/reverse_ssh",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "RageLtMan <rageltman@sempervictus>",
+    "hirura"
+  ],
+  "description": "Connect back and create a command shell via SSH",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/cmd/unix/reverse_ssh.rb",
+  "ref_name": "cmd/unix/reverse_ssh",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "LHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen address (an interface may be specified)"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 22,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "port",
+      "name": "ReverseListenerBindPort",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port to bind to on the local system if different from LPORT"
+    },
+    {
+      "type": "bool",
+      "name": "ReverseAllowProxy",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Allow reverse tcp even with Proxies specified. Connect back will NOT go through proxy but directly to LHOST"
+    },
+    {
+      "type": "string",
+      "name": "Ssh::Version",
+      "required": true,
+      "default": "SSH-2.0-RexProtoSsh",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The SSH version string to provide"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    },
+    {
+      "type": "string",
+      "name": "SshClientOptions",
+      "required": false,
+      "default": "UserKnownHostsFile=/dev/null StrictHostKeyChecking=no",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Space separated options for the ssh client"
+    }
+  ]
+}

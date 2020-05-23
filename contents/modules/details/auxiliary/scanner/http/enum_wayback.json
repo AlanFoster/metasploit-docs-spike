@@ -1,0 +1,113 @@
+{
+  "name": "Archive.org Stored Domain URLs",
+  "fullname": "auxiliary/scanner/http/enum_wayback",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "mubix <mubix@hak5.org>"
+  ],
+  "description": "This module pulls and parses the URLs stored by Archive.org for the purpose of\n        replaying during a web assessment. Finding unlinked and old pages.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/http/enum_wayback.rb",
+  "ref_name": "scanner/http/enum_wayback",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Domain to request URLS for"
+    },
+    {
+      "type": "string",
+      "name": "OUTFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Where to output the list for use"
+    },
+    {
+      "type": "string",
+      "name": "PROXY",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Proxy server to route connection. <host>:<port>"
+    },
+    {
+      "type": "string",
+      "name": "PROXY_USER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Proxy Server User"
+    },
+    {
+      "type": "string",
+      "name": "PROXY_PASS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Proxy Server Password"
+    }
+  ]
+}

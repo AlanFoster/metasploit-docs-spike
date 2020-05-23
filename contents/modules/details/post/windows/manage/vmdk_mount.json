@@ -1,0 +1,109 @@
+{
+  "name": "Windows Manage VMDK Mount Drive",
+  "fullname": "post/windows/manage/vmdk_mount",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "This module mounts a vmdk file (Virtual Machine Disk) on a drive provided by the user by taking advantage\n        of the vstor2 device driver (VMware). First, it executes the binary vixDiskMountServer.exe to access the\n        device and then it sends certain control code via DeviceIoControl to mount it. Use the write mode with\n        extreme care. You should only open a disk file in writable mode if you know for sure that no snapshots\n        or clones are linked from the file.",
+  "references": [
+    "http://www.shelliscoming.com/2017/05/post-exploitation-mounting-vmdk-files.html"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/vmdk_mount.rb",
+  "ref_name": "windows/manage/vmdk_mount",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "VMDK_PATH",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Full path to the .vmdk file"
+    },
+    {
+      "type": "string",
+      "name": "DRIVE",
+      "required": true,
+      "default": "Z",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Mount point (drive letter)"
+    },
+    {
+      "type": "bool",
+      "name": "READ_MODE",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Open file in read-only mode"
+    },
+    {
+      "type": "bool",
+      "name": "DEL_LCK",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delete .vmdk lock file"
+    }
+  ]
+}

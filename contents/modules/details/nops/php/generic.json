@@ -1,0 +1,54 @@
+{
+  "name": "PHP Nop Generator",
+  "fullname": "nop/php/generic",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "nop",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "Generates harmless padding for PHP scripts",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "php",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/nops/php/generic.rb",
+  "ref_name": "php/generic",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

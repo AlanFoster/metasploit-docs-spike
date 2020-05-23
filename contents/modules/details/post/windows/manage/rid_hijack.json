@@ -1,0 +1,120 @@
+{
+  "name": "Windows Manage RID Hijacking",
+  "fullname": "post/windows/manage/rid_hijack",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Sebastian Castro <sebastian.castro@cslcolombia.com>"
+  ],
+  "description": "This module will create an entry on the target by modifying some properties\n        of an existing account. It will change the account attributes by setting a\n        Relative Identifier (RID), which should be owned by one existing\n        account on the destination machine.\n\n        Taking advantage of some Windows Local Users Management integrity issues,\n        this module will allow to authenticate with one known account\n        credentials (like GUEST account), and access with the privileges of another\n        existing account (like ADMINISTRATOR account), even if the spoofed account is\n        disabled.",
+  "references": [
+    "http://csl.com.co/rid-hijacking/"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/rid_hijack.rb",
+  "ref_name": "windows/manage/rid_hijack",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "GETSYSTEM",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Attempt to get SYSTEM privilege on the target host."
+    },
+    {
+      "type": "bool",
+      "name": "GUEST_ACCOUNT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Assign the defined RID to the Guest Account."
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "User to set the defined RID."
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password to set to the defined user account."
+    },
+    {
+      "type": "integer",
+      "name": "RID",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "RID to set to the specified account."
+    }
+  ]
+}

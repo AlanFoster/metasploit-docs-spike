@@ -1,0 +1,125 @@
+{
+  "name": "Shodan Search",
+  "fullname": "auxiliary/gather/shodan_search",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "John H Sawyer <john@sploitlab.com>",
+    "sinn3r <sinn3r@metasploit.com>"
+  ],
+  "description": "This module uses the Shodan API to search Shodan. Accounts are free\n        and an API key is required to use this module. Output from the module\n        is displayed to the screen and can be saved to a file or the MSF database.\n        NOTE: SHODAN filters (i.e. port, hostname, os, geo, city) can be used in\n        queries, but there are limitations when used with a free API key. Please\n        see the Shodan site for more information.\n        Shodan website: https://www.shodan.io/\n        API: https://developer.shodan.io/api",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/shodan_search.rb",
+  "ref_name": "gather/shodan_search",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "SHODAN_APIKEY",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The SHODAN API key"
+    },
+    {
+      "type": "string",
+      "name": "QUERY",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Keywords you want to search for"
+    },
+    {
+      "type": "string",
+      "name": "OUTFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A filename to store the list of IPs"
+    },
+    {
+      "type": "bool",
+      "name": "DATABASE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add search results to the database"
+    },
+    {
+      "type": "integer",
+      "name": "MAXPAGE",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Max amount of pages to collect"
+    },
+    {
+      "type": "regexp",
+      "name": "REGEX",
+      "required": true,
+      "default": ".*",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Regex search for a specific IP/City/Country/Hostname"
+    }
+  ]
+}

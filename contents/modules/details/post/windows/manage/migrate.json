@@ -1,0 +1,132 @@
+{
+  "name": "Windows Manage Process Migration",
+  "fullname": "post/windows/manage/migrate",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Carlos Perez <carlos_perez@darkoperator.com>",
+    "phra <https://iwantmore.pizza>"
+  ],
+  "description": "This module will migrate a Meterpreter session from one process\n        to another. A given process PID to migrate to or the module can spawn one and\n        migrate to that newly spawned process.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/migrate.rb",
+  "ref_name": "windows/manage/migrate",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "SPAWN",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Spawn process to migrate to. If set, notepad.exe is used."
+    },
+    {
+      "type": "integer",
+      "name": "PID",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "PID of process to migrate to."
+    },
+    {
+      "type": "integer",
+      "name": "PPID",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Process Identifier for PPID spoofing when creating a new process. (0 = no PPID spoofing)."
+    },
+    {
+      "type": "string",
+      "name": "PPID_NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Name of process for PPID spoofing when creating a new process."
+    },
+    {
+      "type": "string",
+      "name": "NAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Name of process to migrate to."
+    },
+    {
+      "type": "bool",
+      "name": "KILL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Kill original process for the session."
+    }
+  ]
+}

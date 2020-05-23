@@ -1,0 +1,247 @@
+{
+  "name": "Printjob Capture Service",
+  "fullname": "auxiliary/server/capture/printjob_capture",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Chris John Riley",
+    "todb <todb@metasploit.com>"
+  ],
+  "description": "This module is designed to listen for PJL or PostScript print\n        jobs. Once a print job is detected it is saved to loot. The\n        captured printjob can then be forwarded on to another printer\n        (required for LPR printjobs). Resulting PCL/PS files can be\n        read with GhostScript/GhostPCL.\n\n        Note, this module does not yet support IPP connections.",
+  "references": [
+    "http://blog.c22.cc/toolsscripts/prn-2-me/",
+    "http://www.ghostscript.com"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/capture/printjob_capture.rb",
+  "ref_name": "server/capture/printjob_capture",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host or network interface to listen on. This must be an address on the local machine or 0.0.0.0 to listen on all addresses."
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 9100,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to listen on"
+    },
+    {
+      "type": "string",
+      "name": "ListenerComm",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The specific communication channel to use for this service"
+    },
+    {
+      "type": "bool",
+      "name": "SSLCompression",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable SSL/TLS-level compression"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": false,
+      "default": 9100,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Forward to remote port"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "bool",
+      "name": "FORWARD",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Forward print jobs to another host"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Forward to remote host"
+    },
+    {
+      "type": "bool",
+      "name": "METADATA",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Display Metadata from printjobs"
+    },
+    {
+      "type": "enum",
+      "name": "MODE",
+      "required": true,
+      "default": "RAW",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Print mode (Accepted: RAW, LPR)"
+    }
+  ]
+}

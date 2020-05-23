@@ -1,0 +1,202 @@
+{
+  "name": "SaltStack Salt Master Server Root Key Disclosure",
+  "fullname": "auxiliary/gather/saltstack_salt_root_key",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2020-04-30",
+  "type": "auxiliary",
+  "author": [
+    "F-Secure",
+    "wvu <wvu@metasploit.com>"
+  ],
+  "description": "This module exploits unauthenticated access to the _prep_auth_info()\n          method in the SaltStack Salt master's ZeroMQ request server, for\n          versions 2019.2.3 and earlier and 3000.1 and earlier, to disclose the\n          root key used to authenticate administrative commands to the master.\n\n          VMware vRealize Operations Manager versions 7.5.0 through 8.1.0 are\n          known to be affected by the Salt vulnerabilities.\n\n          Tested against SaltStack Salt 2019.2.3 and 3000.1 on Ubuntu 18.04, as\n          well as Vulhub's Docker image.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2020-11651/",
+    "https://cvedetails.com/cve/CVE-2020-11652/",
+    "https://labs.f-secure.com/advisories/saltstack-authorization-bypass",
+    "https://community.saltstack.com/blog/critical-vulnerabilities-update-cve-2020-11651-and-cve-2020-11652/",
+    "https://www.vmware.com/security/advisories/VMSA-2020-0009.html",
+    "https://github.com/saltstack/salt/blob/master/tests/integration/master/test_clear_funcs.py"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/saltstack_salt_root_key.rb",
+  "ref_name": "gather/saltstack_salt_root_key",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+    "Stability": [
+      "crash-safe"
+    ],
+    "SideEffects": [
+      "ioc-in-logs"
+    ]
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 4506,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    }
+  ]
+}

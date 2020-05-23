@@ -1,0 +1,578 @@
+{
+  "name": "WebEx Remote Command Execution Utility",
+  "fullname": "auxiliary/admin/smb/webexec_command",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Ron Bowes <ron@skullsecurity.net>"
+  ],
+  "description": "This module enables the execution of a single command as System by exploiting a remote\n        code execution vulnerability in Cisco's WebEx client software.",
+  "references": [
+    "https://webexec.org",
+    "https://cvedetails.com/cve/CVE-2018-15442/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    139,
+    445
+  ],
+  "autofilter_services": [
+    "netbios-ssn",
+    "microsoft-ds"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/smb/webexec_command.rb",
+  "ref_name": "admin/smb/webexec_command",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 445,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Target port"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "DCERPC::max_frag_size",
+      "required": true,
+      "default": 4096,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set the DCERPC packet fragmentation size"
+    },
+    {
+      "type": "bool",
+      "name": "DCERPC::fake_bind_multi",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use multi-context bind calls"
+    },
+    {
+      "type": "integer",
+      "name": "DCERPC::fake_bind_multi_prepend",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set the number of UUIDs to prepend before the target"
+    },
+    {
+      "type": "integer",
+      "name": "DCERPC::fake_bind_multi_append",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set the number of UUIDs to append the target"
+    },
+    {
+      "type": "enum",
+      "name": "DCERPC::smb_pipeio",
+      "required": false,
+      "default": "rw",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use a different delivery method for accessing named pipes (Accepted: rw, trans)"
+    },
+    {
+      "type": "integer",
+      "name": "DCERPC::ReadTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The number of seconds to wait for DCERPC responses"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLMv2",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use NTLMv2 instead of NTLM2_session when 'Negotiate NTLM2' key is true"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLM2_session",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM2 key' flag, forcing the use of a NTLMv2_session"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Always send the LANMAN response (except when NTLMv2_session is specified)"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseLMKey",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate Lan Manager Key' flag, using the LM key when the LM response is sent"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendNTLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM key' flag, indicating the use of NTLM responses"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendSPN",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send an avp of type SPN in the ntlmv2 client blob, this allows authentication on Windows 7+/Server 2008 R2+ when SPN is required"
+    },
+    {
+      "type": "bool",
+      "name": "SMB::pipe_evasion",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Enable segmented read/writes for SMB Pipes"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pipe_write_min_size",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Minimum buffer size for pipe writes"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pipe_write_max_size",
+      "required": true,
+      "default": 1024,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum buffer size for pipe writes"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pipe_read_min_size",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Minimum buffer size for pipe reads"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pipe_read_max_size",
+      "required": true,
+      "default": 1024,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum buffer size for pipe reads"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pad_data_level",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Place extra padding between headers and data (level 0-3)"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::pad_file_level",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Obscure path names used in open/create (level 0-3)"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::obscure_trans_pipe_level",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Obscure PIPE string in TransNamedPipe (level 0-3)"
+    },
+    {
+      "type": "bool",
+      "name": "SMBDirect",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The target port is a raw SMB service (not NetBIOS)"
+    },
+    {
+      "type": "string",
+      "name": "SMBUser",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate as"
+    },
+    {
+      "type": "string",
+      "name": "SMBPass",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password for the specified username"
+    },
+    {
+      "type": "string",
+      "name": "SMBDomain",
+      "required": false,
+      "default": ".",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Windows domain to use for authentication"
+    },
+    {
+      "type": "string",
+      "name": "SMBName",
+      "required": true,
+      "default": "*SMBSERVER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The NetBIOS hostname (required for port 139 connections)"
+    },
+    {
+      "type": "bool",
+      "name": "SMB::VerifySignature",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enforces client-side verification of server response signatures"
+    },
+    {
+      "type": "integer",
+      "name": "SMB::ChunkSize",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The chunk size for SMB segments, bigger values will increase speed but break NT 4.0 and SMB signing"
+    },
+    {
+      "type": "string",
+      "name": "SMB::Native_OS",
+      "required": true,
+      "default": "Windows 2000 2195",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The Native OS to send during authentication"
+    },
+    {
+      "type": "string",
+      "name": "SMB::Native_LM",
+      "required": true,
+      "default": "Windows 2000 5.0",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The Native LM to send during authentication"
+    },
+    {
+      "type": "string",
+      "name": "SERVICE_NAME",
+      "required": false,
+      "default": "WebExService",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The service name"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "string",
+      "name": "COMMAND",
+      "required": true,
+      "default": "net user testuser testpass /add",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The command you want to execute on the remote host"
+    },
+    {
+      "type": "bool",
+      "name": "FORCE_GUI",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Ensure a GUI is created via wmic"
+    }
+  ]
+}

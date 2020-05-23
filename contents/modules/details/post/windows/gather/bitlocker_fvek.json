@@ -1,0 +1,88 @@
+{
+  "name": "Bitlocker Master Key (FVEK) Extraction",
+  "fullname": "post/windows/gather/bitlocker_fvek",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Danil Bazin <danil.bazin@hsc.fr>"
+  ],
+  "description": "This module enumerates ways to decrypt Bitlocker volume and if a recovery key is stored locally\n        or can be generated, dump the Bitlocker master key (FVEK)",
+  "references": [
+    "https://github.com/libyal/libbde/blob/master/documentation/BitLocker Drive Encryption (BDE) format.asciidoc",
+    "http://www.hsc.fr/ressources/outils/dislocker/"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/bitlocker_fvek.rb",
+  "ref_name": "windows/gather/bitlocker_fvek",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DRIVE_LETTER",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Dump informations from the DRIVE_LETTER encrypted with Bitlocker"
+    },
+    {
+      "type": "string",
+      "name": "RECOVERY_KEY",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use the recovery key provided to decrypt the Bitlocker master key (FVEK)"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "name": "Cisco ASA Authentication Bypass (EXTRABACON)",
+  "fullname": "auxiliary/admin/cisco/cisco_asa_extrabacon",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Sean Dillon <sean.dillon@risksense.com>",
+    "Zachary Harding <zachary.harding@risksense.com>",
+    "Nate Caroe <nate.caroe@risksense.com>",
+    "Dylan Davis <dylan.davis@risksense.com>",
+    "William Webb <william_webb@rapid7.com>",
+    "Jeff Jarmoc <jjarmoc>",
+    "Equation Group",
+    "Shadow Brokers"
+  ],
+  "description": "This module patches the authentication functions of a Cisco ASA\n          to allow uncredentialed logins. Uses improved shellcode for payload.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2016-6366/",
+    "https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160817-asa-snmp",
+    "https://github.com/RiskSense-Ops/CVE-2016-6366"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/cisco/cisco_asa_extrabacon.rb",
+  "ref_name": "admin/cisco/cisco_asa_extrabacon",
+  "check": true,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 161,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "string",
+      "name": "COMMUNITY",
+      "required": true,
+      "default": "public",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SNMP Community String"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SNMP Timeout"
+    },
+    {
+      "type": "integer",
+      "name": "RETRIES",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SNMP Retries"
+    },
+    {
+      "type": "enum",
+      "name": "ASAVER",
+      "required": false,
+      "default": "auto",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Target ASA version (default autodetect) (Accepted: auto, 9.2(4)13, 9.2(4), 9.2(3), 9.2(2)8, 9.2(1), 9.1(1)4, 9.0(1), 8.4(7), 8.4(6)5, 8.4(4)9, 8.4(4)5, 8.4(4)3, 8.4(4)1, 8.4(4), 8.4(3), 8.4(2), 8.4(1), 8.3(2)40, 8.3(2)39, 8.3(2), 8.3(1), 8.2(5)41, 8.2(5)33, 8.2(5), 8.2(4), 8.2(3), 8.2(2), 8.2(1), 8.0(5), 8.0(4)32, 8.0(4), 8.0(3)6, 8.0(3), 8.0(2))"
+    }
+  ]
+}

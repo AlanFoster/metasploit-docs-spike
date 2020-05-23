@@ -1,0 +1,109 @@
+{
+  "name": "Windows Gather Active Directory Groups",
+  "fullname": "post/windows/gather/enum_ad_groups",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Stuart Morgan <stuart.morgan@mwrinfosecurity.com>"
+  ],
+  "description": "This module will enumerate AD groups on the specified domain.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_ad_groups.rb",
+  "ref_name": "windows/gather/enum_ad_groups",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The domain to query or distinguished name (e.g. DC=test,DC=com)"
+    },
+    {
+      "type": "integer",
+      "name": "MAX_SEARCH",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maximum values to retrieve, 0 for all."
+    },
+    {
+      "type": "string",
+      "name": "ADDITIONAL_FIELDS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Additional fields to retrieve, comma separated"
+    },
+    {
+      "type": "string",
+      "name": "FILTER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Customised LDAP filter"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "OS X Gather Mac OS X Password Hash Collector",
+  "fullname": "post/osx/gather/hashdump",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Carlos Perez <carlos_perez@darkoperator.com>",
+    "hammackj <jacob.hammack@hammackj.com>",
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module dumps SHA-1, LM, NT, and SHA-512 Hashes on OSX. Supports\n            versions 10.3 to 10.14.",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/gather/hashdump.rb",
+  "ref_name": "osx/gather/hashdump",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "regexp",
+      "name": "MATCHUSER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Only attempt to grab hashes for users whose name matches this regex"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "name": "Apply Pot File To Hashes",
+  "fullname": "auxiliary/analyze/apply_pot",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "h00die"
+  ],
+  "description": "This module uses a John the Ripper or Hashcat .pot file to crack any password\n        hashes in the creds database instantly.  JtR's --show functionality is used to\n        help combine all the passwords into an easy to use format.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/analyze/apply_pot.rb",
+  "ref_name": "analyze/apply_pot",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "path",
+      "name": "CONFIG",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The path to a John config file to use instead of the default"
+    },
+    {
+      "type": "path",
+      "name": "CRACKER_PATH",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The absolute path to the cracker executable"
+    },
+    {
+      "type": "integer",
+      "name": "FORK",
+      "required": false,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Forks for John the Ripper to use"
+    },
+    {
+      "type": "path",
+      "name": "POT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The path to a John POT file to use instead of the default"
+    },
+    {
+      "type": "bool",
+      "name": "DeleteTempFiles",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Delete temporary wordlist and hash files"
+    },
+    {
+      "type": "bool",
+      "name": "OptimizeKernel",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Utilize Optimized Kernels in Hashcat"
+    },
+    {
+      "type": "bool",
+      "name": "ShowCommand",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Print the cracker command being used"
+    }
+  ]
+}

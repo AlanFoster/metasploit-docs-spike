@@ -1,0 +1,300 @@
+{
+  "name": "VNC Server (Reflective Injection), Hidden Bind TCP Stager",
+  "fullname": "payload/windows/vncinject/bind_hidden_tcp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "sf <stephen_fewer@harmonysecurity.com>",
+    "hdm <x@hdm.io>",
+    "skape <mmiller@hick.org>",
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "Inject a VNC Dll via a reflective loader (staged). Listen for a connection from a hidden port and spawn a command shell to the allowed host.",
+  "references": [
+    "https://github.com/stephenfewer/ReflectiveDLLInjection",
+    "https://github.com/rapid7/ReflectiveDLLInjection"
+  ],
+  "platform": "Windows",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/stagers/windows/bind_hidden_tcp.rb",
+  "ref_name": "windows/vncinject/bind_hidden_tcp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackRetries",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "How many additional successful pingbacks"
+    },
+    {
+      "type": "integer",
+      "name": "PingbackSleep",
+      "required": true,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Time (in seconds) to sleep between pingbacks"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDSeed",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A string to use when generating the payload UUID (deterministic)"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDRaw",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A hex string representing the raw 8-byte PUID value for the UUID"
+    },
+    {
+      "type": "string",
+      "name": "PayloadUUIDName",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A human-friendly name to reference this unique payload (requires tracking)"
+    },
+    {
+      "type": "bool",
+      "name": "PayloadUUIDTracking",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Whether or not to automatically register generated UUIDs"
+    },
+    {
+      "type": "bool",
+      "name": "EnableStageEncoding",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encode the second stage payload"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoder",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Encoder to use if EnableStageEncoding is set"
+    },
+    {
+      "type": "string",
+      "name": "StageEncoderSaveRegisters",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Additional registers to preserve in the staged payload if EnableStageEncoding is set"
+    },
+    {
+      "type": "bool",
+      "name": "StageEncodingFallback",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Fallback to no encoding if the selected StageEncoder is not compatible"
+    },
+    {
+      "type": "bool",
+      "name": "PrependMigrate",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Spawns and runs shellcode in new process"
+    },
+    {
+      "type": "string",
+      "name": "PrependMigrateProc",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Process to spawn and run shellcode in"
+    },
+    {
+      "type": "enum",
+      "name": "EXITFUNC",
+      "required": true,
+      "default": "process",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Exit technique (Accepted: '', seh, thread, process, none)"
+    },
+    {
+      "type": "address",
+      "name": "AHOST",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "IP address allowed"
+    },
+    {
+      "type": "port",
+      "name": "VNCPORT",
+      "required": true,
+      "default": 5900,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to use for the VNC proxy"
+    },
+    {
+      "type": "address",
+      "name": "VNCHOST",
+      "required": true,
+      "default": "127.0.0.1",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host to use for the VNC proxy"
+    },
+    {
+      "type": "bool",
+      "name": "DisableCourtesyShell",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Disables the Metasploit Courtesy shell"
+    },
+    {
+      "type": "bool",
+      "name": "ViewOnly",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Runs the viewer in view mode"
+    },
+    {
+      "type": "bool",
+      "name": "AUTOVNC",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Automatically launch VNC viewer if present"
+    },
+    {
+      "type": "bool",
+      "name": "DisableSessionTracking",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Disables the VNC payload from following the active session as users log in an out of the input desktop"
+    }
+  ]
+}

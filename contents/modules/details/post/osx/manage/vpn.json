@@ -1,0 +1,98 @@
+{
+  "name": "OSX VPN Manager",
+  "fullname": "post/osx/manage/vpn",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Peter Toth <globetother@gmail.com>"
+  ],
+  "description": "This module lists VPN connections and tries to connect to them using stored credentials.",
+  "references": [
+
+  ],
+  "platform": "OSX",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/osx/manage/vpn.rb",
+  "ref_name": "osx/manage/vpn",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "VPN_CONNECTION",
+      "required": true,
+      "default": "OSX_VPN",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Name of VPN connection. `set ACTION LIST` to get a list."
+    },
+    {
+      "type": "string",
+      "name": "SCUTIL_PATH",
+      "required": true,
+      "default": "/usr/sbin/scutil",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path to the scutil executable."
+    },
+    {
+      "type": "string",
+      "name": "NETWORKSETUP_PATH",
+      "required": true,
+      "default": "/usr/sbin/networksetup",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path to the networksetup executable."
+    }
+  ]
+}

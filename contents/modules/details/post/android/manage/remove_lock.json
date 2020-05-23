@@ -1,0 +1,68 @@
+{
+  "name": "Android Settings Remove Device Locks (4.0-4.3)",
+  "fullname": "post/android/manage/remove_lock",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2013-10-11",
+  "type": "post",
+  "author": [
+    "CureSec",
+    "timwr"
+  ],
+  "description": "This module exploits a bug in the Android 4.0 to 4.3 com.android.settings.ChooseLockGeneric class.\n            Any unprivileged app can exploit this vulnerability to remove the lockscreen.\n            A logic flaw / design error exists in the settings application that allows an Intent from any\n            application to clear the screen lock. The user may see that the Settings application has crashed,\n            and the phone can then be unlocked by a swipe.\n            This vulnerability was patched in Android 4.4.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2013-6271/",
+    "http://blog.curesec.com/article/blog/26.html",
+    "http://www.curesec.com/data/advisories/Curesec-2013-1011.pdf"
+  ],
+  "platform": "Android",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/android/manage/remove_lock.rb",
+  "ref_name": "android/manage/remove_lock",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    }
+  ]
+}

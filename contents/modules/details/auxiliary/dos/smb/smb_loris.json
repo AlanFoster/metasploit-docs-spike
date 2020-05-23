@@ -1,0 +1,81 @@
+{
+  "name": "SMBLoris NBSS Denial of Service",
+  "fullname": "auxiliary/dos/smb/smb_loris",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2017-06-29",
+  "type": "auxiliary",
+  "author": [
+    "thelightcosine",
+    "Adam Cammack <adam_cammack@rapid7.com>"
+  ],
+  "description": "The SMBLoris attack consumes large chunks of memory in the target by sending\n    SMB requests with the NetBios Session Service(NBSS) Length Header value set\n    to the maximum possible value. By keeping these connections open and initiating\n    large numbers of these sessions, the memory does not get freed, and the server\n    grinds to a halt. This vulnerability was originally disclosed by Sean Dillon\n    and Zach Harding.\n\n    DISCALIMER: This module opens a lot of simultaneous connections. Please check\n    your system's ULIMIT to make sure it can handle it. This module will also run\n    continuously until stopped.",
+  "references": [
+    "http://smbloris.com/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/smb/smb_loris.rb",
+  "ref_name": "dos/smb/smb_loris",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "rhost",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "port",
+      "name": "rport",
+      "required": true,
+      "default": 445,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "SMB port on the target"
+    }
+  ]
+}

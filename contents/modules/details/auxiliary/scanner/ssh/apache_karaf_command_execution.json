@@ -1,0 +1,190 @@
+{
+  "name": "Apache Karaf Default Credentials Command Execution",
+  "fullname": "auxiliary/scanner/ssh/apache_karaf_command_execution",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2016-02-09",
+  "type": "auxiliary",
+  "author": [
+    "Nicholas Starke <nick@alephvoid.com>"
+  ],
+  "description": "This module exploits a default misconfiguration flaw on Apache Karaf versions 2.x-4.x.\n        The 'karaf' user has a known default password, which can be used to login to the\n        SSH service, and execute operating system commands from remote.",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/ssh/apache_karaf_command_execution.rb",
+  "ref_name": "scanner/ssh/apache_karaf_command_execution",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 8101,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "SSH_IDENT",
+      "required": true,
+      "default": "SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSH client identification string"
+    },
+    {
+      "type": "integer",
+      "name": "SSH_TIMEOUT",
+      "required": false,
+      "default": 30,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the maximum time to negotiate a SSH session"
+    },
+    {
+      "type": "bool",
+      "name": "SSH_DEBUG",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable SSH debugging output (Extreme verbosity!)"
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": true,
+      "default": "karaf",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Username"
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": true,
+      "default": "karaf",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password"
+    },
+    {
+      "type": "string",
+      "name": "CMD",
+      "required": true,
+      "default": "cat /etc/passwd",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Command to Run"
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    }
+  ]
+}

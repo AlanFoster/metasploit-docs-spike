@@ -1,0 +1,100 @@
+{
+  "name": "Windows Gather Directory Permissions Enumeration",
+  "fullname": "post/windows/gather/enum_dirperms",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Kx499",
+    "Ben Campbell <eat_meatballs@hotmail.co.uk>",
+    "sinn3r <sinn3r@metasploit.com>"
+  ],
+  "description": "This module enumerates directories and lists the permissions set\n        on found directories. Please note: if the PATH option isn't specified,\n        then the module will start enumerate whatever is in the target machine's\n        %PATH% variable.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_dirperms.rb",
+  "ref_name": "windows/gather/enum_dirperms",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "PATH",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Directory to begin search from"
+    },
+    {
+      "type": "enum",
+      "name": "FILTER",
+      "required": false,
+      "default": "NA",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filter to limit results by (Accepted: NA, R, W, RW)"
+    },
+    {
+      "type": "integer",
+      "name": "DEPTH",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Depth to drill down into subdirs, O = no limit"
+    }
+  ]
+}

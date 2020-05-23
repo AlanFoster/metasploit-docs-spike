@@ -1,0 +1,90 @@
+{
+  "name": "Applocker Evasion - Windows Presentation Foundation Host",
+  "fullname": "evasion/windows/applocker_evasion_presentationhost",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "evasion",
+  "author": [
+    "Nick Tyrer <@NickTyrer>",
+    "Casey Smith"
+  ],
+  "description": "This module will assist you in evading Microsoft\n         Windows Applocker and Software Restriction Policies.\n         This technique utilises the Microsoft signed binary\n         PresentationHost.exe to execute user supplied code.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": [
+    "Microsoft Windows"
+  ],
+  "path": "/modules/evasion/windows/applocker_evasion_presentationhost.rb",
+  "ref_name": "windows/applocker_evasion_presentationhost",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "CS_FILE",
+      "required": true,
+      "default": "presentationhost.xaml.cs",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the .xaml.cs file (default: presentationhost.xaml.cs)"
+    },
+    {
+      "type": "string",
+      "name": "MANIFEST_FILE",
+      "required": true,
+      "default": "presentationhost.manifest",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the .manifest file (default: presentationhost.manifest)"
+    },
+    {
+      "type": "string",
+      "name": "CSPROJ_FILE",
+      "required": true,
+      "default": "presentationhost.csproj",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Filename for the .csproj file (default: presentationhost.csproj)"
+    }
+  ]
+}

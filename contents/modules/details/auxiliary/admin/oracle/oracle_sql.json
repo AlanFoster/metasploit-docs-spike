@@ -1,0 +1,124 @@
+{
+  "name": "Oracle SQL Generic Query",
+  "fullname": "auxiliary/admin/oracle/oracle_sql",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2007-12-07",
+  "type": "auxiliary",
+  "author": [
+    "MC <mc@metasploit.com>"
+  ],
+  "description": "This module allows for simple SQL statements to be executed\n          against an Oracle instance given the appropriate credentials\n          and sid.",
+  "references": [
+    "https://www.metasploit.com/users/mc"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/oracle/oracle_sql.rb",
+  "ref_name": "admin/oracle/oracle_sql",
+  "check": false,
+  "post_auth": true,
+  "default_credential": true,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "RHOST",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Oracle host."
+    },
+    {
+      "type": "string",
+      "name": "RPORT",
+      "required": true,
+      "default": "1521",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The TNS port."
+    },
+    {
+      "type": "string",
+      "name": "SID",
+      "required": true,
+      "default": "ORCL",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The sid to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBUSER",
+      "required": true,
+      "default": "SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The username to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "DBPASS",
+      "required": true,
+      "default": "TIGER",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The password to authenticate with."
+    },
+    {
+      "type": "string",
+      "name": "SQL",
+      "required": false,
+      "default": "select * from v$version",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The SQL to execute."
+    }
+  ]
+}

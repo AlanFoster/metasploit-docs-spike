@@ -1,0 +1,87 @@
+{
+  "name": "Sample Module to Flood Temp Gauge on 2006 Malibu",
+  "fullname": "post/hardware/automotive/malibu_overheat",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Craig Smith"
+  ],
+  "description": "Simple sample temp flood for the 2006 Malibu",
+  "references": [
+
+  ],
+  "platform": "Hardware",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/hardware/automotive/malibu_overheat.rb",
+  "ref_name": "hardware/automotive/malibu_overheat",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "PACKET_COUNT",
+      "required": false,
+      "default": 200,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How many packets to send before stopping"
+    },
+    {
+      "type": "string",
+      "name": "CANBUS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "CAN Bus to perform scan on, defaults to connected bus"
+    }
+  ]
+}

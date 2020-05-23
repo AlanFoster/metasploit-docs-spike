@@ -1,0 +1,171 @@
+{
+  "name": "Nuuo Central Management Server Authenticated Arbitrary File Download",
+  "fullname": "auxiliary/gather/nuuo_cms_file_download",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2018-10-11",
+  "type": "auxiliary",
+  "author": [
+    "Pedro Ribeiro <pedrib@gmail.com>"
+  ],
+  "description": "The Nuuo Central Management Server allows an authenticated user to download files from the\n      installation folder. This functionality can be abused to obtain administrative credentials,\n      the SQL Server database password and arbitrary files off the system with directory traversal.\n      The module will attempt to download CMServer.cfg (the user configuration file with all the user\n      passwords including the admin one), ServerConfig.cfg (the server configuration file with the\n      SQL Server password) and a third file if the FILE argument is provided by the user.\n      The two .cfg files are zip-encrypted files, but due to limitations of the Ruby ZIP modules\n      included in Metasploit, these files cannot be decrypted programmatically. The user will\n      have to open them with zip or a similar program and provide the default password \"NUCMS2007!\".\n      This module will either use a provided session number (which can be guessed with an auxiliary\n      module) or attempt to login using a provided username and password - it will also try the\n      default credentials if nothing is provided.\n      All versions of CMS server up to and including 3.5 are vulnerable to this attack.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2018-17934/",
+    "https://ics-cert.us-cert.gov/advisories/ICSA-18-284-02",
+    "https://seclists.org/fulldisclosure/2019/Jan/51",
+    "https://raw.githubusercontent.com/pedrib/PoC/master/advisories/nuuo-cms-ownage.txt"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/nuuo_cms_file_download.rb",
+  "ref_name": "gather/nuuo_cms_file_download",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 5180,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "NCSSESSION",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Session number of logged in user"
+    },
+    {
+      "type": "string",
+      "name": "NCSUSER",
+      "required": false,
+      "default": "admin",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "NUUO Central Management System username"
+    },
+    {
+      "type": "string",
+      "name": "NCSPASS",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Password for NCSUSER"
+    },
+    {
+      "type": "string",
+      "name": "NCSVERSION",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Version header used during login"
+    },
+    {
+      "type": "bool",
+      "name": "NCSBRUTEAPI",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Bruteforce Version header used during login"
+    },
+    {
+      "type": "bool",
+      "name": "NCSTRACE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show NCS requests and responses"
+    },
+    {
+      "type": "integer",
+      "name": "DEPTH",
+      "required": true,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Directory traversal depth [..\\]"
+    },
+    {
+      "type": "string",
+      "name": "FILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Additional file to download"
+    }
+  ]
+}

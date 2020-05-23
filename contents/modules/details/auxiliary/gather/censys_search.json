@@ -1,0 +1,102 @@
+{
+  "name": "Censys Search",
+  "fullname": "auxiliary/gather/censys_search",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Nixawk"
+  ],
+  "description": "The module use the Censys REST API to access the same data\n        accessible through web interface. The search endpoint allows searches\n        against the current data in the IPv4, Top Million Websites, and\n        Certificates indexes using the same search syntax as the primary site.",
+  "references": [
+    "https://censys.io/api"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/gather/censys_search.rb",
+  "ref_name": "gather/censys_search",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "CENSYS_UID",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys API UID"
+    },
+    {
+      "type": "string",
+      "name": "CENSYS_SECRET",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys API SECRET"
+    },
+    {
+      "type": "string",
+      "name": "CENSYS_DORK",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys Search Dork"
+    },
+    {
+      "type": "enum",
+      "name": "CENSYS_SEARCHTYPE",
+      "required": true,
+      "default": "certificates",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The Censys Search Type (Accepted: certificates, ipv4, websites)"
+    }
+  ]
+}

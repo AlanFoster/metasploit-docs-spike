@@ -1,0 +1,54 @@
+{
+  "name": "PHP Base64 Encoder",
+  "fullname": "encoder/php/base64",
+  "aliases": [
+
+  ],
+  "rank": 500,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "egypt <egypt@metasploit.com>"
+  ],
+  "description": "This encoder returns a base64 string encapsulated in\n        eval(base64_decode()), increasing the size by a bit more than\n        one third.",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "php",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/php/base64.rb",
+  "ref_name": "php/base64",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

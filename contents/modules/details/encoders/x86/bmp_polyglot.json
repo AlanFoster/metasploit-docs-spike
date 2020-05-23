@@ -1,0 +1,65 @@
+{
+  "name": "BMP Polyglot",
+  "fullname": "encoder/x86/bmp_polyglot",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "Spencer McIntyre"
+  ],
+  "description": "Encodes a payload in such a way that the resulting binary blob is both\n        valid x86 shellcode and a valid bitmap image file (.bmp). The selected\n        bitmap file to inject into must use the BM (Windows 3.1x/95/NT) header\n        and the 40-byte Windows 3.1x/NT BITMAPINFOHEADER. Additionally the file\n        must use either 24 or 32 bits per pixel as the color depth and no\n        compression. This encoder makes absolutely no effort to remove any\n        invalid characters.",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/x86/bmp_polyglot.rb",
+  "ref_name": "x86/bmp_polyglot",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "BitmapFile",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The .bmp file to inject into"
+    }
+  ]
+}

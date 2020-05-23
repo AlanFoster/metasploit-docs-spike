@@ -1,0 +1,105 @@
+{
+  "name": "Oracle DB SQL Injection in MDSYS.SDO_TOPO_DROP_FTBL Trigger",
+  "fullname": "auxiliary/sqli/oracle/droptable_trigger",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2009-01-13",
+  "type": "auxiliary",
+  "author": [
+    "Sh2kerr <research[ad]dsec.ru>"
+  ],
+  "description": "This module will escalate an Oracle DB user to MDSYS by exploiting a sql injection bug in\n          the MDSYS.SDO_TOPO_DROP_FTBL trigger. After that exploit escalate user to DBA using \"CREATE ANY TRIGGER\" privilege\n          given to MDSYS user by creating evil trigger in system scheme (2-stage attack).",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2008-3979/",
+    "OSVDB (51354)",
+    "http://www.securityfocus.com/archive/1/500061",
+    "http://www.ngssoftware.com/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/sqli/oracle/droptable_trigger.rb",
+  "ref_name": "sqli/oracle/droptable_trigger",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": false,
+      "default": "msf.sql",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The file name."
+    },
+    {
+      "type": "bool",
+      "name": "DisablePayloadHandler",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Disable the handler code for the selected payload"
+    },
+    {
+      "type": "string",
+      "name": "SQL",
+      "required": false,
+      "default": "GRANT DBA TO SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The SQL to execute."
+    },
+    {
+      "type": "string",
+      "name": "USER",
+      "required": false,
+      "default": "SCOTT",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The current user. "
+    }
+  ]
+}

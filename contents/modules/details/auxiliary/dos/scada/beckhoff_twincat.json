@@ -1,0 +1,105 @@
+{
+  "name": "Beckhoff TwinCAT SCADA PLC 2.11.0.2004 DoS",
+  "fullname": "auxiliary/dos/scada/beckhoff_twincat",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2011-09-13",
+  "type": "auxiliary",
+  "author": [
+    "Luigi Auriemma",
+    "jfa"
+  ],
+  "description": "The Beckhoff TwinCAT version <= 2.11.0.2004 can be brought down by sending\n        a crafted UDP packet to port 48899 (TCATSysSrv.exe).",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2011-3486/",
+    "OSVDB (75495)",
+    "http://aluigi.altervista.org/adv/twincat_1-adv.txt"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/scada/beckhoff_twincat.rb",
+  "ref_name": "dos/scada/beckhoff_twincat",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 48899,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    }
+  ]
+}

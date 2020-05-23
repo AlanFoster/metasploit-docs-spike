@@ -1,0 +1,260 @@
+{
+  "name": "NTP \"NAK to the Future\"",
+  "fullname": "auxiliary/scanner/ntp/ntp_nak_to_the_future",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "Matthew Van Gundy of Cisco ASIG",
+    "Jon Hart <jon_hart@rapid7.com>"
+  ],
+  "description": "Crypto-NAK packets can be used to cause ntpd to accept time from\n          unauthenticated ephemeral symmetric peers by bypassing the\n          authentication required to mobilize peer associations.  This module\n          sends these Crypto-NAK packets in order to establish an association\n          between the target ntpd instance and the attacking client.  The end goal\n          is to cause ntpd to declare the legitimate peers \"false tickers\" and\n          choose the attacking clients as the preferred peers, allowing\n          these peers to control time.",
+  "references": [
+    "http://talosintel.com/reports/TALOS-2015-0069/",
+    "http://www.cisco.com/c/en/us/support/docs/availability/high-availability/19643-ntpm.html",
+    "http://support.ntp.org/bin/view/Main/NtpBug2941",
+    "https://cvedetails.com/cve/CVE-2015-7871/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/ntp/ntp_nak_to_the_future.rb",
+  "ref_name": "scanner/ntp/ntp_nak_to_the_future",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "path",
+      "name": "PCAPFILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the PCAP capture file to process"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "string",
+      "name": "FILTER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The filter string for capturing traffic"
+    },
+    {
+      "type": "integer",
+      "name": "SNAPLEN",
+      "required": true,
+      "default": 65535,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of bytes to capture"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": true,
+      "default": 500,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of seconds to wait for new data"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "SECRET",
+      "required": true,
+      "default": 1297303073,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A 32-bit cookie for probe requests."
+    },
+    {
+      "type": "address",
+      "name": "GATEWAY_PROBE_HOST",
+      "required": true,
+      "default": "8.8.8.8",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send a TTL=1 random UDP datagram to this host to discover the default gateway's MAC"
+    },
+    {
+      "type": "port",
+      "name": "GATEWAY_PROBE_PORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port on GATEWAY_PROBE_HOST to send a random UDP probe to (random if 0 or unset)"
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 123,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "integer",
+      "name": "VERSION",
+      "required": true,
+      "default": 2,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use this NTP version"
+    },
+    {
+      "type": "integer",
+      "name": "IMPLEMENTATION",
+      "required": true,
+      "default": 3,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use this NTP mode 7 implementation"
+    },
+    {
+      "type": "integer",
+      "name": "OFFSET",
+      "required": true,
+      "default": 300,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Offset from local time, in seconds"
+    }
+  ]
+}

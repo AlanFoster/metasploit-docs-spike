@@ -1,0 +1,110 @@
+{
+  "name": "Windows Manage Proxy PAC File",
+  "fullname": "post/windows/manage/ie_proxypac",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "This module configures Internet Explorer to use a PAC proxy file. By using the LOCAL_PAC\n        option, a PAC file will be created on the victim host. It's also possible to provide a\n        remote PAC file (REMOTE_PAC option) by providing the full URL.",
+  "references": [
+    "https://www.youtube.com/watch?v=YGjIlbBVDqE&hd=1",
+    "http://blog.scriptmonkey.eu/bypassing-group-policy-using-the-windows-registry"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/ie_proxypac.rb",
+  "ref_name": "windows/manage/ie_proxypac",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "path",
+      "name": "LOCAL_PAC",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Local PAC file."
+    },
+    {
+      "type": "string",
+      "name": "REMOTE_PAC",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Remote PAC file. (Ex: http://192.168.1.20/proxy.pac)"
+    },
+    {
+      "type": "bool",
+      "name": "DISABLE_PROXY",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Disable the proxy server."
+    },
+    {
+      "type": "bool",
+      "name": "AUTO_DETECT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Automatically detect settings."
+    }
+  ]
+}

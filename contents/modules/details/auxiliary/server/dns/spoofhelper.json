@@ -1,0 +1,81 @@
+{
+  "name": "DNS Spoofing Helper Service",
+  "fullname": "auxiliary/server/dns/spoofhelper",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "hdm <x@hdm.io>",
+    "ddz <ddz@theta44.org>"
+  ],
+  "description": "This module provides a DNS service that returns TXT\n      records indicating information about the querying service.\n      Based on Dino Dai Zovi DNS code from Karma.",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/server/dns/spoofhelper.rb",
+  "ref_name": "server/dns/spoofhelper",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "address",
+      "name": "SRVHOST",
+      "required": true,
+      "default": "0.0.0.0",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local host to listen on."
+    },
+    {
+      "type": "port",
+      "name": "SRVPORT",
+      "required": true,
+      "default": 53,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local port to listen on."
+    }
+  ]
+}

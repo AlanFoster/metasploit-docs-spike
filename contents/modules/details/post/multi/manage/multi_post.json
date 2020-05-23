@@ -1,0 +1,76 @@
+{
+  "name": "Multi Manage Post Module Macro Execution",
+  "fullname": "post/multi/manage/multi_post",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "carlos_perez <carlos_perez@darkoperator.com>"
+  ],
+  "description": "This module will execute a list of modules given in a macro file in the format\n            of <module> <opt=val,opt=val> against the select session checking for compatibility\n            of the module against the sessions and validation of the options provided.",
+  "references": [
+
+  ],
+  "platform": "Linux, OSX, Solaris, Unix, Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/multi/manage/multi_post.rb",
+  "ref_name": "multi/manage/multi_post",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "MACRO",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File with Post Modules and Options to run in the session"
+    }
+  ]
+}

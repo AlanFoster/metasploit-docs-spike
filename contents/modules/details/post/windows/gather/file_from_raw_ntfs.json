@@ -1,0 +1,76 @@
+{
+  "name": "Windows File Gather File from Raw NTFS",
+  "fullname": "post/windows/gather/file_from_raw_ntfs",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Danil Bazin <danil.bazin@hsc.fr>"
+  ],
+  "description": "This module gathers a file using the raw NTFS device, bypassing some Windows restrictions\n        such as open file with write lock. Because it avoids the usual file locking issues, it can\n        be used to retrieve files such as NTDS.dit.",
+  "references": [
+    "http://www.amazon.com/System-Forensic-Analysis-Brian-Carrier/dp/0321268172/"
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/file_from_raw_ntfs.rb",
+  "ref_name": "windows/gather/file_from_raw_ntfs",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "FILE_PATH",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The FILE_PATH to retreive from the Volume raw device"
+    }
+  ]
+}

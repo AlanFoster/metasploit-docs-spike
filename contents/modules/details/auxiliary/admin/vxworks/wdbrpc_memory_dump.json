@@ -1,0 +1,104 @@
+{
+  "name": "VxWorks WDB Agent Remote Memory Dump",
+  "fullname": "auxiliary/admin/vxworks/wdbrpc_memory_dump",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "hdm <x@hdm.io>"
+  ],
+  "description": "This module provides the ability to dump the system memory of a VxWorks target through WDBRPC",
+  "references": [
+    "OSVDB (66842)",
+    "http://blog.metasploit.com/2010/08/vxworks-vulnerabilities.html",
+    "https://www.kb.cert.org/vuls/id/362332"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/admin/vxworks/wdbrpc_memory_dump.rb",
+  "ref_name": "admin/vxworks/wdbrpc_memory_dump",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 17185,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "string",
+      "name": "LPATH",
+      "required": true,
+      "default": "/Users/alan/.msf4/logs/vxworks_memory.dmp",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local filename to store the dumped memory"
+    },
+    {
+      "type": "integer",
+      "name": "OFFSET",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The starting offset to read the memory dump (hex allowed)"
+    }
+  ]
+}

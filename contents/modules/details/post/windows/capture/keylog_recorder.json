@@ -1,0 +1,143 @@
+{
+  "name": "Windows Capture Keystroke Recorder",
+  "fullname": "post/windows/capture/keylog_recorder",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Carlos Perez <carlos_perez@darkoperator.com>",
+    "Josh Hale <jhale85446@gmail.com>"
+  ],
+  "description": "This module can be used to capture keystrokes. To capture keystrokes when the session is running\n          as SYSTEM, the MIGRATE option must be enabled and the CAPTURE_TYPE option should be set to one of\n          Explorer, Winlogon, or a specific PID. To capture the keystrokes of the interactive user, the\n          Explorer option should be used with MIGRATE enabled. Keep in mind that this will demote this session\n          to the user's privileges, so it makes sense to create a separate session for this task. The Winlogon\n          option will capture the username and password entered into the logon and unlock dialog. The LOCKSCREEN\n          option can be combined with the Winlogon CAPTURE_TYPE to for the user to enter their clear-text\n          password. It is recommended to run this module as a job, otherwise it will tie up your framework user interface.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/capture/keylog_recorder.rb",
+  "ref_name": "windows/capture/keylog_recorder",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "LOCKSCREEN",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Lock system screen."
+    },
+    {
+      "type": "bool",
+      "name": "MIGRATE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Perform Migration."
+    },
+    {
+      "type": "integer",
+      "name": "INTERVAL",
+      "required": false,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Time interval to save keystrokes in seconds"
+    },
+    {
+      "type": "integer",
+      "name": "PID",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Process ID to migrate to"
+    },
+    {
+      "type": "enum",
+      "name": "CAPTURE_TYPE",
+      "required": false,
+      "default": "explorer",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Capture keystrokes for Explorer, Winlogon or PID (Accepted: explorer, winlogon, pid)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowKeystrokes",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Show captured keystrokes"
+    },
+    {
+      "type": "enum",
+      "name": "TimeOutAction",
+      "required": true,
+      "default": "wait",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Action to take when session response timeout occurs. (Accepted: wait, exit)"
+    }
+  ]
+}

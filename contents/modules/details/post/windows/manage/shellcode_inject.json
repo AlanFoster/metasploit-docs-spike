@@ -1,0 +1,164 @@
+{
+  "name": "Windows Manage Memory Shellcode Injection Module",
+  "fullname": "post/windows/manage/shellcode_inject",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "phra <https://iwantmore.pizza>"
+  ],
+  "description": "This module will inject into the memory of a process a specified shellcode.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/shellcode_inject.rb",
+  "ref_name": "windows/manage/shellcode_inject",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "path",
+      "name": "SHELLCODE",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Path to the shellcode to execute"
+    },
+    {
+      "type": "integer",
+      "name": "PID",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Process Identifier of process to inject the shellcode. (0 = new process)"
+    },
+    {
+      "type": "integer",
+      "name": "PPID",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Process Identifier for PPID spoofing when creating a new process. (0 = no PPID spoofing)"
+    },
+    {
+      "type": "bool",
+      "name": "CHANNELIZED",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Retrieve output of the process"
+    },
+    {
+      "type": "bool",
+      "name": "INTERACTIVE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Interact with the process"
+    },
+    {
+      "type": "bool",
+      "name": "HIDDEN",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Spawn an hidden process"
+    },
+    {
+      "type": "bool",
+      "name": "AUTOUNHOOK",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Auto remove EDRs hooks"
+    },
+    {
+      "type": "integer",
+      "name": "WAIT_UNHOOK",
+      "required": true,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Seconds to wait for unhook to be executed"
+    },
+    {
+      "type": "enum",
+      "name": "BITS",
+      "required": true,
+      "default": "64",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Set architecture bits (Accepted: 32, 64)"
+    }
+  ]
+}

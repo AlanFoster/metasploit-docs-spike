@@ -1,0 +1,54 @@
+{
+  "name": "printf(1) via PHP magic_quotes Utility Command Encoder",
+  "fullname": "encoder/cmd/printf_php_mq",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "jduck <jduck@metasploit.com>"
+  ],
+  "description": "This encoder uses the printf(1) utility to avoid restricted\n        characters. Some shell variable substitution may also be used\n        if needed symbols are blacklisted. Some characters are intentionally\n        left unescaped since it is assumed that PHP with magic_quotes_gpc\n        enabled will escape them during request handling.",
+  "references": [
+
+  ],
+  "platform": "Unix",
+  "arch": "cmd",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/cmd/printf_php_mq.rb",
+  "ref_name": "cmd/printf_php_mq",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

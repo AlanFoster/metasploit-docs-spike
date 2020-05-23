@@ -1,0 +1,103 @@
+{
+  "name": "Extract zip from Modbus communication",
+  "fullname": "auxiliary/analyze/modbus_zip",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "José Diogo Monteiro <jdlopes@student.dei.uc.pt>",
+    "Luis Rosa <lmrosa@dei.uc.pt)>"
+  ],
+  "description": "This module is able to extract a zip file sent through Modbus from a pcap.\n        Tested with Schneider TM221CE16R",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/analyze/modbus_zip.rb",
+  "ref_name": "analyze/modbus_zip",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 502,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "enum",
+      "name": "MODE",
+      "required": true,
+      "default": "UPLOAD",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Extract zip from upload/download capture (Accepted: UPLOAD, DOWNLOAD)"
+    },
+    {
+      "type": "string",
+      "name": "PCAPFILE",
+      "required": true,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Pcap to read"
+    },
+    {
+      "type": "string",
+      "name": "FILENAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Zip file output name"
+    }
+  ]
+}

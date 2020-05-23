@@ -1,0 +1,131 @@
+{
+  "name": "Firefox Webcam Chat on Privileged Javascript Shell",
+  "fullname": "post/firefox/manage/webcam_chat",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": "2014-05-13",
+  "type": "post",
+  "author": [
+    "joev <joev@metasploit.com>"
+  ],
+  "description": "This module allows streaming a webcam from a privileged Firefox Javascript shell.",
+  "references": [
+    "http://www.rapid7.com/db/modules/exploit/firefox/local/exec_shellcode"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/firefox/manage/webcam_chat.rb",
+  "ref_name": "firefox/manage/webcam_chat",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "integer",
+      "name": "JsObfuscate",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Number of times to obfuscate JavaScript"
+    },
+    {
+      "type": "string",
+      "name": "JsIdentifiers",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Identifiers to preserve for JsObfu"
+    },
+    {
+      "type": "bool",
+      "name": "CLOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Forcibly close previous chat session"
+    },
+    {
+      "type": "bool",
+      "name": "VISIBLE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Show a window containing the chat to the target"
+    },
+    {
+      "type": "integer",
+      "name": "TIMEOUT",
+      "required": false,
+      "default": -1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "End the chat session after this many seconds"
+    },
+    {
+      "type": "string",
+      "name": "ICESERVER",
+      "required": true,
+      "default": "wsnodejs.jit.su:80",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The ICE server that sets up the P2P connection"
+    }
+  ]
+}

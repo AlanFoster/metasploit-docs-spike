@@ -1,0 +1,76 @@
+{
+  "name": "Windows Gather Enumerate Domain Admin Tokens (Token Hunter)",
+  "fullname": "post/windows/gather/enum_tokens",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Joshua Abraham <jabra@rapid7.com>"
+  ],
+  "description": "This module will identify systems that have a Domain Admin (delegation) token\n          on them.  The module will first check if sufficient privileges are present for\n          certain actions, and run getprivs for system.  If you elevated privs to system,\n          the SeAssignPrimaryTokenPrivilege will not be assigned, in that case try\n          migrating to another process that is running as system.  If no sufficient\n          privileges are available, the script will not continue.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_tokens.rb",
+  "ref_name": "windows/gather/enum_tokens",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "bool",
+      "name": "GETSYSTEM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Attempt to get SYSTEM privilege on the target host."
+    }
+  ]
+}

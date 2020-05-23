@@ -1,0 +1,550 @@
+{
+  "name": "MSSQL Login Utility",
+  "fullname": "auxiliary/scanner/mssql/mssql_login",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "MC <mc@metasploit.com>"
+  ],
+  "description": "This module simply queries the MSSQL instance for a specific user/pass (default is sa with blank).",
+  "references": [
+    "https://cvedetails.com/cve/CVE-1999-0506/"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+    1433,
+    1434,
+    1435,
+    14330,
+    2533,
+    9152,
+    2638
+  ],
+  "autofilter_services": [
+    "ms-sql-s",
+    "ms-sql2000",
+    "sybase"
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/scanner/mssql/mssql_login.rb",
+  "ref_name": "scanner/mssql/mssql_login",
+  "check": false,
+  "post_auth": true,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Whether to print output for all attempts"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "port",
+      "name": "RPORT",
+      "required": true,
+      "default": 1433,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target port"
+    },
+    {
+      "type": "port",
+      "name": "CPORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client port"
+    },
+    {
+      "type": "address",
+      "name": "CHOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The local client address"
+    },
+    {
+      "type": "bool",
+      "name": "SSL",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Negotiate SSL/TLS for outgoing connections"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVersion",
+      "required": true,
+      "default": "Auto",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the version of SSL/TLS to be used (Auto, TLS and SSL23 are auto-negotiate) (Accepted: Auto, TLS, SSL23, SSL3, TLS1, TLS1.1, TLS1.2)"
+    },
+    {
+      "type": "enum",
+      "name": "SSLVerifyMode",
+      "required": false,
+      "default": "PEER",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "SSL verification method (Accepted: CLIENT_ONCE, FAIL_IF_NO_PEER_CERT, NONE, PEER)"
+    },
+    {
+      "type": "string",
+      "name": "SSLCipher",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "String for SSL cipher - \"DHE-RSA-AES256-SHA\" or \"ADH\""
+    },
+    {
+      "type": "string",
+      "name": "Proxies",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A proxy chain of format type:host:port[,type:host:port][...]"
+    },
+    {
+      "type": "integer",
+      "name": "ConnectTimeout",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of seconds to establish a TCP connection"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::max_send_size",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Maxiumum tcp segment size.  (0 = disable)"
+    },
+    {
+      "type": "integer",
+      "name": "TCP::send_delay",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Delays inserted before every send.  (0 = disable)"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLMv2",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Use NTLMv2 instead of NTLM2_session when 'Negotiate NTLM2' key is true"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseNTLM2_session",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM2 key' flag, forcing the use of a NTLMv2_session"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Always send the LANMAN response (except when NTLMv2_session is specified)"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::UseLMKey",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate Lan Manager Key' flag, using the LM key when the LM response is sent"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendNTLM",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Activate the 'Negotiate NTLM key' flag, indicating the use of NTLM responses"
+    },
+    {
+      "type": "bool",
+      "name": "NTLM::SendSPN",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send an avp of type SPN in the ntlmv2 client blob, this allows authentication on Windows 7+/Server 2008 R2+ when SPN is required"
+    },
+    {
+      "type": "string",
+      "name": "USERNAME",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A specific username to authenticate as"
+    },
+    {
+      "type": "string",
+      "name": "PASSWORD",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A specific password to authenticate with"
+    },
+    {
+      "type": "bool",
+      "name": "TDSENCRYPTION",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use TLS/SSL for TDS data \"Force Encryption\""
+    },
+    {
+      "type": "bool",
+      "name": "USE_WINDOWS_AUTHENT",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Use windows authentification (requires DOMAIN option set)"
+    },
+    {
+      "type": "path",
+      "name": "HEX2BINARY",
+      "required": false,
+      "default": "/Users/alan/Documents/code/metasploit-framework/data/exploits/mssql/h2b",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The path to the hex2binary script on the disk"
+    },
+    {
+      "type": "string",
+      "name": "DOMAIN",
+      "required": true,
+      "default": "WORKSTATION",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The domain to use for windows authentication"
+    },
+    {
+      "type": "path",
+      "name": "USER_FILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File containing usernames, one per line"
+    },
+    {
+      "type": "path",
+      "name": "PASS_FILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File containing passwords, one per line"
+    },
+    {
+      "type": "path",
+      "name": "USERPASS_FILE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "File containing users and passwords separated by space, one pair per line"
+    },
+    {
+      "type": "integer",
+      "name": "BRUTEFORCE_SPEED",
+      "required": true,
+      "default": 5,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "How fast to bruteforce, from 0 to 5"
+    },
+    {
+      "type": "bool",
+      "name": "BLANK_PASSWORDS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Try blank passwords for all users"
+    },
+    {
+      "type": "bool",
+      "name": "USER_AS_PASS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Try the username as the password for all users"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_CREDS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Try each user/password couple stored in the current database"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_USERS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add all users in the current database to the list"
+    },
+    {
+      "type": "bool",
+      "name": "DB_ALL_PASS",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Add all passwords in the current database to the list"
+    },
+    {
+      "type": "bool",
+      "name": "STOP_ON_SUCCESS",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Stop guessing when a credential works for a host"
+    },
+    {
+      "type": "bool",
+      "name": "REMOVE_USER_FILE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Automatically delete the USER_FILE on module completion"
+    },
+    {
+      "type": "bool",
+      "name": "REMOVE_PASS_FILE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Automatically delete the PASS_FILE on module completion"
+    },
+    {
+      "type": "bool",
+      "name": "REMOVE_USERPASS_FILE",
+      "required": true,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Automatically delete the USERPASS_FILE on module completion"
+    },
+    {
+      "type": "integer",
+      "name": "TRANSITION_DELAY",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Amount of time (in minutes) to delay before transitioning to the next user in the array (or password when PASSWORD_SPRAY=true)"
+    },
+    {
+      "type": "integer",
+      "name": "MaxGuessesPerService",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum number of credentials to try per service instance. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "integer",
+      "name": "MaxMinutesPerService",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Maximum time in minutes to bruteforce the service instance. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "integer",
+      "name": "MaxGuessesPerUser",
+      "required": false,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": " Maximum guesses for a particular username for the service instance. Note that users are considered unique among different services, so a user at 10.1.1.1:22 is different from one at 10.2.2.2:22, and both will be tried up to the MaxGuessesPerUser limit. If set to zero or a non-number, this option will not be used."
+    },
+    {
+      "type": "integer",
+      "name": "THREADS",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of concurrent threads (max one per host)"
+    },
+    {
+      "type": "bool",
+      "name": "ShowProgress",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Display progress messages during a scan"
+    },
+    {
+      "type": "integer",
+      "name": "ShowProgressPercent",
+      "required": true,
+      "default": 10,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The interval in percent that progress should be shown"
+    }
+  ]
+}

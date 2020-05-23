@@ -1,0 +1,98 @@
+{
+  "name": "PHP Command Shell, Find Sock",
+  "fullname": "payload/php/shell_findsock",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "egypt <egypt@metasploit.com>"
+  ],
+  "description": "Spawn a shell on the established connection to\n        the webserver.  Unfortunately, this payload\n        can leave conspicuous evil-looking entries in the\n        apache error logs, so it is probably a good idea\n        to use a bind or reverse shell unless firewalls\n        prevent them from working.  The issue this\n        payload takes advantage of (CLOEXEC flag not set\n        on sockets) appears to have been patched on the\n        Ubuntu version of Apache and may not work on\n        other Debian-based distributions.  Only tested on\n        Apache but it might work on other web servers\n        that leak file descriptors to child processes.",
+  "references": [
+
+  ],
+  "platform": "PHP",
+  "arch": "php",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/php/shell_findsock.rb",
+  "ref_name": "php/shell_findsock",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}

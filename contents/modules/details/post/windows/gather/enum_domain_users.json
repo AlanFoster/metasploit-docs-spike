@@ -1,0 +1,88 @@
+{
+  "name": "Windows Gather Enumerate Active Domain Users",
+  "fullname": "post/windows/gather/enum_domain_users",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Etienne Stalmans <etienne@sensepost.com>",
+    "Ben Campbell <eat_meatballs@hotmail.co.uk>"
+  ],
+  "description": "This module will enumerate computers included in the primary Domain and attempt\n          to list all locations the targeted user has sessions on. If the HOST option is specified\n          the module will target only that host. If the HOST is specified and USER is set to nil, all users\n          logged into that host will be returned.'",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/gather/enum_domain_users.rb",
+  "ref_name": "windows/gather/enum_domain_users",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "string",
+      "name": "USER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Target User for NetSessionEnum"
+    },
+    {
+      "type": "string",
+      "name": "HOST",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Target a specific host"
+    }
+  ]
+}

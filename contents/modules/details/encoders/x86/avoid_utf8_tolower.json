@@ -1,0 +1,54 @@
+{
+  "name": "Avoid UTF8/tolower",
+  "fullname": "encoder/x86/avoid_utf8_tolower",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "skape <mmiller@hick.org>"
+  ],
+  "description": "UTF8 Safe, tolower Safe Encoder",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/x86/avoid_utf8_tolower.rb",
+  "ref_name": "x86/avoid_utf8_tolower",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

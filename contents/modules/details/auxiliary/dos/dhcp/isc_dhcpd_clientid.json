@@ -1,0 +1,127 @@
+{
+  "name": "ISC DHCP Zero Length ClientID Denial of Service Module",
+  "fullname": "auxiliary/dos/dhcp/isc_dhcpd_clientid",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "sid",
+    "theLightCosine <theLightCosine@metasploit.com>"
+  ],
+  "description": "This module performs a Denial of Service Attack against the ISC DHCP server,\n        versions 4.1 before 4.1.1-P1 and 4.0 before 4.0.2-P1. It sends out a DHCP Request\n        message with a 0-length client_id option for an IP address on the appropriate range\n        for the dhcp server. When ISC DHCP Server tries to hash this value it exits\n        abnormally.",
+  "references": [
+    "https://cvedetails.com/cve/CVE-2010-2156/",
+    "OSVDB (65246)",
+    "https://www.exploit-db.com/exploits/14185"
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/dos/dhcp/isc_dhcpd_clientid.rb",
+  "ref_name": "dos/dhcp/isc_dhcpd_clientid",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "addressrange",
+      "name": "RHOSTS",
+      "required": true,
+      "default": null,
+      "aliases": [
+        "RHOST"
+      ],
+      "advanced": false,
+      "description": "The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'"
+    },
+    {
+      "type": "integer",
+      "name": "SECRET",
+      "required": true,
+      "default": 1297303073,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A 32-bit cookie for probe requests."
+    },
+    {
+      "type": "address",
+      "name": "GATEWAY_PROBE_HOST",
+      "required": true,
+      "default": "8.8.8.8",
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Send a TTL=1 random UDP datagram to this host to discover the default gateway's MAC"
+    },
+    {
+      "type": "port",
+      "name": "GATEWAY_PROBE_PORT",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "The port on GATEWAY_PROBE_HOST to send a random UDP probe to (random if 0 or unset)"
+    },
+    {
+      "type": "address",
+      "name": "RIP",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "A valid IP to request from the server"
+    }
+  ]
+}

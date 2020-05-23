@@ -1,0 +1,55 @@
+{
+  "name": "Avoid underscore/tolower",
+  "fullname": "encoder/x86/avoid_underscore_tolower",
+  "aliases": [
+
+  ],
+  "rank": 0,
+  "disclosure_date": null,
+  "type": "encoder",
+  "author": [
+    "skape <mmiller@hick.org>",
+    "juan vazquez <juan.vazquez@metasploit.com>"
+  ],
+  "description": "Underscore/tolower Safe Encoder used to exploit CVE-2012-2329. It is a\n        modified version of the 'Avoid UTF8/tolower' encoder by skape. Please check\n        the documentation of the skape encoder before using it. As the original,\n        this encoder expects ECX pointing to the start of the encoded payload. Also\n        BufferOffset must be provided if needed.\n\n        The changes introduced are (1) avoid the use of the 0x5f byte (underscore) in\n        because it is a badchar in the CVE-2012-2329 case and (2) optimize the\n        transformation block, having into account more relaxed conditions about bad\n        characters greater than 0x80.",
+  "references": [
+
+  ],
+  "platform": "All",
+  "arch": "x86",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/encoders/x86/avoid_underscore_tolower.rb",
+  "ref_name": "x86/avoid_underscore_tolower",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "name": "Pcap Replay Utility",
+  "fullname": "auxiliary/spoof/replay/pcap_replay",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "auxiliary",
+  "author": [
+    "amaloteaux <alex_maloteaux@metasploit.com>"
+  ],
+  "description": "Replay a pcap capture file",
+  "references": [
+
+  ],
+  "platform": "",
+  "arch": "",
+  "autofilter_ports": [
+
+  ],
+  "autofilter_services": [
+
+  ],
+  "targets": null,
+  "path": "/modules/auxiliary/spoof/replay/pcap_replay.rb",
+  "ref_name": "spoof/replay/pcap_replay",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "string",
+      "name": "INTERFACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The name of the interface"
+    },
+    {
+      "type": "path",
+      "name": "FILENAME",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The local pcap file to process"
+    },
+    {
+      "type": "string",
+      "name": "FILE_FILTER",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The filter string to apply on the file"
+    },
+    {
+      "type": "integer",
+      "name": "LOOP",
+      "required": true,
+      "default": 1,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The number of times to loop through the file"
+    },
+    {
+      "type": "integer",
+      "name": "DELAY",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "the delay in millisecond between each loop"
+    },
+    {
+      "type": "integer",
+      "name": "PKT_DELAY",
+      "required": true,
+      "default": 0,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "the delay in millisecond between each packet"
+    }
+  ]
+}

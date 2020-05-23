@@ -1,0 +1,131 @@
+{
+  "name": "Windows Manage Set Port Forwarding With PortProxy",
+  "fullname": "post/windows/manage/portproxy",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "post",
+  "author": [
+    "Borja Merino <bmerinofe@gmail.com>"
+  ],
+  "description": "This module uses the PortProxy interface from netsh to set up\n        port forwarding persistently (even after reboot). PortProxy\n        supports TCP IPv4 and IPv6 connections.",
+  "references": [
+
+  ],
+  "platform": "Windows",
+  "arch": "",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/post/windows/manage/portproxy.rb",
+  "ref_name": "windows/manage/portproxy",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "integer",
+      "name": "SESSION",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The session to run this module on."
+    },
+    {
+      "type": "address",
+      "name": "LOCAL_ADDRESS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "IPv4/IPv6 address to which to listen."
+    },
+    {
+      "type": "address",
+      "name": "CONNECT_ADDRESS",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "IPv4/IPv6 address to which to connect."
+    },
+    {
+      "type": "port",
+      "name": "CONNECT_PORT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Port number to which to connect."
+    },
+    {
+      "type": "port",
+      "name": "LOCAL_PORT",
+      "required": true,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Port number to which to listen."
+    },
+    {
+      "type": "bool",
+      "name": "IPV6_XP",
+      "required": true,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Install IPv6 on Windows XP (needed for v4tov4)."
+    },
+    {
+      "type": "enum",
+      "name": "TYPE",
+      "required": true,
+      "default": "v4tov4",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "Type of forwarding (Accepted: v4tov4, v6tov6, v6tov4, v4tov6)"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "name": "BSD x64 Command Shell, Bind TCP Inline (IPv6)",
+  "fullname": "payload/bsd/x64/shell_bind_ipv6_tcp",
+  "aliases": [
+
+  ],
+  "rank": 300,
+  "disclosure_date": null,
+  "type": "payload",
+  "author": [
+    "Balazs Bucsay @xoreipeip <balazs.bucsay[-at-]rycon[-dot-]hu>"
+  ],
+  "description": "Listen for a connection and spawn a command shell over IPv6",
+  "references": [
+
+  ],
+  "platform": "BSD",
+  "arch": "x64",
+  "autofilter_ports": null,
+  "autofilter_services": null,
+  "targets": null,
+  "path": "/modules/payloads/singles/bsd/x64/shell_bind_ipv6_tcp.rb",
+  "ref_name": "bsd/x64/shell_bind_ipv6_tcp",
+  "check": false,
+  "post_auth": false,
+  "default_credential": false,
+  "notes": {
+  },
+  "needs_cleanup": null,
+  "options": [
+    {
+      "type": "string",
+      "name": "WORKSPACE",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Specify the workspace for this module"
+    },
+    {
+      "type": "bool",
+      "name": "VERBOSE",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Enable detailed status messages"
+    },
+    {
+      "type": "port",
+      "name": "LPORT",
+      "required": true,
+      "default": 4444,
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The listen port"
+    },
+    {
+      "type": "address",
+      "name": "RHOST",
+      "required": false,
+      "default": "",
+      "aliases": [
+
+      ],
+      "advanced": false,
+      "description": "The target address"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetresuid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setresuid(0, 0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetreuid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setreuid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetuid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setuid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetresgid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setresgid(0, 0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetregid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setregid(0, 0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "PrependSetgid",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Prepend a stub that executes the setgid(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "AppendExit",
+      "required": false,
+      "default": false,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Append a stub that executes the exit(0) system call"
+    },
+    {
+      "type": "bool",
+      "name": "CreateSession",
+      "required": false,
+      "default": true,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "Create a new session for every successful login"
+    },
+    {
+      "type": "string",
+      "name": "InitialAutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "An initial script to run on session creation (before AutoRunScript)"
+    },
+    {
+      "type": "string",
+      "name": "AutoRunScript",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A script to run automatically on session creation."
+    },
+    {
+      "type": "string",
+      "name": "CommandShellCleanupCommand",
+      "required": false,
+      "default": null,
+      "aliases": [
+
+      ],
+      "advanced": true,
+      "description": "A command to run before the session is closed"
+    }
+  ]
+}
