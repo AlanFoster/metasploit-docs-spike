@@ -21,31 +21,31 @@ def record_time
   [result, elapsed]
 end
 
-def parallel_each(enumerable)
-  queue = Queue.new
-  enumerable.each { |enum| queue << enum }
+# def parallel_each(enumerable)
+#   queue = Queue.new
+#   enumerable.each { |enum| queue << enum }
+#
+#   threads = 16.times.map do
+#     Thread.new do
+#       until queue.empty?
+#         element = queue.pop(non_block: true) rescue StandardError
+#         next if element.nil?
+#
+#         yield element
+#       end
+#     end
+#   end
+#
+#   threads.each(&:join)
+#   queue.close
+# end
+#
+# def with_json_extension(path)
+#   File.join(File.dirname(path), "#{File.basename(path, ".*")}.json")
+# end
 
-  threads = 16.times.map do
-    Thread.new do
-      until queue.empty?
-        element = queue.pop(non_block: true) rescue StandardError
-        next if element.nil?
-
-        yield element
-      end
-    end
-  end
-
-  threads.each(&:join)
-  queue.close
-end
-
-def with_json_extension(path)
-  File.join(File.dirname(path), "#{File.basename(path, ".*")}.json")
-end
-
-output_folder = File.join(Msf::Config.install_root, 'tmp', 'module_metadata')
-::FileUtils.mkdir_p(output_folder)
+output_path = File.join(Msf::Config.install_root, 'tmp', 'module_metadata.json')
+File.delete(output_path) if File.exist?(output_path)
 
 puts 'Starting module extraction'
 index = 0
@@ -54,7 +54,7 @@ _, total_time = record_time do
   module_paths, module_paths_timing = record_time { framework.modules.to_a }
   puts "Extracted module paths in #{module_paths_timing}"
 
-  parallel_each(module_paths) do |module_path, _module_class|
+  modules_metadata = module_paths.map do |module_path, _module_class|
     index += 1
     puts "#{index} - #{module_path}"
     mod, elapsed = record_time { framework.modules.create(module_path) }
@@ -62,59 +62,55 @@ _, total_time = record_time do
 
     options = mod.options.values.map do |option|
       {
-          type: option.type,
-          name: option.name,
-          required: option.required,
-          default: option.default,
-          aliases: option.aliases,
-          advanced: option.advanced,
-          description: option.desc
+        type: option.type,
+        name: option.name,
+        required: option.required,
+        default: option.default.to_s,
+        aliases: option.aliases,
+        advanced: option.advanced,
+        description: option.desc
       }
     end
 
     metadata = {
-        name: mod.name.force_encoding("UTF-8"),
-        fullname: mod.realname.force_encoding("UTF-8"),
-        aliases: mod.aliases,
-        rank: mod.rank,
-        disclosure_date: mod.disclosure_date.nil? ? nil : mod.disclosure_date.to_s,
-        type: mod.type,
-        author: mod.author.map { |x| x.to_s.force_encoding("UTF-8") },
-        description: mod.description.to_s.strip.force_encoding("UTF-8"),
-        references: mod.references,
-        platform: mod.platform_to_s,
-        arch: mod.arch_to_s,
-        autofilter_ports: (
-        mod.respond_to?(:autofilter_ports) ? mod.autofilter_ports : nil
+      name: mod.name.force_encoding("UTF-8"),
+      fullname: mod.realname.force_encoding("UTF-8"),
+      aliases: mod.aliases,
+      rank: mod.rank,
+      disclosure_date: mod.disclosure_date.nil? ? nil : mod.disclosure_date.to_s,
+      type: mod.type,
+      author: mod.author.map { |x| x.to_s.force_encoding("UTF-8") },
+      description: mod.description.to_s.strip.force_encoding("UTF-8"),
+      references: mod.references,
+      platform: mod.platform_to_s,
+      arch: mod.arch_to_s,
+      autofilter_ports: (
+          mod.respond_to?(:autofilter_ports) ? mod.autofilter_ports : nil
         ),
-        autofilter_services: (
-        mod.respond_to?(:autofilter_services) ? mod.autofilter_services : nil
+      autofilter_services: (
+          mod.respond_to?(:autofilter_services) ? mod.autofilter_services : nil
         ),
-        targets: (
-        (mod.respond_to?(:targets) && mod.targets) ? mod.targets.map(&:name) : nil
+      targets: (
+          (mod.respond_to?(:targets) && mod.targets) ? mod.targets.map(&:name) : nil
         ),
-        path: mod.file_path.sub(/^#{Msf::Config.install_root}/, ''),
-        ref_name: mod.class.refname,
-        check: mod.has_check?,
-        post_auth: mod.post_auth?,
-        default_credential: mod.default_cred?,
-        notes: mod.notes,
-        needs_cleanup: (
-        mod.respond_to?(:needs_cleanup?) ? mod.needs_cleanup? : nil
+      path: mod.file_path.sub(/^#{Msf::Config.install_root}/, ''),
+      ref_name: mod.class.refname,
+      check: mod.has_check?,
+      post_auth: mod.post_auth?,
+      default_credential: mod.default_cred?,
+      notes: mod.notes,
+      needs_cleanup: (
+          mod.respond_to?(:needs_cleanup?) ? mod.needs_cleanup? : nil
         ),
-        options: options
+      options: options
     }
+  end
 
-    module_file_path = with_json_extension(mod.file_path.sub(/^#{Msf::Config.install_root}/, ''))
-    target_path = File.join(output_folder, module_file_path)
-    ::FileUtils.mkdir_p(File.dirname(target_path))
-
-    File.open(target_path, mode: 'w') do |output_file|
-      output_file.write(JSON.pretty_generate(metadata))
-    end
+  File.open(output_path, mode: 'w') do |output_file|
+    output_file.write(JSON.pretty_generate(modules_metadata))
   end
 end
 
 puts "The total time was: #{total_time}"
-puts "Results: #{output_folder}"
+puts "Results: #{output_path}"
 </ruby>
