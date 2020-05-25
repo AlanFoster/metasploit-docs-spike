@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{vj21:function(e,n,t){"use strict";t.r(n);var o=t("q1tI"),a=t.n(o),u=t("NsgW");n.default=function(){return a.a.createElement(u.RootLayout,null,"Help Placeholder")}}}]);
+//# sourceMappingURL=component---src-pages-help-tsx-83cdc49b01dd23e95f4a.js.map

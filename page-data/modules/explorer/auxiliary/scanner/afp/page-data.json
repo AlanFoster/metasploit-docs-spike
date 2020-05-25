@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-module-explorer-template-tsx","path":"/modules/explorer/auxiliary/scanner/afp","result":{"pageContext":{"children":[{"segment":"afp_login","slug":"modules/details/auxiliary/scanner/afp/afp_login","type":"file"},{"segment":"afp_server_info","slug":"modules/details/auxiliary/scanner/afp/afp_server_info","type":"file"}]}}}

@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-module-explorer-template-tsx","path":"/modules/explorer/auxiliary/scanner/dect","result":{"pageContext":{"children":[{"segment":"call_scanner","slug":"modules/details/auxiliary/scanner/dect/call_scanner","type":"file"},{"segment":"station_scanner","slug":"modules/details/auxiliary/scanner/dect/station_scanner","type":"file"}]}}}

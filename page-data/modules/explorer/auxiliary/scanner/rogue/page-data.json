@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-module-explorer-template-tsx","path":"/modules/explorer/auxiliary/scanner/rogue","result":{"pageContext":{"children":[{"segment":"rogue_recv","slug":"modules/details/auxiliary/scanner/rogue/rogue_recv","type":"file"},{"segment":"rogue_send","slug":"modules/details/auxiliary/scanner/rogue/rogue_send","type":"file"}]}}}
