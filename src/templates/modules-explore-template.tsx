@@ -38,9 +38,12 @@ const { TabPane } = Tabs;
 const NavigationBreadcrumb = ({ path }) => {
   return (
       <Breadcrumb style={{ margin: '16px' }}>
-        <Breadcrumb.Item href="/modules/explore">
-          <HomeOutlined />
-          <span>Modules</span>
+        <Breadcrumb.Item>
+          <Link to="/modules/explore">
+            <HomeOutlined />
+            {' '}
+            <span>Modules</span>
+          </Link>
         </Breadcrumb.Item>
         {path
             .split('/')
@@ -68,6 +71,7 @@ function ModuleExplorer({ pageContext }: any) {
       title: 'Name',
       dataIndex: 'segment',
       key: 'segment',
+      width: '50%',
       render: (segment, item) => (
         <Link to={item.slug}>
           {item.type === 'folder' ? <FolderFilled /> : <FileOutlined />}{' '}
@@ -76,9 +80,10 @@ function ModuleExplorer({ pageContext }: any) {
       ),
     },
     {
-      title: 'Count',
-      dataIndex: 'count',
-      key: 'count',
+      title: 'Modules',
+      dataIndex: 'moduleCount',
+      key: 'moduleCount',
+      width: '50%',
       render: (count) => <Text>{count}</Text>,
     },
   ];

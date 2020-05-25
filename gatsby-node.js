@@ -162,6 +162,17 @@ exports.createPages = ({ actions, graphql }) => {
         return hierarchy;
       };
 
+      const countChildModules = function(parent) {
+        if (parent.type === 'file') return 1;
+
+        let childModuleCount = 0;
+        Object.values(parent.children).forEach((child) => {
+          childModuleCount += countChildModules(child);
+        });
+
+        return childModuleCount;
+      };
+
       const moduleHierarchy = getModuleHierarchy();
       const createPagesForModuleHierarchy = function (parent) {
         if (parent.type === 'folder') {
@@ -181,8 +192,8 @@ exports.createPages = ({ actions, graphql }) => {
                       ? `modules/explore/${child.fullPath}`
                       : `modules/details/${child.fullPath}`,
                   type: child.type,
-                  count: child.children
-                    ? Object.keys(child.children).length
+                  moduleCount: child.children
+                    ? countChildModules(child)
                     : undefined,
                 };
               }),

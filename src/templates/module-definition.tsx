@@ -90,9 +90,12 @@ const ModuleContent = ({ children }: any) => {
 const ModuleBreadcrumb = ({ module }) => {
   return (
     <Breadcrumb style={{ margin: '16px' }}>
-      <Breadcrumb.Item href="/modules/explore">
-        <HomeOutlined />
-        <span>Modules</span>
+      <Breadcrumb.Item>
+        <Link to="/modules/explore">
+          <HomeOutlined />
+          {' '}
+          <span>Modules</span>
+        </Link>
       </Breadcrumb.Item>
       {module.fullname
         .split('/')
