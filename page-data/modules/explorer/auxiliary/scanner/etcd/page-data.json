@@ -1,1 +1,0 @@
-{"componentChunkName":"component---src-templates-module-explorer-template-tsx","path":"/modules/explorer/auxiliary/scanner/etcd","result":{"pageContext":{"children":[{"segment":"open_key_scanner","slug":"modules/details/auxiliary/scanner/etcd/open_key_scanner","type":"file"},{"segment":"version","slug":"modules/details/auxiliary/scanner/etcd/version","type":"file"}]}}}

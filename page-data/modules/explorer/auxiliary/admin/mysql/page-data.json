@@ -1,1 +1,0 @@
-{"componentChunkName":"component---src-templates-module-explorer-template-tsx","path":"/modules/explorer/auxiliary/admin/mysql","result":{"pageContext":{"children":[{"segment":"mysql_enum","slug":"modules/details/auxiliary/admin/mysql/mysql_enum","type":"file"},{"segment":"mysql_sql","slug":"modules/details/auxiliary/admin/mysql/mysql_sql","type":"file"}]}}}
