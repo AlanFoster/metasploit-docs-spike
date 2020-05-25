@@ -90,14 +90,20 @@ const ModuleContent = ({ children }: any) => {
 const ModuleBreadcrumb = ({ module }) => {
   return (
     <Breadcrumb style={{ margin: '16px' }}>
-      {(module.fields.detailsSlug || '')
+      <Breadcrumb.Item href="/modules/explore">
+        <HomeOutlined />
+        <span>Modules</span>
+      </Breadcrumb.Item>
+      {module.fullname
         .split('/')
         .map((segment, index, array) => {
-          const path = array.slice(0, index + 1).join('/');
+          const currentPath = array.slice(0, index + 1).join('/');
+          const isFolderSegment = index !== array.length - 1;
           return (
             <Breadcrumb.Item key={index}>
-              <Link to={path}>
-                {index === 0 && <HomeOutlined />}
+              <Link to={
+                isFolderSegment ? `/modules/explore/${currentPath}` : `/modules/details/${currentPath}`
+              }>
                 {segment}
               </Link>
             </Breadcrumb.Item>

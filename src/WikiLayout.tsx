@@ -73,7 +73,7 @@ export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="modules">
-                  <Link to="/modules">
+                  <Link to="/modules/explore">
                     <div>Modules</div>
                   </Link>
                 </Menu.Item>

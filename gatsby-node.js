@@ -69,7 +69,6 @@ exports.createPages = ({ actions, graphql }) => {
           context: { id: node.id }, // additional data can be passed via context
         });
       });
-
       resolve();
     });
   });
@@ -80,8 +79,6 @@ exports.createPages = ({ actions, graphql }) => {
         allModuleMetadataJson {
           nodes {
             id
-            fullname
-
             fields {
               detailsSlug
               documentationSlug
@@ -107,14 +104,105 @@ exports.createPages = ({ actions, graphql }) => {
           context: { id: node.id },
         });
       });
-
       resolve();
     });
-
-    resolve();
   });
 
-  return Promise.all([createWikiPages, createModulePages]);
+  const createModuleExplorerPages = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allModuleMetadataJson {
+          nodes {
+            id
+            fullname
+          }
+        }
+      }
+    `).then((result) => {
+      if (result.errors) {
+        return reject(result.errors);
+      }
+
+      const getModuleHierarchy = function () {
+        const hierarchy = {
+          fullPath: '',
+          type: 'folder',
+          children: {},
+        };
+
+        result.data.allModuleMetadataJson.nodes.forEach((node) => {
+          const fullname = node.fullname;
+          const nameSegments = fullname.split('/');
+          let parentsChildren = hierarchy.children;
+          nameSegments.forEach((segment, i) => {
+            const currentPath = nameSegments.slice(0, i + 1).join('/');
+            const isFolderSegment = i !== nameSegments.length - 1;
+            if (isFolderSegment) {
+              if (!parentsChildren[segment]) {
+                parentsChildren[segment] = {
+                  type: 'folder',
+                  fullPath: currentPath,
+                  children: {},
+                };
+              }
+              parentsChildren = parentsChildren[segment].children;
+            } else {
+              if (parentsChildren[segment]) {
+                throw new Error(`Found duplicate file when merging ${path}`);
+              }
+
+              parentsChildren[segment] = {
+                type: 'file',
+                fullPath: currentPath,
+              };
+            }
+          });
+        });
+
+        return hierarchy;
+      };
+
+      const moduleHierarchy = getModuleHierarchy();
+      const createPagesForModuleHierarchy = function (parent) {
+        if (parent.type === 'folder') {
+          createPage({
+            path: `modules/explore/${parent.fullPath}`,
+            component: path.resolve(
+              `src/templates/modules-explore-template.tsx`
+            ),
+            context: {
+              fullPath: parent.fullPath,
+              children: Object.keys(parent.children).map((segment) => {
+                const child = parent.children[segment];
+                return {
+                  segment: segment,
+                  slug:
+                    child.type === 'folder'
+                      ? `modules/explore/${child.fullPath}`
+                      : `modules/details/${child.fullPath}`,
+                  type: child.type,
+                  count: child.children
+                    ? Object.keys(child.children).length
+                    : undefined,
+                };
+              }),
+            },
+          });
+
+          Object.values(parent.children).forEach(createPagesForModuleHierarchy);
+        }
+      };
+
+      createPagesForModuleHierarchy(moduleHierarchy);
+      resolve();
+    });
+  });
+
+  return Promise.all([
+    createWikiPages,
+    createModulePages,
+    createModuleExplorerPages,
+  ]);
 };
 
 /**
