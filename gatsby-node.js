@@ -23,6 +23,18 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: replacePath(slug),
     });
+  } else if (node.internal.type === `ModuleMetadataJson`) {
+    createNodeField({
+      node,
+      name: `detailsSlug`,
+      value: `/modules/details/${node.fullname}`,
+    });
+
+    createNodeField({
+      node,
+      name: `documentationSlug`,
+      value: `/modules/documentation/${node.fullname}`,
+    });
   }
 };
 
@@ -31,11 +43,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
  */
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
-  return graphql(`
-    {
-      allMarkdownRemark {
-        edges {
-          node {
+  const createWikiPages = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allMarkdownRemark(
+          filter: { fileAbsolutePath: { regex: "/contents/wiki/" } }
+        ) {
+          nodes {
             id
             fields {
               slug
@@ -43,23 +57,64 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-    }
-  `).then((result) => {
-    if (result.errors) {
-      return Promise.reject(result.errors);
-    }
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      const isWiki = node.fields.slug.indexOf("/wiki") === 0;
-      const template = isWiki
-          ? path.resolve(`src/templates/wiki-template.tsx`)
-          : path.resolve(`src/templates/module-documentation-template.tsx`);
-      createPage({
-        path: replacePath(node.fields.slug),
-        component: template,
-        context: { id: node.id }, // additional data can be passed via context
+    `).then((result) => {
+      if (result.errors) {
+        return reject(result.errors);
+      }
+      const template = path.resolve(`src/templates/wiki-template.tsx`);
+      result.data.allMarkdownRemark.nodes.forEach((node) => {
+        createPage({
+          path: replacePath(node.fields.slug),
+          component: template,
+          context: { id: node.id }, // additional data can be passed via context
+        });
       });
+
+      resolve();
     });
   });
+
+  const createModulePages = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allModuleMetadataJson {
+          nodes {
+            id
+            fullname
+
+            fields {
+              detailsSlug
+              documentationSlug
+            }
+          }
+        }
+      }
+    `).then((result) => {
+      if (result.errors) {
+        return reject(result.errors);
+      }
+      result.data.allModuleMetadataJson.nodes.forEach((node) => {
+        createPage({
+          path: node.fields.detailsSlug,
+          component: path.resolve(`src/templates/module-details-template.tsx`),
+          context: { id: node.id },
+        });
+        createPage({
+          path: node.fields.documentationSlug,
+          component: path.resolve(
+            `src/templates/module-documentation-template.tsx`
+          ),
+          context: { id: node.id },
+        });
+      });
+
+      resolve();
+    });
+
+    resolve();
+  });
+
+  return Promise.all([createWikiPages, createModulePages]);
 };
 
 /**
@@ -80,6 +135,52 @@ exports.createResolvers = ({ createResolvers }) => {
           const relativeWikiPath = path.relative(contentRoot, fileAbsolutePath);
 
           return relativeWikiPath.split(path.sep);
+        },
+      },
+      moduleMetadataJson: {
+        type: 'ModuleMetadataJson',
+        resolve(source, args, context, info) {
+          const documentationFolder = path.resolve(
+            './contents/modules/documentation'
+          );
+          if (source.fileAbsolutePath.indexOf(documentationFolder) !== 0) {
+            return null;
+          }
+
+          const requiredModule = path
+            .relative(documentationFolder, source.fileAbsolutePath)
+            .replace(/.md$/, '');
+          return context.nodeModel.runQuery({
+            query: {
+              filter: {
+                fullname: { eq: requiredModule },
+              },
+            },
+            type: 'ModuleMetadataJson',
+            firstOnly: true,
+          });
+        },
+      },
+    },
+    ModuleMetadataJson: {
+      documentation: {
+        type: 'MarkdownRemark',
+        resolve(source, args, context, info) {
+          // Example value: 'exploit/windows/smb/ms17_010_eternalblue'
+          const moduleName = source.fullname;
+          const expectedDocumentationPath = path.join(
+            path.resolve('./contents/modules/documentation'),
+            `${moduleName}.md`
+          );
+          return context.nodeModel.runQuery({
+            query: {
+              filter: {
+                fileAbsolutePath: { eq: expectedDocumentationPath },
+              },
+            },
+            type: 'MarkdownRemark',
+            firstOnly: true,
+          });
         },
       },
     },

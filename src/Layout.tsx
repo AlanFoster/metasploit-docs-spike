@@ -90,9 +90,9 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
                 <Content
                   style={{
                     padding: 24,
-                    margin: '24px 0',
-                    minHeight: 'inherit',
-                    backgroundColor: '#fff',
+                    // margin: '24px 0',
+                    // minHeight: 'inherit',
+                    // backgroundColor: '#fff',
                   }}
                 >
                   {children}
