@@ -8,6 +8,11 @@ body {
     width: 100%;
 }
 
+.header-search {
+    /* Breaks on mobile screens etc, confirm a better solution */
+    float: right;
+}
+
 .content-wrapper {
     /* Compensating for the header floating */
     margin-top: 64px;

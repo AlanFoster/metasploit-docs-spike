@@ -1,11 +1,12 @@
 import React from 'react';
 import { graphql, StaticQuery, Link } from 'gatsby';
 import { Layout, Menu } from 'antd';
-import { pathPrefix } from '../../gatsby-config';
 import 'antd/lib/menu/style/css';
+import './sidebar.css';
 
 const { Sider, Content, Header } = Layout;
 const { SubMenu } = Menu;
+const pathPrefix = process.env.GATSBY_PATH_PREFIX || '';
 
 interface LinkItem {
   id: string;
@@ -31,7 +32,11 @@ function isLinkItem(item: MenuItem): item is LinkItem {
 function render(item: MenuItem, id: string) {
   if (isLinkItem(item)) {
     return (
-      <Menu.Item key={item.link}>
+      <Menu.Item
+        key={item.link}
+        className="sidebar-menu-item"
+        style={{ height: 'auto' }}
+      >
         <Link to={item.link}>
           <div>{item.name}</div>
         </Link>

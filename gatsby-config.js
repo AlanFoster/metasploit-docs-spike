@@ -1,3 +1,137 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const wikiQueries = `{
+  allMarkdownRemark(
+    filter: {
+      fileAbsolutePath: {
+        regex: "/contents/wiki/"
+      }
+    }
+  ) {
+    nodes {
+      id
+      frontmatter {
+        title
+        date
+      }
+      fields {
+        slug
+      }
+      rawMarkdownBody
+    }
+  }
+}`;
+
+const moduleDetailQueries = `
+{
+  allModuleMetadataJson {
+    nodes {
+      id
+      fields {
+        detailsSlug
+      }
+      rank
+      fullname
+      name
+      description
+    }
+  }
+}`;
+
+// The free algolia version has limits in place:
+//    AlgoliaSearchError: Record at the position 89 objectID=... is too big size=25736 bytes.
+//    Contact us if you need an extended quote
+// For now we slice each line separately for now, take A-Z lines only, and enable de-duping of objects in Algolia.
+// Instead Algolia's docsearch should be investigated and used: https://docsearch.algolia.com/
+const splitSearchableStringIntoChunks = (string) => {
+  const chunks = string
+    .split('\n')
+    .flatMap((line) => line.split('.'))
+    .map((line) => line.trim())
+    .filter(
+      (line) =>
+        /^[a-zA-Z0-9,' ]+$/.test(line) &&
+        line.split(' ').length > 1 &&
+        line.length > 5 &&
+        line.length < 100
+    );
+  return chunks;
+};
+
+const algoliaQueries = [
+  {
+    query: wikiQueries,
+    indexName: 'Wiki',
+    transformer: ({ data }) =>
+      data.allMarkdownRemark.nodes.flatMap((node) => {
+        const bodyChunks = splitSearchableStringIntoChunks(
+          node.rawMarkdownBody
+        ).map((line) => {
+          return {
+            // https://github.com/algolia/gatsby-plugin-algolia/issues/74
+            objectID: Math.random(),
+            ...node.frontmatter,
+            ...node.fields,
+            content: line,
+          };
+        });
+        const metadataOnly = {
+          // https://github.com/algolia/gatsby-plugin-algolia/issues/74
+          objectID: Math.random(),
+          ...node.frontmatter,
+          ...node.fields,
+          content: '',
+        };
+
+        const result = bodyChunks.concat(metadataOnly);
+        return result;
+      }),
+    settings: {
+      attributeForDistinct: 'slug',
+      distinct: true,
+    },
+  },
+  {
+    query: moduleDetailQueries,
+    indexName: 'Modules',
+    transformer: ({ data }) =>
+      data.allModuleMetadataJson.nodes.flatMap((node) => {
+        const descriptionChunks = splitSearchableStringIntoChunks(
+          node.description
+        ).map((line) => {
+          return {
+            // https://github.com/algolia/gatsby-plugin-algolia/issues/74
+            objectID: Math.random(),
+            slug: node.fields.detailsSlug,
+            fullname: node.fullname,
+            name: node.name,
+            rank: node.rank,
+            content: line,
+          };
+        });
+
+        const metadataOnly = {
+          // https://github.com/algolia/gatsby-plugin-algolia/issues/74
+          objectID: Math.random(),
+          slug: node.fields.detailsSlug,
+          fullname: node.fullname,
+          name: node.name,
+          rank: node.rank,
+          content: '',
+        };
+
+        const result = descriptionChunks.concat(metadataOnly);
+        return result;
+      }),
+    settings: {
+      attributeForDistinct: 'slug',
+      distinct: true,
+    },
+  },
+];
+
 module.exports = {
   siteMetadata: {
     title: 'Metasploit Documentation',
@@ -72,11 +206,20 @@ module.exports = {
       },
     },
     'gatsby-plugin-remove-trailing-slashes',
+    // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries: algoliaQueries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
   /// this must match the path your webpage is displayed from
-  pathPrefix:
-    process.env.NODE_ENV === 'development' ? '' : '/metasploit-docs-spike',
+  pathPrefix: process.env.GATSBY_PATH_PREFIX,
 };

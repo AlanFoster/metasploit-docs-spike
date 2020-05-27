@@ -1,0 +1,9 @@
+.sidebar-menu-item {
+    white-space: normal !important;
+    overflow: initial;
+    height: auto;
+}
+
+.sidebar-menu-item:hover {
+    background: rgba(230,247,255, 0.5);
+}

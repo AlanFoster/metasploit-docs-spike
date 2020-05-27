@@ -162,7 +162,7 @@ exports.createPages = ({ actions, graphql }) => {
         return hierarchy;
       };
 
-      const countChildModules = function(parent) {
+      const countChildModules = function (parent) {
         if (parent.type === 'file') return 1;
 
         let childModuleCount = 0;

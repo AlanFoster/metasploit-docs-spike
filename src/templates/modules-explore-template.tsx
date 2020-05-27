@@ -37,27 +37,21 @@ const { TabPane } = Tabs;
 
 const NavigationBreadcrumb = ({ path }) => {
   return (
-      <Breadcrumb style={{ margin: '16px' }}>
-        <Breadcrumb.Item>
-          <Link to="/modules/explore">
-            <HomeOutlined />
-            {' '}
-            <span>Modules</span>
-          </Link>
-        </Breadcrumb.Item>
-        {path
-            .split('/')
-            .map((segment, index, array) => {
-              const currentPath = array.slice(0, index + 1).join('/');
-              return (
-                  <Breadcrumb.Item key={index}>
-                    <Link to={`/modules/explore/${currentPath}`}>
-                      {segment}
-                    </Link>
-                  </Breadcrumb.Item>
-              );
-            })}
-      </Breadcrumb>
+    <Breadcrumb style={{ margin: '16px' }}>
+      <Breadcrumb.Item>
+        <Link to="/modules/explore">
+          <HomeOutlined /> <span>Modules</span>
+        </Link>
+      </Breadcrumb.Item>
+      {path.split('/').map((segment, index, array) => {
+        const currentPath = array.slice(0, index + 1).join('/');
+        return (
+          <Breadcrumb.Item key={index}>
+            <Link to={`/modules/explore/${currentPath}`}>{segment}</Link>
+          </Breadcrumb.Item>
+        );
+      })}
+    </Breadcrumb>
   );
 };
 

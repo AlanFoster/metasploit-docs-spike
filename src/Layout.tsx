@@ -1,13 +1,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql, Link } from 'gatsby';
-import { pathPrefix } from '../gatsby-config';
 import { AutoComplete, Input, Layout, Menu } from 'antd';
 import { Logo } from './Logo';
 import './Layout.css';
 import { Sidebar } from './sidebar';
+import { Search } from './Search';
 
 const { Sider, Content, Header } = Layout;
+const pathPrefix = process.env.GATSBY_PATH_PREFIX || '';
 
 export function RootLayout({ children }: React.PropsWithChildren<{}>) {
   return (
@@ -47,21 +48,9 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
                 </Link>
               </div>
 
-              {/*<div className="header-search">*/}
-              {/*  <AutoComplete*/}
-              {/*      dropdownClassName="certain-category-search-dropdown"*/}
-              {/*      dropdownMatchSelectWidth={500}*/}
-              {/*      style={{*/}
-              {/*        width: 250,*/}
-              {/*      }}*/}
-              {/*      options={options}*/}
-              {/*      value={search}*/}
-              {/*      onSelect={onSelect}*/}
-              {/*      onSearch={onSearch}*/}
-              {/*  >*/}
-              {/*    <Input.Search size="large" placeholder={search} />*/}
-              {/*  </AutoComplete>*/}
-              {/*</div>*/}
+              <div className="header-search">
+                <Search />
+              </div>
               <Menu
                 theme="dark"
                 mode="horizontal"

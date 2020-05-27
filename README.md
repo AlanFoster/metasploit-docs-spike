@@ -59,3 +59,15 @@ Modules seem to swap between being advanced or not, but only when the metadata e
        "description": "A proxy chain of format type:host:port[,type:host:port][...]"
      },
 ```
+
+### Algolia
+
+It's possible to wire up custom Algolia integration + search functionality, as this spike uses. However, algolia offer
+an out of the box solution for documentation sites - https://docsearch.algolia.com/
+
+This would still give us the same benefits as wiring up our own indexing, but wouldn't require any ongoing development
+effort:
+
+> Use metrics such as Popular Queries, No Results, and Click Position to better optimize your content.
+
+> we'll crawl your website at most every 24 hours.

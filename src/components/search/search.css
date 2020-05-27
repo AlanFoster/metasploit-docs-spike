@@ -1,0 +1,14 @@
+.autocomplete-highlight {
+    padding: 0;
+    font-weight: 500;
+    background-color: #ffe000;
+}
+
+.search .ant-select-item-option-content {
+    white-space: normal;
+}
+
+.search mark {
+    padding: 2px 1px;
+    background-color: #ffe58f;
+}
