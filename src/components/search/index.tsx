@@ -118,7 +118,7 @@ const SearchComponent = function ({ hits, currentRefinement, refine }: any) {
 
 const ConnectedAutocomplete = connectAutoComplete(SearchComponent);
 
-export default function App() {
+export const Search = function () {
   return (
     <InstantSearch searchClient={searchClient} indexName="Wiki">
       <ConnectedAutocomplete />
@@ -127,4 +127,4 @@ export default function App() {
       <Index indexName="Modules" />
     </InstantSearch>
   );
-}
+};

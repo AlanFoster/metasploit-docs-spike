@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { WikiLayout } from '../WikiLayout';
+import { WikiLayout } from '../components/layout/WikiLayout';
 
 function WikiTemplate({ data }: any) {
   const article = data.markdownRemark;

@@ -3,18 +3,21 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import { AutoComplete, Input, Layout, Menu } from 'antd';
 import { Logo } from './Logo';
-import './Layout.css';
 import { Sidebar } from './sidebar';
-import { Search } from './Search';
+import { Search } from '../Search';
+import 'prismjs/themes/prism-coy.css';
+import 'antd/dist/antd.css';
+import './Layout.css';
 
 const { Sider, Content, Header } = Layout;
+
 const pathPrefix = process.env.GATSBY_PATH_PREFIX || '';
 
-export function RootLayout({ children }: React.PropsWithChildren<{}>) {
+export function WikiLayout({ children }: React.PropsWithChildren<{}>) {
   return (
     <StaticQuery
       query={graphql`
-        query SiteTitleQuery {
+        query SiteTitleQueryWikiLayout {
           site {
             siteMetadata {
               title
@@ -75,13 +78,14 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
             </Header>
 
             <Layout className="content-wrapper">
-              <Layout style={{ padding: '0 24px 24px' }}>
+              <Sidebar />
+              <Layout style={{ padding: '0 24px 24px', marginLeft: '280px' }}>
                 <Content
                   style={{
                     padding: 24,
-                    // margin: '24px 0',
-                    // minHeight: 'inherit',
-                    // backgroundColor: '#fff',
+                    margin: '24px 0',
+                    minHeight: 'inherit',
+                    backgroundColor: '#fff',
                   }}
                 >
                   {children}
@@ -95,4 +99,4 @@ export function RootLayout({ children }: React.PropsWithChildren<{}>) {
   );
 }
 
-export default RootLayout;
+export default WikiLayout;

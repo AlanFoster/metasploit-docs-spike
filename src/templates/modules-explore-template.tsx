@@ -29,7 +29,7 @@ import {
 } from '@ant-design/icons';
 import _ from 'lodash';
 import { Link } from 'gatsby';
-import RootLayout from '../Layout';
+import RootLayout from '../components/layout/RootLayout';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text, Paragraph } = Typography;

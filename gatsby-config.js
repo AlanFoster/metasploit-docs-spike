@@ -172,7 +172,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         defaultLayouts: {
-          default: require.resolve('./src/Layout.tsx'),
+          default: require.resolve('./src/components/layout/RootLayout.tsx'),
         },
         plugins: [
           {

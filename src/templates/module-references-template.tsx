@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { RootLayout as Layout } from '../Layout';
+import { RootLayout as Layout } from '../components/layout/RootLayout';
 import { ModuleDefinition } from './module-definition';
 import { Button, Empty, Result, Space, Tooltip, Typography } from 'antd';
 const { Title, Text, Paragraph } = Typography;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { RootLayout } from '../Layout';
+import { RootLayout } from '../components/layout/RootLayout';
 import { ModuleDefinition } from './module-definition';
 import _ from 'lodash';
 import {
