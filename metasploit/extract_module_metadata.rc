@@ -21,29 +21,6 @@ def record_time
   [result, elapsed]
 end
 
-# def parallel_each(enumerable)
-#   queue = Queue.new
-#   enumerable.each { |enum| queue << enum }
-#
-#   threads = 16.times.map do
-#     Thread.new do
-#       until queue.empty?
-#         element = queue.pop(non_block: true) rescue StandardError
-#         next if element.nil?
-#
-#         yield element
-#       end
-#     end
-#   end
-#
-#   threads.each(&:join)
-#   queue.close
-# end
-#
-# def with_json_extension(path)
-#   File.join(File.dirname(path), "#{File.basename(path, ".*")}.json")
-# end
-
 output_path = File.join(Msf::Config.install_root, 'tmp', 'module_metadata.json')
 File.delete(output_path) if File.exist?(output_path)
 
@@ -68,26 +45,27 @@ _, total_time = record_time do
         default: option.default.to_s,
         aliases: option.aliases,
         advanced: option.advanced,
+        evasion: option.evasion,
         description: option.desc
       }
     end
 
-    metadata = {
+    {
       name: mod.name.force_encoding("UTF-8"),
       fullname: mod.realname.force_encoding("UTF-8"),
       aliases: mod.aliases,
       rank: mod.rank,
-      disclosure_date: mod.disclosure_date.nil? ? nil : mod.disclosure_date.to_s,
+      disclosureDate: mod.disclosure_date.nil? ? nil : mod.disclosure_date.to_s,
       type: mod.type,
       author: mod.author.map { |x| x.to_s.force_encoding("UTF-8") },
       description: mod.description.to_s.strip.force_encoding("UTF-8"),
       references: mod.references,
       platform: mod.platform_to_s,
       arch: mod.arch_to_s,
-      autofilter_ports: (
+      autofilterPorts: (
           mod.respond_to?(:autofilter_ports) ? mod.autofilter_ports : nil
         ),
-      autofilter_services: (
+      autofilterServices: (
           mod.respond_to?(:autofilter_services) ? mod.autofilter_services : nil
         ),
       targets: (
@@ -96,10 +74,10 @@ _, total_time = record_time do
       path: mod.file_path.sub(/^#{Msf::Config.install_root}/, ''),
       ref_name: mod.class.refname,
       check: mod.has_check?,
-      post_auth: mod.post_auth?,
-      default_credential: mod.default_cred?,
+      postAuth: mod.post_auth?,
+      defaultCredential: mod.default_cred?,
       notes: mod.notes,
-      needs_cleanup: (
+      needsCleanup: (
           mod.respond_to?(:needs_cleanup?) ? mod.needs_cleanup? : nil
         ),
       options: options

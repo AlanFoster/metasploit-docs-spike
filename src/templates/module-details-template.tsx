@@ -34,7 +34,7 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text, Paragraph } = Typography;
 
-const ModuleDetails = ({ module }: any) => {
+const OptionsTable = ({ options }: any) => {
   const columns = [
     {
       title: 'Name',
@@ -64,10 +64,32 @@ const ModuleDetails = ({ module }: any) => {
     },
   ];
 
-  const orderedOptions = _.sortBy(module.options, (option) => !option.required);
+  return <Table columns={columns} dataSource={options} pagination={false} />;
+};
+
+const selectOptions = function <T>(
+  options: Array<T>,
+  filterPredicate: (option: T) => boolean
+): Array<T> {
+  return _.chain(options)
+    .filter(filterPredicate)
+    .sortBy((option) => !option.required)
+    .value();
+};
+
+const ModuleDetails = ({ module }: any) => {
   const description = module.description
     .split('\n\n')
     .map((line, index) => <Paragraph key={index}>{line}</Paragraph>);
+
+  const basicOptions = selectOptions(
+    module.options,
+    (option) => !(option.advanced || option.evasion)
+  );
+  const advancedOptions = selectOptions(
+    module.options,
+    (option) => option.advanced
+  );
 
   return (
     <div>
@@ -75,16 +97,16 @@ const ModuleDetails = ({ module }: any) => {
 
       <Paragraph>{description}</Paragraph>
 
-      {/*<Divider/>*/}
-
       <Title level={4}>Options</Title>
 
       <Paragraph>
-        <Table
-          columns={columns}
-          dataSource={orderedOptions}
-          pagination={false}
-        />
+        <OptionsTable options={basicOptions} />
+      </Paragraph>
+
+      <Title level={4}>Advanced Options</Title>
+
+      <Paragraph>
+        <OptionsTable options={advancedOptions} />
       </Paragraph>
 
       <Title level={4}>Authors</Title>
@@ -165,6 +187,7 @@ export const moduleMetadataQuery = graphql`
       fields {
         detailsSlug
         documentationSlug
+        referencesSlug
       }
 
       author
@@ -174,6 +197,8 @@ export const moduleMetadataQuery = graphql`
         Stability
       }
       options {
+        advanced
+        evasion
         name
         required
         default

@@ -97,6 +97,7 @@ export const moduleDocumentationQuery = graphql`
       fields {
         detailsSlug
         documentationSlug
+        referencesSlug
       }
       documentation {
         html

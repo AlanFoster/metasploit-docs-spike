@@ -15,7 +15,7 @@ Edit files in `/content/` and see live updates.
 
 ```
 msfconsole --quiet --no-database --resource ./extract_module_metadata.rc --execute-command 'exit'
-cp -r ../metasploit-framework/tmp/module_metadata.json ./contents/modules/details/
+cp ../metasploit-framework/tmp/module_metadata.json ./contents/modules/details
 ```    
 
 ## Noted Problems

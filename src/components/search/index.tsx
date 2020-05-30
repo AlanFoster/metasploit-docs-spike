@@ -102,12 +102,13 @@ const SearchComponent = function ({ hits, currentRefinement, refine }: any) {
       onSelect={onSelect}
       onSearch={onSearch}
       notFoundContent={
-          currentRefinement.length > 0 &&
+        currentRefinement.length > 0 && (
           <Paragraph style={{ textAlign: 'center', marginTop: '1rem' }}>
             <Text strong>
               No results found for query {JSON.stringify(currentRefinement)}
             </Text>
           </Paragraph>
+        )
       }
     >
       <Input.Search size="large" placeholder={currentRefinement} />

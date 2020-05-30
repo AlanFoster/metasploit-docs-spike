@@ -168,23 +168,12 @@ module.exports = {
         icon: 'src/images/metasploit-icon.png', // This path is relative to the root of the site.
       },
     },
-    // {
-    //   resolve: 'gatsby-transformer-remark',
-    //   options: {
-    //     plugins: ['gatsby-remark-images'],
-    //   },
-    // },
     {
-      // TODO: Don't use mdx for now - https://www.gatsbyjs.org/blog/2019-11-21-how-to-convert-an-existing-gatsby-blog-to-use-mdx/
-      // resolve: 'gatsby-plugin-mdx',
       resolve: `gatsby-transformer-remark`,
       options: {
         defaultLayouts: {
           default: require.resolve('./src/Layout.tsx'),
         },
-        // extensions: ['.mdx', '.md'],
-        // workaround: https://github.com/gatsbyjs/gatsby/issues/16422#issuecomment-518985316
-        // gatsbyRemarkPlugins: [
         plugins: [
           {
             resolve: 'gatsby-remark-images',
@@ -193,6 +182,13 @@ module.exports = {
             },
           },
           'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer',
+            },
+          },
           {
             resolve: 'gatsby-remark-prismjs',
             options: {

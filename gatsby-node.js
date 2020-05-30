@@ -35,6 +35,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `documentationSlug`,
       value: `/modules/documentation/${node.fullname}`,
     });
+
+    createNodeField({
+      node,
+      name: `referencesSlug`,
+      value: `/modules/references/${node.fullname}`,
+    });
   }
 };
 
@@ -82,6 +88,7 @@ exports.createPages = ({ actions, graphql }) => {
             fields {
               detailsSlug
               documentationSlug
+              referencesSlug
             }
           }
         }
@@ -100,6 +107,13 @@ exports.createPages = ({ actions, graphql }) => {
           path: node.fields.documentationSlug,
           component: path.resolve(
             `src/templates/module-documentation-template.tsx`
+          ),
+          context: { id: node.id },
+        });
+        createPage({
+          path: node.fields.referencesSlug,
+          component: path.resolve(
+            `src/templates/module-references-template.tsx`
           ),
           context: { id: node.id },
         });

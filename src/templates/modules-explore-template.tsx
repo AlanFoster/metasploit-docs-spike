@@ -40,7 +40,7 @@ const NavigationBreadcrumb = ({ path }) => {
     <Breadcrumb style={{ margin: '16px' }}>
       <Breadcrumb.Item>
         <Link to="/modules/explore">
-          <HomeOutlined /> <span>Modules</span>
+          <HomeOutlined /> <span>modules</span>
         </Link>
       </Breadcrumb.Item>
       {path.split('/').map((segment, index, array) => {

@@ -3,7 +3,12 @@ import { PageHeader, Tag, Tooltip, Layout, Menu, Breadcrumb } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
-import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+  FileTextOutlined,
+  SettingOutlined,
+  CopyOutlined,
+  LinkOutlined,
+} from '@ant-design/icons';
 import { Link } from 'gatsby';
 import { Rank } from '../components/rank';
 
@@ -22,7 +27,7 @@ const ModuleBreadcrumb = ({ module }) => {
     <Breadcrumb style={{ margin: '16px' }}>
       <Breadcrumb.Item>
         <Link to="/modules/explore">
-          <HomeOutlined /> <span>Modules</span>
+          <HomeOutlined /> <span>modules</span>
         </Link>
       </Breadcrumb.Item>
       {module.fullname.split('/').map((segment, index, array) => {
@@ -56,14 +61,19 @@ export const ModuleDefinition = ({ module, activeKey, children }: any) => {
         tags={[<Rank rank={module.rank} />]}
       >
         <Menu selectedKeys={activeKey} mode="horizontal">
+          <Menu.Item key="details">
+            <Link to={module.fields.detailsSlug}>
+              <SettingOutlined /> Details
+            </Link>
+          </Menu.Item>
           <Menu.Item key="documentation">
             <Link to={module.fields.documentationSlug}>
               <FileTextOutlined /> Documentation
             </Link>
           </Menu.Item>
-          <Menu.Item key="details">
-            <Link to={module.fields.detailsSlug}>
-              <SettingOutlined /> Details
+          <Menu.Item key="references">
+            <Link to={module.fields.referencesSlug}>
+              <LinkOutlined /> References
             </Link>
           </Menu.Item>
         </Menu>
