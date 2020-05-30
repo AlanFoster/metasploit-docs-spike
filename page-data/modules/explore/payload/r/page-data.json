@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-modules-explore-template-tsx","path":"/modules/explore/payload/r","result":{"pageContext":{"fullPath":"payload/r","children":[{"segment":"shell_bind_tcp","slug":"modules/details/payload/r/shell_bind_tcp","type":"file"},{"segment":"shell_reverse_tcp","slug":"modules/details/payload/r/shell_reverse_tcp","type":"file"}]}}}
