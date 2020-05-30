@@ -118,12 +118,13 @@ const SearchComponent = function ({ hits, currentRefinement, refine }: any) {
 const ConnectedAutocomplete = connectAutoComplete(SearchComponent);
 
 export default function App() {
-  return (
-    <InstantSearch searchClient={searchClient} indexName="Wiki">
-      <ConnectedAutocomplete />
-      <Configure hitsPerPage={5} />
-      <Index indexName="Wiki" />
-      <Index indexName="Modules" />
-    </InstantSearch>
-  );
+  return <input type="text" id="search-placeholder" />
+  // return (
+  //   <InstantSearch searchClient={searchClient} indexName="Wiki">
+  //     <ConnectedAutocomplete />
+  //     <Configure hitsPerPage={5} />
+  //     <Index indexName="Wiki" />
+  //     <Index indexName="Modules" />
+  //   </InstantSearch>
+  // );
 }
