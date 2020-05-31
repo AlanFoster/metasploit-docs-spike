@@ -9,8 +9,6 @@ import {
   CopyOutlined,
   LinkOutlined,
 } from '@ant-design/icons';
-import 'antd/lib/breadcrumb/style/css';
-import 'antd/lib/page-header/style/css';
 import { Link } from 'gatsby';
 import { Rank } from '../components/rank';
 

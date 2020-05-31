@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql, StaticQuery, Link } from 'gatsby';
 import { Layout, Menu } from 'antd';
-import 'antd/lib/menu/style/css';
 import './sidebar.css';
 
 const { Sider, Content, Header } = Layout;

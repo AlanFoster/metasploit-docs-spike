@@ -10,6 +10,17 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 // Replacing '/' would result in empty string which is invalid
 const replacePath = (path) => (path === `/` ? path : path.replace(/\/$/, ``));
 
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: 'babel-plugin-import',
+    options: {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: 'css',
+    },
+  });
+};
+
 /**
  * Adding slug metadata to nodes on creation
  */

@@ -6,10 +6,6 @@ import { Logo } from './Logo';
 import { Sidebar } from './sidebar';
 import { Search } from '../Search';
 import 'prismjs/themes/prism-coy.css';
-import 'antd/lib/typography/style/css';
-import 'antd/lib/layout/style/css';
-import 'antd/lib/menu/style/css';
-import 'antd/lib/input/style/css';
 import './Layout.css';
 
 const { Sider, Content, Header } = Layout;
