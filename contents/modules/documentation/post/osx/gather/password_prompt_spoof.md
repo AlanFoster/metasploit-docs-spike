@@ -62,18 +62,18 @@ The following screen shots are from OSX 10.14.4 from a `ssh_login` shell as the 
 
 The user is first prompts for additional permissions (System Events):
 
-<img width="423" alt="Screen Shot 2019-04-15 at 12 19 38 PM" src="https://user-images.githubusercontent.com/752491/56173728-ead79c80-5fbc-11e9-8a8f-3b3265220c95.png"/>
+<img width="423" alt="Screen Shot 2019-04-15 at 12 19 38 PM" src="https://user-images.githubusercontent.com/752491/56173728-ead79c80-5fbc-11e9-8a8f-3b3265220c95.png">
 
 Next, the user is prompted to allow Accessibility Access (Events):
 
-<img width="463" alt="Screen Shot 2019-04-15 at 12 20 08 PM" src="https://user-images.githubusercontent.com/752491/56173737-f4f99b00-5fbc-11e9-9dcc-efbfe0cd08eb.png"/>
+<img width="463" alt="Screen Shot 2019-04-15 at 12 20 08 PM" src="https://user-images.githubusercontent.com/752491/56173737-f4f99b00-5fbc-11e9-9dcc-efbfe0cd08eb.png">
 
 Clicking Open System Preferences shows the executable asking for the permissions.  The screenshot was taken after clicking the lock in the bottom left corner,
 and checking `sshd-keygen-wrapper`:
 
-<img width="670" alt="Screen Shot 2019-04-15 at 12 24 27 PM" src="https://user-images.githubusercontent.com/752491/56173742-fa56e580-5fbc-11e9-8d28-5669e9e9448f.png"/>
+<img width="670" alt="Screen Shot 2019-04-15 at 12 24 27 PM" src="https://user-images.githubusercontent.com/752491/56173742-fa56e580-5fbc-11e9-8d28-5669e9e9448f.png">
 
 Finally, if done within the `TIMEOUT` (or with all required permissions):
 
-<img width="424" alt="Screen Shot 2019-04-15 at 12 25 25 PM" src="https://user-images.githubusercontent.com/752491/56173748-fe830300-5fbc-11e9-9564-0e7137b051a8.png"/>
+<img width="424" alt="Screen Shot 2019-04-15 at 12 25 25 PM" src="https://user-images.githubusercontent.com/752491/56173748-fe830300-5fbc-11e9-9564-0e7137b051a8.png">
 

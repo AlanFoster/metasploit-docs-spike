@@ -7,8 +7,8 @@
   1. Install Metasploit 5.0.27 or earlier (or checkout before commit 5621d200ccf62e4a8f0dad80c1c74f4e0e52d86b)
   2. Start msfconsole with the target Metasploit instance and start any reverse_http/reverse_https listener
   3. Start this module and set RHOSTS and RPORT to the target listener address and port.
-  4. `run` the module against the target
-  5. `msfconsole` should use 99%+ CPU for a varying amount of time depending on the DOSTYPE option. You may need to kill the process manually.
+  4. Run the modulest <rhost>```
+  7. `msfconsole` should use 99%+ CPU for a varying amount of time depending on the DOSTYPE option. You may need to kill the process manually.
 
 ## Options
 

@@ -29,7 +29,7 @@ If you see notepad.exe running as SYSYEM then that is as indication of vulnerabl
 
 ### COMMAND
 
-This command will be executed on successful escalation.
+This command will be executed on successful escalation.</br>
 
 ## Scenarios
 

@@ -11,10 +11,7 @@ Rsync is installed by default on Kali, however we need to configure some modules
 create the secrets files which we'll use to test the authentication mechanism.  Much of this is based on the guide from
 [atlantic.net](https://www.atlantic.net/cloud-hosting/how-to-setup-rsync-daemon-linux-server/).
 
-1. Create rsync folders:
-   ```
-    mkdir /home/public_rsync2; mkdir /home/public_rsync3; mkdir /home/public_rsync
-   ```
+1. ```mkdir /home/public_rsync2; mkdir /home/public_rsync3; mkdir /home/public_rsync```
 2. Create the configuration file: 
 
     ```
@@ -40,14 +37,11 @@ create the secrets files which we'll use to test the authentication mechanism.  
     " > /etc/rsyncd.conf
     ```
 
-3. Create `rsyncd.secrets`:
-    ```
-    echo -n "rsync1:9$AZv2%5D29S740k
-    rsync2:Xyb#vbfUQR0og0$6
-    rsync3:VU&A1We5DEa8M6^8" > /etc/rsyncd.secrets
-    ```
-4. `chmod 600 /etc/rsyncd.secrets`
-5. `rsync --daemon`
+3. ```echo -n "rsync1:9$AZv2%5D29S740k
+rsync2:Xyb#vbfUQR0og0$6
+rsync3:VU&A1We5DEa8M6^8" > /etc/rsyncd.secrets```
+4. ```chmod 600 /etc/rsyncd.secrets```
+5. ```rsync --daemon```
 
 ## Verification Steps
 

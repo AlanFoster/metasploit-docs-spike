@@ -65,7 +65,7 @@ For Oracle Server, please follow the following
 
   **RHOSTS**
 
-  Target hosts, range CIDR identifier, or hosts file with syntax `file:<path>`
+  Target hosts, range CIDR identifier, or hosts file with syntax 'file:<path>'
 
   **RPORTS**
 

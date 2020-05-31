@@ -1,7 +1,6 @@
 # Description
 This module scans for hosts that support the SMBv1 protocol.  It works by sending an SMB_COM_NEGOTATE request to each host specified in RHOSTS and claims that it only supports the following SMB dialects:
-```
-PC NETWORK PROGRAM 1.0
+```PC NETWORK PROGRAM 1.0
 LANMAN1.0
 Windows for Workgroups 3.1a
 LM1.2X002
@@ -53,4 +52,4 @@ ___
 
 ## Options
 
-The only option is RHOSTS, which can be specified as a single IP, hostname, or an IP range in CIDR notation or range notation.  It can also be set using hosts from the database using `hosts -R`.
+The only option is RHOSTS, which can be specified as a single IP, hostname, or an IP range in CIDR notation or range notation.  It can also be set using hosts from the database using ```hosts -R```.
