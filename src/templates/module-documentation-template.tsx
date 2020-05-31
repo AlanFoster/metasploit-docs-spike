@@ -4,6 +4,8 @@ import { RootLayout as Layout } from '../components/layout/RootLayout';
 import { ModuleDefinition } from './module-definition';
 import { Button, Empty, Result, Space, Tooltip, Typography } from 'antd';
 const { Title, Text, Paragraph } = Typography;
+import 'antd/lib/empty/style/css';
+import 'antd/lib/space/style/css';
 
 const MissingModuleDocumentation = ({ module }: any) => {
   const [state, setState] = React.useState('default');

@@ -31,6 +31,7 @@ import {
   FolderFilled,
   FileOutlined,
 } from '@ant-design/icons';
+import 'antd/lib/table/style/css';
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text, Paragraph } = Typography;
 
